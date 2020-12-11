@@ -27,14 +27,16 @@ export default class Contacts extends Component {
   render() {
     const { loading, contacts } = this.state;
 
-    if (loading) {
-      return <Loader />;
-    } else {
-      return (
-        <div className="contacts">
-          <h1>Kontaktbuch</h1>
-          <Row>
-            <Col xs={12} md={12} lg={6} xl={4}>
+    return (
+      <div className="contacts">
+        <h1>Kontaktbuch</h1>
+        <Row>
+          <Col xs={12} md={12} lg={6} xl={4}>
+            {loading ? (
+              <Card className="border-top shadow-md p-4">
+                <Loader />
+              </Card>
+            ) : (
               <Card className="border-top shadow-md">
                 <Card.Header className="bg-white border-bottom-0 pb-0">
                   <Card.Title className="text font-weight-bold mb-0">Kontakte</Card.Title>
@@ -88,12 +90,11 @@ export default class Contacts extends Component {
                   })}
                 </Card.Body>
               </Card>
-            </Col>
-          </Row>
-
           <InsertContact shown={this.state.insertContactModal} />
-        </div>
-      );
-    }
+            )}
+          </Col>
+        </Row>
+      </div>
+    );
   }
 }
