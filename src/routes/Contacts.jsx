@@ -1,27 +1,16 @@
 import { faCreditCard, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Component } from "react";
-import { Card, Row, Col, Table, Form, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Card, Row, Col, InputGroup, FormControl, Button } from "react-bootstrap";
 import Loader from "../components/Loader";
-import { InsertContact, RemoveContact } from "../components/Modals";
-import DulliAG from "../DulliAG";
 
 export default class Contacts extends Component {
   constructor() {
     super();
     this.state = {
       loading: true,
-      insertContactModal: false,
+      contacts: [],
     };
-  }
-
-  async componentDidMount() {
-    const contacts = await new DulliAG().getContacts();
-    // const test = await new DulliAG().insertContact("thorben", "playerid", "avatar", "telefon");
-    this.setState({
-      contacts: contacts,
-      loading: false,
-    });
   }
 
   render() {
@@ -47,7 +36,6 @@ export default class Contacts extends Component {
                         variant="primary"
                         className="px-3"
                         onClick={() => {
-                          this.setState({ insertContactModal: !this.state.insertContactModal });
                           console.log("show modal");
                         }}
                       >
@@ -90,7 +78,6 @@ export default class Contacts extends Component {
                   })}
                 </Card.Body>
               </Card>
-          <InsertContact shown={this.state.insertContactModal} />
             )}
           </Col>
         </Row>
