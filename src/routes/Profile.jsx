@@ -34,22 +34,27 @@ export default class Profile extends Component {
   render() {
     const { loading, profile, vehicles } = this.state;
 
-    if (loading) {
-      return <Loader />;
-    } else {
-      const lastSeen = new Date(profile.data[0].last_seen.date);
-      const lsDate = {
-        days: lastSeen.getDate(),
-        month: lastSeen.getMonth() + 1,
-        year: lastSeen.getFullYear(),
-        hours: lastSeen.getHours(),
-        minutes: lastSeen.getMinutes(),
-      };
-      return (
-        <div className="profile">
-          <h1>Spielerprofil</h1>
-          <Row>
-            <Col xs={12} md={6} lg={5} xl={3} className="mb-3">
+    const lastSeen = !loading ? new Date(profile.data[0].last_seen.date) : null;
+    const lsDate =
+      lastSeen !== null
+        ? {
+            days: lastSeen.getDate(),
+            month: lastSeen.getMonth() + 1,
+            year: lastSeen.getFullYear(),
+            hours: lastSeen.getHours(),
+            minutes: lastSeen.getMinutes(),
+          }
+        : null;
+    return (
+      <div className="profile">
+        <h1>Spielerprofil</h1>
+        <Row>
+          <Col xs={12} md={6} lg={5} xl={3} className="mb-3">
+            {loading ? (
+              <Card className="border-top shadow-md p-4">
+                <Loader />
+              </Card>
+            ) : (
               <Card className="shadow-md border-top">
                 <Card.Body className="pb-0">
                   <img className="avatar" src={profile.data[0].avatar_full} alt="Avatar" />
@@ -143,9 +148,15 @@ export default class Profile extends Component {
                   </div>
                 </Card.Body>
               </Card>
-            </Col>
+            )}
+          </Col>
 
-            <Col xs={12} md={6} lg={7} xl={9}>
+          <Col xs={12} md={6} lg={7} xl={9}>
+            {loading ? (
+              <Card className="border-top shadow-md p-4">
+                <Loader />
+              </Card>
+            ) : (
               <Card className="shadow-md border-top">
                 <Tab.Container defaultActiveKey="bank-accounts">
                   <div className="nav-container rounded">
@@ -503,10 +514,10 @@ export default class Profile extends Component {
                   </Tab.Content>
                 </Tab.Container>
               </Card>
-            </Col>
-          </Row>
-        </div>
-      );
-    }
+            )}
+          </Col>
+        </Row>
+      </div>
+    );
   }
 }

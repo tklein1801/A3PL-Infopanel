@@ -1,11 +1,7 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
-import { Row, Col, Form, Card, Button, Badge } from "react-bootstrap";
-import { faUsers } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ReallifeRPG from "../ReallifeRPG";
-
+import { Row, Col, Form, Card, Button } from "react-bootstrap";
+import { application } from "../config.json";
 export default class Settings extends Component {
   constructor() {
     super();
@@ -30,7 +26,7 @@ export default class Settings extends Component {
   }
 
   render() {
-    const { loading, originalKey, apiKey } = this.state;
+    const { loading, apiKey } = this.state;
 
     if (loading) {
       return <Loader />;
@@ -46,10 +42,6 @@ export default class Settings extends Component {
                 </Card.Header>
                 <Card.Body className="pt-0">
                   <Form onSubmit={this.submitSettings}>
-                    <p>
-                      Gib deinen <strong>ReallifeRPG API-Key</strong> an welcher lokal auf deinem
-                      Gerät gespeichert wird.
-                    </p>
                     <Form.Group as={Row} controlId="formPlaintextPassword">
                       <Form.Label column sm="3">
                         API-Key
@@ -63,7 +55,12 @@ export default class Settings extends Component {
                         />
                       </Col>
                     </Form.Group>
-
+                    <i>
+                      Der API-Key wird nur im lokalen Speicher deines Gerätes gespeichert. Die{" "}
+                      <a href="https://dulliag.de">DulliAG</a> hat keinen Zugriff auf deinen
+                      API-Key. Außerdem hast du die Möglichkeit den API-Key aus deinem lokalen
+                      Speicher zu löschen.
+                    </i>
                     <Form.Group as={Row} className="mx-0 mb-0">
                       <Button
                         variant="danger"
@@ -83,21 +80,36 @@ export default class Settings extends Component {
                 </Card.Body>
               </Card>
             </Col>
-            <Col xs={12} md={6} lg={6} xl={4} className="mb-3">
-              <Card className="shadow-md border-top">
+            <Col xs={12} md={6} lg={6} xl={4}>
+              <Card className="border-top shadow-md">
                 <Card.Header className="border-bottom-0 bg-white pb-0">
-                  <Card.Title className="mb-0">ReallifeRPG</Card.Title>
+                  <Card.Title className="mb-0">{application.name}</Card.Title>
                 </Card.Header>
                 <Card.Body className="pt-0">
                   <Card.Text className="mb-0">
                     Dieses Infopanel gehört nicht zu{" "}
                     <a href="https://realliferpg.de">ReallifeRPG</a>. Das offizielle Infopanel kann{" "}
                     <a href="https://info.realliferpg.de">hier</a> gefunden werden.
+                    <p className="text mb-0">
+                      <strong className="mb-0">Version: {application.version}</strong> <br />
+                      <strong className="mb-0">
+                        Beta: <a href={application.beta}>{application.beta}</a>
+                      </strong>{" "}
+                      <br />
+                      <strong className="mb-0">Beschreibung</strong> <br />
+                      {application.description}
+                      <br />
+                      <strong className="mb-0">GitHub:</strong>{" "}
+                      <a href={application.github}>Repository</a>
+                      <br />
+                      <strong className="mb-0">Fehler & Verbesserungen</strong>{" "}
+                      <a href={application.issues}>hier</a> einreichen
+                    </p>
                   </Card.Text>
                 </Card.Body>
               </Card>
             </Col>
-            <Col xs={12} md={6} lg={6} xl={4} className="mb-3">
+            <Col xs={12} md={6} lg={6} xl={4}>
               <Card className="shadow-md border-top">
                 <Card.Header className="border-bottom-0 bg-white pb-0">
                   <Card.Title className="mb-0">DulliAG</Card.Title>

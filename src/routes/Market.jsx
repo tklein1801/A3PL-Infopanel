@@ -34,17 +34,18 @@ export default class Market extends Component {
 
   render() {
     const { market, loading } = this.state;
+    const mData = !loading ? market.data : null;
 
-    if (loading) {
-      return <Loader />;
-    } else {
-      const mData = market.data;
-
-      return (
-        <div className="market">
-          <h1>Markt</h1>
-          <Row>
-            <Col xs={12} md={6} lg={4} xl={4}>
+    return (
+      <div className="market">
+        <h1>Markt</h1>
+        <Row>
+          <Col xs={12} md={6} lg={4} xl={4}>
+            {loading ? (
+              <Card className="border-top shadow-md p-4">
+                <Loader />
+              </Card>
+            ) : (
               <Card className="shadow-md border-top">
                 <Tab.Container defaultActiveKey={mData[0].server_id}>
                   <div className="nav-container rounded">
@@ -98,9 +99,15 @@ export default class Market extends Component {
                   </Tab.Content>
                 </Tab.Container>
               </Card>
-            </Col>
+            )}
+          </Col>
 
-            <Col xs={12} md={6} lg={8} xl={8}>
+          <Col xs={12} md={6} lg={8} xl={8}>
+            {loading ? (
+              <Card className="border-top shadow-md p-4">
+                <Loader />
+              </Card>
+            ) : (
               <Card className="shadow-md border-top chart-card">
                 <Tab.Container defaultActiveKey={mData[0].server_id}>
                   <Card.Header>
@@ -185,10 +192,10 @@ export default class Market extends Component {
                   </Card.Body>
                 </Tab.Container>
               </Card>
-            </Col>
-          </Row>
-        </div>
-      );
-    }
+            )}
+          </Col>
+        </Row>
+      </div>
+    );
   }
 }

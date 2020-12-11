@@ -24,14 +24,18 @@ export default class Dashboard extends Component {
   render() {
     const { loading, profile, servers } = this.state;
 
-    if (loading) {
-      return <Loader />;
-    } else {
-      return (
-        <div className="dashboard">
-          <h1>Dashboard</h1>
-          <Row>
-            {servers.map((server, index) => {
+    return (
+      <div className="dashboard">
+        <h1>Dashboard</h1>
+        <Row>
+          {loading ? (
+            <Col xs={12} md={12} lg={6} xl={6}>
+              <Card className="border-top shadow-md p-4">
+                <Loader />
+              </Card>
+            </Col>
+          ) : (
+            servers.map((server, index) => {
               let friends = [];
               const playerList = server.Players,
                 playerName = profile.name,
@@ -123,10 +127,10 @@ export default class Dashboard extends Component {
                   </Card>
                 </Col>
               );
-            })}
-          </Row>
-        </div>
-      );
-    }
+            })
+          )}
+        </Row>
+      </div>
+    );
   }
 }

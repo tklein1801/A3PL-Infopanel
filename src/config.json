@@ -1,4 +1,12 @@
 {
+  "application": {
+    "name": "A3RLRPG-Infopanel",
+    "version": "0.1.0",
+    "description": "Webanwendungen um deine Spielfortschritte von ReallifeRPG abzurufen.",
+    "beta": "https://dev-app.dulliag.de",
+    "github": "https://github.com/tklein1801/A3RLRPG-Infopanel/",
+    "issues": "https://github.com/tklein1801/A3RLRPG-Infopanel/issues"
+  },
   "sidebar": {
     "logo": "https://files.dulliag.de/share/Blobbo.png"
   },
