@@ -1,3 +1,6 @@
+const FormData = require("form-data");
+const fetch = require("node-fetch");
+
 class Contact {
   /**
    * @param {string} playerName ReallifeRPG playername
@@ -6,18 +9,16 @@ class Contact {
    * @param {string} telNo ReallifeRPG telephone number
    */
   async create(playerName, playerId, avatarUrl, telNo) {
-    const form = new FormData();
-    form.append("playerName", playerName);
-    form.append("playerId", playerId);
-    form.append("avatarUrl", avatarUrl);
-    form.append("telNo", telNo);
+    const formData = new FormData();
+    formData.append("playerName", playerName);
+    formData.append("playerId", playerId);
+    formData.append("avatarUrl", avatarUrl);
+    formData.append("telNo", telNo);
     const response = await fetch("https://api.dulliag.de/acon/v1/create.php", {
       method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      body: formData,
     });
-    const data = response.json();
+    const data = await response.json();
     return data;
   }
 
@@ -25,13 +26,11 @@ class Contact {
    * @param {number} contactId
    */
   async delete(contactId) {
-    const form = new FormData();
-    form.append("contactId", contactId);
+    const formData = new FormData();
+    formData.append("contactId", contactId);
     const response = await fetch("https://api.dulliag.de/acon/v1/delete.php", {
       method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      body: formData,
     });
     const data = await response.json();
     return data;
