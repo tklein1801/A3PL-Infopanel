@@ -1,0 +1,28 @@
+@import "./_variables";
+
+.alert {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: $lightBlue !important;
+  border-radius: 0;
+  color: #fff;
+
+  div {
+    // This contains the message
+    &:nth-child(1) {
+      text-align: center;
+    }
+
+    // This contains the close-button
+    &:nth-child(2) {
+      text-align: right;
+
+      .icon:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

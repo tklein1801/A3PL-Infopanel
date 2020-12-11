@@ -1,0 +1,9 @@
+{
+  "sidebar": {
+    "logo": "https://files.dulliag.de/share/Blobbo.png"
+  },
+  "topJobs": {
+    "amount": 10,
+    "blacklist": ["beer"]
+  }
+}

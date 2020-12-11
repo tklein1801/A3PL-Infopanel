@@ -1,0 +1,50 @@
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+force = false
+[[redirects]]
+from = "/Dashboard"
+to = "/index.html"
+status = 200
+force = false
+[[redirects]]
+from = "/Profil"
+to = "/Profil"
+status = 200
+force = false
+[[redirects]]
+from = "/Markt"
+to = "/Markt"
+status = 200
+force = false
+[[redirects]]
+from = "/Kontaktbuch"
+to = "/Kontaktbuch"
+status = 200
+force = false
+[[redirects]]
+from = "/Shops"
+to = "/Shops"
+status = 200
+force = false
+[[redirects]]
+from = "/CBS"
+to = "/CBS"
+status = 200
+force = false
+[[redirects]]
+from = "/Streams"
+to = "/Streams"
+status = 200
+force = false
+[[redirects]]
+from = "/Changelogs"
+to = "/Changelogs"
+status = 200
+force = false
+[[redirects]]
+from = "/Einstellungen"
+to = "/Einstellungen"
+status = 200
+force = false

@@ -1,0 +1,237 @@
+@import "./_variables";
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: "Quicksand", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  * {
+    margin: 0;
+  }
+
+  #root {
+    width: inherit;
+    height: inherit;
+    background-color: inherit;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background-color: $light;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $primary;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: $primary;
+  }
+  ::selection {
+    background: $primary;
+    color: #fff;
+  }
+  ::-moz-selection {
+    background: $primary;
+    color: #fff;
+  }
+
+  // Typography
+  .text {
+    color: $text;
+  }
+  .text.font-weight-bold {
+    font-family: "Quicksand-Bold" !important;
+    font-weight: normal !important;
+  }
+  p > a,
+  i > a {
+    transition: 150ms;
+    color: $text;
+    border-bottom: 1px dotted $text;
+
+    &:hover {
+      color: $primary;
+      border-color: $primary;
+      text-decoration: none;
+    }
+  }
+
+  // Card
+  .card {
+    &.border-top {
+      border-top: 4px solid $primary !important;
+
+      .card-title {
+        font-family: "Quicksand-Bold";
+      }
+    }
+
+    .card-body {
+      padding-bottom: 1rem;
+    }
+  }
+
+  // Badge
+  .badge {
+    font-family: "Quicksand-Bold";
+
+    &.badge-primary {
+      background-color: $primary !important;
+    }
+  }
+
+  // Tables
+  .table {
+    margin-bottom: 0;
+    &.no-wrap {
+      white-space: nowrap !important;
+    }
+
+    th,
+    td {
+      vertical-align: middle !important;
+    }
+  }
+
+  // Buttons
+  .btn {
+    &:focus {
+      box-shadow: none !important;
+    }
+
+    &.btn-primary {
+      background-color: $primary !important;
+      border-color: $primary !important;
+    }
+
+    &.btn-outline-primary {
+      border-color: $primary !important;
+      color: $primary !important;
+
+      &:hover,
+      :focus {
+        background-color: $primary !important;
+        color: #fff;
+      }
+    }
+  }
+
+  // Forms
+  .form-group {
+    .form-label {
+      margin-bottom: 0;
+      font-family: "Quicksand-Bold";
+    }
+
+    .form-control {
+      resize: none;
+      background-color: $light;
+      border: 2px solid $light;
+      &:focus {
+        box-shadow: none;
+        border-width: 2px;
+        border-color: $primary;
+        background-color: $light;
+      }
+    }
+
+    .custom-file {
+      .custom-file-label {
+        background-color: $light;
+        border: 2px solid $light;
+      }
+      .custom-file-input:focus ~ .custom-file-label {
+        box-shadow: none !important;
+        border-width: 2px;
+        background-color: $light;
+      }
+    }
+  }
+
+  .input-group {
+    .form-label {
+      margin-bottom: 0;
+      font-family: "Quicksand-Bold";
+    }
+
+    .form-control {
+      resize: none;
+      background-color: $light;
+      border: 2px solid $light;
+      &:focus {
+        box-shadow: none;
+        border-width: 2px;
+        border-color: $primary;
+        background-color: $light;
+      }
+    }
+
+    .input-group-append,
+    .input-group-prepend {
+      .input-group-text {
+        background-color: $light;
+        border-top: 2px solid $light;
+        border-bottom: 2px solid $light;
+      }
+    }
+  }
+
+  // Modals
+  .modal {
+    &.modal-static .modal-dialog {
+      transform: scale(1) !important;
+    }
+
+    .modal-content {
+      border-radius: 18px;
+      padding: 0.5rem;
+      .modal-header {
+        padding-bottom: 0;
+        border-bottom: 0px;
+        .modal-title {
+          font-weight: bold;
+        }
+      }
+
+      .modal-footer {
+        padding-top: 0;
+        border-top: 0px;
+      }
+    }
+  }
+
+  // Nav-pill
+  .nav-container {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: $light;
+
+    .nav {
+      .nav-link {
+        transition: all 0.3s ease 0s;
+        text-align: center;
+        width: calc(100% / 2);
+        font-family: "Quicksand-Bold";
+        color: #212529;
+
+        &:hover {
+          color: $primary;
+        }
+
+        &.active {
+          background-color: $primary !important;
+          font-weight: bold;
+          color: white;
+        }
+      }
+    }
+  }
+}

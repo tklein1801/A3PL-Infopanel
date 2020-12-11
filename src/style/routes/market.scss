@@ -1,0 +1,61 @@
+@import "../_variables";
+
+.market {
+  .item-table {
+    tr {
+      transition: 200ms;
+
+      td,
+      th {
+        &:first-child {
+          padding-left: 1.5rem;
+        }
+        &:last-child {
+          padding-right: 1.5rem;
+        }
+      }
+      &:hover {
+        background-color: $light;
+      }
+    }
+  }
+
+  .chart-card {
+    background-color: $primary;
+    .card-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      background-color: $primary;
+      border-bottom: 0;
+
+      .card-title {
+        color: #fff;
+      }
+
+      .nav-pane-container {
+        display: flex;
+        justify-content: flex-end;
+
+        .nav-link {
+          margin-right: 0.5rem;
+          background-color: rgba($color: #000000, $alpha: 0.7);
+          font-family: "Quicksand-Bold";
+          font-size: 0.8rem;
+          color: white;
+          border-radius: 5px;
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $brSm) {
+    .card:first-child {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

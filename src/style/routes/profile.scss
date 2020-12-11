@@ -1,0 +1,111 @@
+@import "../_variables";
+
+.profile {
+  .avatar {
+    width: 35%;
+    margin-left: calc(50% - (35% / 2));
+    margin-bottom: 1rem;
+    border-radius: 50%;
+  }
+
+  .level-progress-container {
+    .progress {
+      height: 1.5rem;
+      .progress-bar {
+        background-color: $primary;
+      }
+    }
+  }
+
+  .fraction-level-container {
+    .fraction-level {
+      text-align: center;
+      border-right: 1px solid #ededed;
+      &:last-of-type {
+        border-right: none;
+      }
+
+      .icon {
+        width: 100%;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .item {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid #ededed;
+    &:last-of-type {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    p {
+      &:nth-child(1) {
+        font-family: "Quicksand-Bold";
+        margin-bottom: 0;
+      }
+
+      &:nth-child(2) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // .tab-pane {
+  //   padding: 1rem;
+  // }
+
+  .credit-card {
+    position: relative;
+    padding: 1rem;
+    background-color: $primary;
+    border-radius: 5px;
+
+    .text {
+      color: #fff;
+    }
+
+    img {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 2.5rem;
+      height: auto;
+    }
+
+    .form-group {
+      margin-bottom: 0;
+      .form-label {
+        color: #fff;
+      }
+
+      .form-control {
+        background-color: rgba($color: #fff, $alpha: 0.35) !important;
+        border: 0;
+        color: rgba($color: #fff, $alpha: 0.8);
+
+        &::placeholder {
+          color: #fff;
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+  .nav-container .nav-link {
+    width: calc(100% / 3) !important;
+  }
+
+  @media (max-width: $brSm) {
+    .nav-container .nav-link {
+      width: 50% !important;
+
+      // Bcause we got an odd number of nav-pills the last one should be the full width
+      &:last-child {
+        width: 100% !important;
+      }
+    }
+  }
+}

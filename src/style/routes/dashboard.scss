@@ -1,0 +1,42 @@
+@import "../_variables";
+
+.dashboard {
+  .server-card {
+    .card-header {
+      padding-bottom: 0;
+      background-color: white;
+      border-bottom: 0;
+    }
+
+    .card-body {
+      padding-top: 0;
+      padding-bottom: 0;
+
+      .row {
+        align-items: center;
+
+        > div {
+          &:nth-child(2) {
+            ul {
+              overflow: scroll;
+              list-style: none;
+              max-height: 15rem;
+              margin-bottom: 0.5rem;
+              padding-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $brSm) {
+    .server-card {
+      margin-bottom: 1.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@import "./_variables";
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  background-color: $light;
+
+  .main-container {
+    width: $mainConWidth;
+    margin-left: $sidebarWidth;
+    .content {
+      min-height: calc(100% - 4rem); // TODO use scss var
+      background-color: $light;
+
+      .page-content {
+        padding: 0.5rem 1rem;
+
+        div > h1 {
+          font-family: "Quicksand-Bold";
+          font-size: 2.1rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $brSm) {
+    .main-container {
+      width: 100%;
+      margin-left: 0;
+
+      .content {
+        min-height: calc(100% - 4rem); // TODO use scss var
+      }
+    }
+  }
+}
