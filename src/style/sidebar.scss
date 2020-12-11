@@ -50,7 +50,7 @@
           color: $sidebarColor;
 
           &:hover {
-            background-color: rgba($color: $light, $alpha: 0.25);
+            background-color: $primary;
           }
 
           &.active {

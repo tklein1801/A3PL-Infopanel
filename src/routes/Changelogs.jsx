@@ -19,16 +19,14 @@ export default class Changelogs extends Component {
   render() {
     const { changelogs, loading } = this.state;
 
-    return (
-      <div className="changelogs">
-        <h1>Changelogs</h1>
-        <Row>
-          <Col md={6}>
-            {loading ? (
-              <Card className="border-top shadow-md p-5">
-                <Loader />
-              </Card>
-            ) : (
+    if (loading) {
+      return <Loader />;
+    } else {
+      return (
+        <div className="changelogs">
+          <h1>Changelogs</h1>
+          <Row>
+            <Col md={6}>
               <Accordion defaultActiveKey="1">
                 {changelogs.data.map((changelog, index) => {
                   const releaseAt = new Date(changelog.release_at),
@@ -131,10 +129,10 @@ export default class Changelogs extends Component {
                   );
                 })}
               </Accordion>
-            )}
-          </Col>
-        </Row>
-      </div>
-    );
+            </Col>
+          </Row>
+        </div>
+      );
+    }
   }
 }

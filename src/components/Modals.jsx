@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import ReallifeRPG from "../ReallifeRPG";
 
 class SetKeyModal extends Component {
   constructor(props) {
@@ -51,16 +52,6 @@ class SetKeyModal extends Component {
                 />
               </Col>
             </Form.Group>
-            <div id="key-disclaimer">
-              <strong>Achtung</strong> <br />
-              <i>
-                Der API-Key wird nur im lokalen Speicher deines Gerätes gespeichert. Die{" "}
-                <a href="https://dulliag.de">DulliAG</a> hat keinen Zugriff auf deinen API-Key.
-                Außerdem hast du die Möglichkeit den API-Key in den{" "}
-                <a href="../Einstellungen/">Einstellungen</a> aus deinem lokalen Speicher zu
-                löschen.
-              </i>
-            </div>
           </Modal.Body>
           <Modal.Footer>
             <Button
@@ -122,4 +113,91 @@ class ShopItems extends Component {
   }
 }
 
-export { SetKeyModal, ShopItems };
+class InsertContact extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      shown: props.shown,
+      loading: true,
+    };
+  }
+  handleClose = () => {
+    this.setState({ shown: false });
+  };
+
+  handleShow = () => {
+    this.setState({ shown: true });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { phone } = event.target.elements;
+  };
+
+  async componentDidMount() {
+    const apiKey = localStorage.getItem("@dag_apiKey");
+    const player = await new ReallifeRPG().getProfile(apiKey);
+    this.setState({ name: player.data[0].name, loading: false });
+  }
+
+  render() {
+    const { shown, loading, name } = this.state;
+
+    if (loading) {
+      return null;
+    } else {
+      return (
+        <Modal show={shown} onHide={this.handleClose} backdrop="static" size="md" centered>
+          <Modal.Header /*closeButton*/>
+            <Modal.Title id="contained-modal-title-vcenter">Kontakt erstellen</Modal.Title>
+          </Modal.Header>
+          <Form onSubmit={this.handleSubmit}>
+            <Modal.Body className="pb-0">
+              <Form.Group as={Row}>
+                <Form.Label column sm={2}>
+                  Name
+                </Form.Label>
+                <Col sm={10}>
+                  <Form.Control type="text" value={name} readOnly />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm={2}>
+                  Telefon
+                </Form.Label>
+                <Col sm={10}>
+                  <Form.Control
+                    type="tel"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    name="phone"
+                    placeholder="Telefonnummer eintragen"
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm={2}>
+                  IBAN
+                </Form.Label>
+                <Col sm={10}>
+                  <Form.Control type="text" placeholder="IBAN eintragen" disabled />
+                </Col>
+              </Form.Group>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="white" className="px-3">
+                Abbrechen
+              </Button>
+              <Button variant="primary" className="px-3" type="submit">
+                Speichern
+              </Button>
+            </Modal.Footer>
+          </Form>
+        </Modal>
+      );
+    }
+  }
+}
+
+class RemoveContact extends Component {}
+
+export { SetKeyModal, ShopItems, InsertContact, RemoveContact };

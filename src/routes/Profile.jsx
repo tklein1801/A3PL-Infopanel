@@ -34,32 +34,22 @@ export default class Profile extends Component {
   render() {
     const { loading, profile, vehicles } = this.state;
 
-    let lsDate;
-    if (profile !== undefined) {
-      let lastSeen = new Date(profile.data[0].last_seen.date),
-        lsDate = {
-          days: lastSeen.getDate(),
-          month: lastSeen.getMonth() + 1,
-          year: lastSeen.getFullYear(),
-          hours: lastSeen.getHours(),
-          minutes: lastSeen.getMinutes(),
-        },
-        lastSeenFormatted = `${lsDate.days > 9 ? lsDate.days : `0${lsDate.days}`}.${
-          lsDate.month > 9 ? lsDate.month : `0${lsDate.month}`
-        }.${lsDate.year > 9 ? lsDate.year : `0${lsDate.year}`} | ${
-          lsDate.hours > 9 ? lsDate.hours : `0${lsDate.hours}`
-        }:${lsDate.minutes > 9 ? lsDate.minutes : `0${lsDate.minutes}`} Uhr`;
-    }
-    return (
-      <div className="profile">
-        <h1>Spielerprofil</h1>
-        <Row>
-          <Col xs={12} md={6} lg={5} xl={3} className="mb-3">
-            {loading ? (
-              <Card className="border-top shadow-md p-5">
-                <Loader />
-              </Card>
-            ) : (
+    if (loading) {
+      return <Loader />;
+    } else {
+      const lastSeen = new Date(profile.data[0].last_seen.date);
+      const lsDate = {
+        days: lastSeen.getDate(),
+        month: lastSeen.getMonth() + 1,
+        year: lastSeen.getFullYear(),
+        hours: lastSeen.getHours(),
+        minutes: lastSeen.getMinutes(),
+      };
+      return (
+        <div className="profile">
+          <h1>Spielerprofil</h1>
+          <Row>
+            <Col xs={12} md={6} lg={5} xl={3} className="mb-3">
               <Card className="shadow-md border-top">
                 <Card.Body className="pb-0">
                   <img className="avatar" src={profile.data[0].avatar_full} alt="Avatar" />
@@ -144,26 +134,18 @@ export default class Profile extends Component {
                   <div class="item">
                     <p>Zuletzt online</p>
                     <p>
-                      {profile !== undefined
-                        ? `${lsDate.days > 9 ? lsDate.days : `0${lsDate.days}`}.${
-                            lsDate.month > 9 ? lsDate.month : `0${lsDate.month}`
-                          }.${lsDate.year > 9 ? lsDate.year : `0${lsDate.year}`} | ${
-                            lsDate.hours > 9 ? lsDate.hours : `0${lsDate.hours}`
-                          }:${lsDate.minutes > 9 ? lsDate.minutes : `0${lsDate.minutes}`} Uhr`
-                        : "Keine Angabe"}
+                      {lsDate.days > 9 ? lsDate.days : `0${lsDate.days}`}.
+                      {lsDate.month > 9 ? lsDate.month : `0${lsDate.month}`}.
+                      {lsDate.year > 9 ? lsDate.year : `0${lsDate.year}`} |{" "}
+                      {lsDate.hours > 9 ? lsDate.hours : `0${lsDate.hours}`}:
+                      {lsDate.minutes > 9 ? lsDate.minutes : `0${lsDate.minutes}`} Uhr
                     </p>
                   </div>
                 </Card.Body>
               </Card>
-            )}
-          </Col>
+            </Col>
 
-          <Col xs={12} md={6} lg={7} xl={9}>
-            {loading ? (
-              <Card className="border-top shadow-md p-5">
-                <Loader />
-              </Card>
-            ) : (
+            <Col xs={12} md={6} lg={7} xl={9}>
               <Card className="shadow-md border-top">
                 <Tab.Container defaultActiveKey="bank-accounts">
                   <div className="nav-container rounded">
@@ -521,10 +503,10 @@ export default class Profile extends Component {
                   </Tab.Content>
                 </Tab.Container>
               </Card>
-            )}
-          </Col>
-        </Row>
-      </div>
-    );
+            </Col>
+          </Row>
+        </div>
+      );
+    }
   }
 }

@@ -51,8 +51,7 @@ body {
     font-family: "Quicksand-Bold" !important;
     font-weight: normal !important;
   }
-  p > a,
-  i > a {
+  p > a {
     transition: 150ms;
     color: $text;
     border-bottom: 1px dotted $text;

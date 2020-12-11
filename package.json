@@ -2,23 +2,11 @@
   "name": "a3rlrpg-infopanel",
   "version": "0.1.0",
   "private": true,
-  "description": "Webanwendungen um deine Spielfortschritte von ReallifeRPG abzurufen.",
-  "author": {
-    "name": "tklein1801",
-    "email": "thorben.klein@dulliag.de",
-    "url": "https://dulliag.de"
-  },
-  "homepage": "https://github.com/tklein1801/A3RLRPG-Infopanel/",
-  "bugs": {
-    "url": "https://github.com/tklein1801/A3RLRPG-Infopanel/issues/",
-    "email": "thorben.klein@dulliag.de"
-  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.13",
     "@reactchartjs/react-chart.js": "^1.0.0-rc.3",
-    "@sandstreamdev/react-swipeable-list": "^1.0.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.2.2",
