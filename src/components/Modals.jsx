@@ -52,6 +52,16 @@ class SetKeyModal extends Component {
                 />
               </Col>
             </Form.Group>
+            <div id="key-disclaimer">
+              <strong>Achtung</strong> <br />
+              <i>
+                Der API-Key wird nur im lokalen Speicher deines Gerätes gespeichert. Die{" "}
+                <a href="https://dulliag.de">DulliAG</a> hat keinen Zugriff auf deinen API-Key.
+                Außerdem hast du die Möglichkeit den API-Key in den{" "}
+                <a href="../Einstellungen/">Einstellungen</a> aus deinem lokalen Speicher zu
+                löschen.
+              </i>
+            </div>
           </Modal.Body>
           <Modal.Footer>
             <Button
