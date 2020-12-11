@@ -1,27 +1,74 @@
-export default class DulliAG {
-  async getContacts() {
-    const response = await fetch("https://dev.dulliag.de/armaContact/v1/getAll.php");
+class Contact {
+  /**
+   * @param {string} playerName ReallifeRPG playername
+   * @param {string} playerId Steam64 id
+   * @param {string} avatarUrl Steam avatar url
+   * @param {string} telNo ReallifeRPG telephone number
+   */
+  async create(playerName, playerId, avatarUrl, telNo) {
+    const form = new FormData();
+    form.append("playerName", playerName);
+    form.append("playerId", playerId);
+    form.append("avatarUrl", avatarUrl);
+    form.append("telNo", telNo);
+    const response = await fetch("https://api.dulliag.de/acon/v1/create.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     const data = response.json();
     return data;
   }
 
-  async insertContact(playerName, playerId, avatarUrl, telNo) {
-    // const body = {
-    //   name: playerName,
-    //   player: playerId,
-    //   avatar: avatarUrl,
-    //   telNo: telNo,
-    // };
-    // const response = await fetch("https://dev.dulliag.de/v1/armaContact/create.php", {
-    //   method: "post",
-    //   body: JSON.stringify(body),
-    // });
-    const response = await fetch(
-      `https://dev.dulliag.de/armaContact/v1/create.php?name=${playerName}&player=${playerId}&avatar=${avatarUrl}&telNo=${telNo}`
-    );
+  /**
+   * @param {number} contactId
+   */
+  async delete(contactId) {
+    const form = new FormData();
+    form.append("contactId", contactId);
+    const response = await fetch("https://api.dulliag.de/acon/v1/delete.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     const data = await response.json();
     return data;
   }
 
-  async deleteContact() {}
+  async getAll() {
+    const response = await fetch("https://api.dulliag.de/acon/v1/getAll.php", {
+      method: "GET",
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  /**
+   * @param {string} playerId Steam64 id
+   */
+  async getByPlayerId(playerId) {
+    const response = await fetch(`https://api.dulliag.de/acon/v1/getAll.php?playerId=${playerId}`, {
+      method: "GET",
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  /**
+   * @param {number} contactId
+   */
+  async get(contactId) {
+    const response = await fetch(
+      `https://api.dulliag.de/acon/v1/getAll.php?contactId=${contactId}`,
+      {
+        method: "GET",
+      }
+    );
+    const data = await response.json();
+    return data;
+  }
 }
+
+export { Contact };
