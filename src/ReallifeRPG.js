@@ -139,11 +139,11 @@ export default class ReallifeRPG {
 
   /**
    * Get a list of all offered items for an specific shop
-   * @param {string} category Should be vehicles
-   * @param {string} shop
+   * @param {string} category Should be vehicles or items
+   * @param {string} shoptype
    */
-  async getShopItems(category, shop) {
-    const response = await fetch(`${this.api}info/${category}/${shop}`);
+  async getShopItems(category, shoptype) {
+    const response = await fetch(`${this.api}info/${category}/${shoptype}`);
     const data = await response.json();
     return data;
   }

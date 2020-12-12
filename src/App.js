@@ -70,7 +70,7 @@ class App extends Component {
                     <Route path="/Markt/" component={Market} />
                     <Route path="/Kontaktbuch/" component={Contacts} />
                     <Route path="/CBS/" component={CBS} />
-                    {/* <Route path="/Shops/" component={Shops} /> */}
+                    <Route path="/Shops/" component={Shops} />
                     <Route path="/Streams/" component={Streams} />
                     <Route path="/Changelogs/" component={Changelogs} />
                     <Route path="/Einstellungen/" component={Settings} />

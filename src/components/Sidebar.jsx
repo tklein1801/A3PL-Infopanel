@@ -41,11 +41,11 @@ class Sidebar extends Component {
           path: "/Kontaktbuch/",
           icon: <FontAwesomeIcon icon={faAddressBook} className="icon" />,
         },
-        // {
-        //   name: "Shops",
-        //   path: "/Shops/",
-        //   icon: <FontAwesomeIcon icon={faShoppingBag} className="icon" />,
-        // },
+        {
+          name: "Shops",
+          path: "/Shops/",
+          icon: <FontAwesomeIcon icon={faShoppingBag} className="icon" />,
+        },
         {
           name: "CBS",
           path: "/CBS/",
