@@ -30,8 +30,6 @@ export default class Market extends Component {
     this.setState({ market: market, loading: false });
   }
 
-  renderChart() {}
-
   render() {
     const { market, loading } = this.state;
     const mData = !loading ? market.data : null;

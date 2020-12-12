@@ -24,15 +24,16 @@ body {
   }
 
   ::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-    background-color: $light;
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: $primary;
+    background: rgba($color: #ededed, $alpha: 0.8);
+    border-radius: 8px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: $primary;
+    background: #ededed;
   }
   ::selection {
     background: $primary;
@@ -95,10 +96,27 @@ body {
     &.no-wrap {
       white-space: nowrap !important;
     }
-
     th,
     td {
       vertical-align: middle !important;
+    }
+
+    th {
+      font-family: "Quicksand-Bold" !important;
+    }
+
+    tbody tr:hover {
+      background-color: $light !important;
+      td {
+        &:first-child {
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+        &:last-child {
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
+      }
     }
   }
 
@@ -187,6 +205,7 @@ body {
 
   // Modals
   .modal {
+    z-index: 1250;
     &.modal-static .modal-dialog {
       transform: scale(1) !important;
     }
