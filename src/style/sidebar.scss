@@ -72,10 +72,10 @@
     }
   }
 
-  @media (max-width: $brSm) {
+  @media (max-width: $brXl) {
     .nav-menu {
       z-index: 1200;
-      width: 80%;
+      width: $sidebarXlWidth;
       left: -80%;
       top: $navbarHeight;
 
@@ -86,10 +86,10 @@
     }
   }
 
-  @media (max-width: $brXl) {
+  @media (max-width: $brSm) {
     .nav-menu {
       z-index: 1200;
-      width: $sidebarXlWidth;
+      width: 80%;
       left: -80%;
       top: $navbarHeight;
 
