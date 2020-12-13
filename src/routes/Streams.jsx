@@ -43,7 +43,7 @@ export default class Dashboard extends Component {
                   className={index !== streams.data.length - 1 ? "mb-3" : "mb-0"}
                 >
                   <Card>
-                    <Card.Header className="p-0 position-relative">
+                    <Card.Header className="p-0 border-bottom-0 bg-white position-relative">
                       <Card.Img variant="top" src={stream.preview_large} />
 
                       <Badge

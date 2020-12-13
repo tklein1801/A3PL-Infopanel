@@ -80,7 +80,7 @@ export default class Settings extends Component {
                 </Card.Body>
               </Card>
             </Col>
-            <Col xs={12} md={6} lg={6} xl={4}>
+            <Col xs={12} md={6} lg={6} xl={4} className="mb-3">
               <Card className="border-top shadow-md">
                 <Card.Header className="border-bottom-0 bg-white pb-0">
                   <Card.Title className="mb-0">{application.name}</Card.Title>

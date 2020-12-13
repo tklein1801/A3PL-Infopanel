@@ -11,6 +11,7 @@
   .level-progress-container {
     .progress {
       height: 1.5rem;
+      border-radius: $smallBorderRadius;
       .progress-bar {
         background-color: $primary;
       }
@@ -61,7 +62,7 @@
     position: relative;
     padding: 1rem;
     background-color: $primary;
-    border-radius: 5px;
+    border-radius: $borderRadius;
 
     .text {
       color: #fff;
@@ -96,6 +97,13 @@
 
   .nav-container .nav-link {
     width: calc(100% / 3) !important;
+  }
+
+  @media (min-width: 2100px) {
+    .credit-card-container {
+      max-width: calc(100% / 4) !important;
+      min-width: calc(100% / 4) !important;
+    }
   }
 
   @media (max-width: $brSm) {

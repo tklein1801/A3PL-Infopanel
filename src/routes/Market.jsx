@@ -49,9 +49,17 @@ export default class Market extends Component {
                   <div className="nav-container rounded">
                     <Nav variant="pills">
                       {mData.map((data) => {
+                        const online = mData.filter((server) => {
+                            return server.online === true;
+                          }),
+                          serversOnline = online.length;
                         if (data.online) {
                           return (
-                            <Nav.Link eventKey={data.server_id} key={data.server_id}>
+                            <Nav.Link
+                              eventKey={data.server_id}
+                              key={data.server_id}
+                              style={{ width: `calc(100% / ${serversOnline})` }}
+                            >
                               Server {data.server_id}
                             </Nav.Link>
                           );

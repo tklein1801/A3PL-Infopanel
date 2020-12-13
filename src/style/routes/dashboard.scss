@@ -34,9 +34,12 @@
   @media (max-width: $brSm) {
     .server-card {
       margin-bottom: 1.5rem;
-
       &:last-child {
         margin-bottom: 0;
+      }
+
+      .card-body .row > div:nth-child(2) ul {
+        height: unset;
       }
     }
   }

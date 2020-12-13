@@ -44,7 +44,7 @@
           font-family: "Quicksand-Bold";
           font-size: 0.8rem;
           color: white;
-          border-radius: 5px;
+          border-radius: $borderRadius;
           &:last-child {
             margin-right: 0;
           }

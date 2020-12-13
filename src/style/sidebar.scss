@@ -45,7 +45,7 @@
           width: 95%;
           height: 100%;
           padding: 0.5rem 1rem;
-          border-radius: 5px;
+          border-radius: $borderRadius;
           font-size: 1.1rem;
           color: $sidebarColor;
 
@@ -76,6 +76,20 @@
     .nav-menu {
       z-index: 1200;
       width: 80%;
+      left: -80%;
+      top: $navbarHeight;
+
+      &.active {
+        left: 0;
+        transition: 350ms;
+      }
+    }
+  }
+
+  @media (max-width: $brXl) {
+    .nav-menu {
+      z-index: 1200;
+      width: $sidebarXlWidth;
       left: -80%;
       top: $navbarHeight;
 

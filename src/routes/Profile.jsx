@@ -171,18 +171,23 @@ export default class Profile extends Component {
                       <Row>
                         {profile.data[0].bank_main.map((bankAcc) => {
                           return (
-                            <Col xs={12} md={12} lg={6} xl={4}>
+                            <Col
+                              xs={12}
+                              md={12}
+                              lg={6}
+                              xl={4}
+                              className="mb-3 mb-md-0 credit-card-container"
+                            >
                               <div className="credit-card">
                                 <img
                                   src="https://i0.wp.com/realliferpg.de/wp-content/uploads/2017/10/realliferpg100x100.png?fit=100%2C100&ssl=1"
                                   alt="rlrpg logo"
                                 />
                                 <h4 className="text font-weight-bold">NH-Bank</h4>
-                                <Form.Group>
+                                <Form.Group className="mb-3">
                                   <Form.Label>IBAN</Form.Label>
                                   <Form.Control type="text" value={bankAcc.iban} disabled />
                                 </Form.Group>
-
                                 <Form.Row>
                                   <Col xs={7}>
                                     <Form.Group>
@@ -313,7 +318,7 @@ export default class Profile extends Component {
                     <Tab.Pane eventKey="properties">
                       <Alert
                         message={
-                          "Hier werden nur Immobilien, Appartments & Baustellen angezeigt für welche du einen Schlüssen besitzt"
+                          "Hier werden nur Immobilien, Appartments & Baustellen angezeigt für welche du einen Schlüssel besitzt!"
                         }
                       />
 

@@ -34,4 +34,14 @@
       }
     }
   }
+
+  @media (max-width: $brXl) {
+    .main-container {
+      width: 100%;
+      margin-left: 0;
+      .content {
+        min-height: calc(100% - 4rem); // TODO use scss var
+      }
+    }
+  }
 }
