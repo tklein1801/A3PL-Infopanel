@@ -18,7 +18,11 @@ export default class Dashboard extends Component {
       apiKey = localStorage.getItem("@dag_apiKey"),
       profile = await rlrpg.getProfile(apiKey),
       servers = await rlrpg.getServers();
-    this.setState({ profile: profile.data[0], servers: servers.data, loading: false });
+    this.setState({
+      profile: profile.data !== undefined ? profile.data[0] : null,
+      servers: servers.data,
+      loading: false,
+    });
   }
 
   render() {
@@ -37,17 +41,25 @@ export default class Dashboard extends Component {
           ) : (
             servers.map((server, index) => {
               let friends = [];
-              const playerList = server.Players,
-                playerName = profile.name,
-                hasClanTag = playerName.split("]"),
-                clanTag = hasClanTag[0] + "]";
-              // if the length if above 1 the player has an active clan tag
-              if (hasClanTag.length > 1) {
-                playerList.map((player) => {
-                  if (player.includes(clanTag) && player !== playerName) {
-                    friends.push(player);
-                  }
-                });
+              try {
+                const playerList = server.Players,
+                  playerName = profile.name,
+                  hasClanTag = playerName.split("]"),
+                  clanTag = hasClanTag[0] + "]";
+                // if the length if above 1 the player has an active clan tag
+                if (hasClanTag.length > 1) {
+                  playerList.map((player) => {
+                    if (
+                      player.includes(clanTag) &&
+                      player !== playerName &&
+                      playerName !== `${player}(Lobby)`
+                    ) {
+                      friends.push(player);
+                    }
+                  });
+                }
+              } catch (err) {
+                console.error(err);
               }
 
               const chartData = {
