@@ -140,6 +140,10 @@ body {
       }
     }
   }
+  .shops #vehicle-table tr:first-child td,
+  .shops #item-table tr:first-child td {
+    border-top: 0 !important;
+  }
 
   // Buttons
   .btn {

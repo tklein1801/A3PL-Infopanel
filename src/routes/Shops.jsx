@@ -106,7 +106,7 @@ export default class Shops extends Component {
                   </div>
                   <Tab.Content>
                     <Tab.Pane eventKey="vehicles">
-                      <Table>
+                      <Table id="vehicle-table">
                         <tbody>
                           {vehicleShops.map((shop) => {
                             return this.renderShop("vehicles", shop);
@@ -115,7 +115,7 @@ export default class Shops extends Component {
                       </Table>
                     </Tab.Pane>
                     <Tab.Pane eventKey="items">
-                      <Table>
+                      <Table id="item-table">
                         <tbody>
                           {itemShops.map((shop) => {
                             return this.renderShop("items", shop);
