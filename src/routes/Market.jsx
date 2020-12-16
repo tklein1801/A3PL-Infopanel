@@ -1,8 +1,8 @@
 import { Component } from "react";
-import { Row, Col, Card, Nav, Tab, Table } from "react-bootstrap";
-import { faChartLine } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Row, Col, Card, Nav, Tab, Table, OverlayTrigger, Popover } from "react-bootstrap";
 import { Bar } from "@reactchartjs/react-chart.js";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loader from "../components/Loader";
 import ReallifeRPG from "../ReallifeRPG";
 import { topJobs } from "../config.json";
@@ -118,7 +118,24 @@ export default class Market extends Component {
                 <Tab.Container defaultActiveKey={mData[0].server_id}>
                   <Card.Header>
                     <Card.Title className="text font-weight-bold mb-0">
-                      {/* <FontAwesomeIcon icon={faChartLine} className="icon mr-2" /> */}
+                      <OverlayTrigger
+                        trigger="click"
+                        placement="right"
+                        overlay={
+                          <Popover>
+                            <Popover.Title as="h3">Blacklist</Popover.Title>
+                            <Popover.Content>
+                              <ul className="list-unstyled mb-0">
+                                {topJobs.blacklist.map((item) => {
+                                  return <li>{item}</li>;
+                                })}
+                              </ul>
+                            </Popover.Content>
+                          </Popover>
+                        }
+                      >
+                        <FontAwesomeIcon icon={faInfoCircle} className="icon mr-1" />
+                      </OverlayTrigger>
                       Top jobs
                     </Card.Title>
                     <div className="nav-pane-container">
