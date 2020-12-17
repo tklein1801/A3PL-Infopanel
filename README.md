@@ -1,9 +1,8 @@
 <h1 align="center">A3RLRPG-Infopanel</h1>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b675538b-bc96-4ffa-9eb4-21d337419e4c/deploy-status)](https://app.netlify.com/sites/hardcore-rosalind-bd0fba/deploys) [![Changelogs](https://img.shields.io/badge/Changelogs-Changelog.md-green.svg)](./CHANGELOG.md)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b675538b-bc96-4ffa-9eb4-21d337419e4c/deploy-status)](https://app.netlify.com/sites/hardcore-rosalind-bd0fba/deploys)
 
 ## :rocket: Features
-
 
 <details>
  <summary>:busts_in_silhouette: Serverliste</summary>
@@ -32,7 +31,7 @@
 
 <details>
  <summary>:hammer: Community Building System</summary>
- Bekomme eine Liste mit dem aktuellen Fortschritt der Community Projekte auf dem Server und deren Spendenfortschritt
+ Sehe eine Liste mit dem aktuellen Fortschritt der Community Projekte auf dem Server und deren Spendenfortschritt
 </details>
 
 <details>
