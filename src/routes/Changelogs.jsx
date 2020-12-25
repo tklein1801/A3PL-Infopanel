@@ -39,14 +39,6 @@ export default class Changelogs extends Component {
                         year: releaseAt.getFullYear(),
                         hours: releaseAt.getHours(),
                         minutes: releaseAt.getMinutes(),
-                      },
-                      createdAt = new Date(changelog.created_at),
-                      created = {
-                        date: createdAt.getDate(),
-                        month: createdAt.getMonth() + 1,
-                        year: createdAt.getFullYear(),
-                        hours: createdAt.getHours(),
-                        minutes: createdAt.getMinutes(),
                       };
                     return (
                       <Card className={index === 0 ? "mt-1" : null}>
@@ -66,11 +58,11 @@ export default class Changelogs extends Component {
                               overlay={
                                 <Tooltip>
                                   Verfügbar ab{" "}
-                                  {created.date > 9 ? created.date : `0${created.date}`}.
-                                  {created.month > 9 ? created.month : `0${created.month}`}.
-                                  {created.year > 9 ? created.year : `0${created.year}`} @{" "}
-                                  {created.hours > 9 ? created.hours : `0${created.hours}`}:
-                                  {created.minutes > 9 ? created.minutes : `0${created.minutes}`}{" "}
+                                  {release.date > 9 ? release.date : `0${release.date}`}.
+                                  {release.month > 9 ? release.month : `0${release.month}`}.
+                                  {release.year > 9 ? release.year : `0${release.year}`} @{" "}
+                                  {release.hours > 9 ? release.hours : `0${release.hours}`}:
+                                  {release.minutes > 9 ? release.minutes : `0${release.minutes}`}{" "}
                                   Uhr
                                 </Tooltip>
                               }
@@ -81,11 +73,11 @@ export default class Changelogs extends Component {
                                 eventKey={index + 1}
                                 className="text font-weight-bold text-decoration-none text-dark px-0 ml-auto"
                               >
-                                {created.date > 9 ? created.date : `0${created.date}`}.
-                                {created.month > 9 ? created.month : `0${created.month}`}.
-                                {created.year > 9 ? created.year : `0${created.year}`} @{" "}
-                                {created.hours > 9 ? created.hours : `0${created.hours}`}:
-                                {created.minutes > 9 ? created.minutes : `0${created.minutes}`} Uhr
+                                {release.date > 9 ? release.date : `0${release.date}`}.
+                                {release.month > 9 ? release.month : `0${release.month}`}.
+                                {release.year > 9 ? release.year : `0${release.year}`} @{" "}
+                                {release.hours > 9 ? release.hours : `0${release.hours}`}:
+                                {release.minutes > 9 ? release.minutes : `0${release.minutes}`} Uhr
                               </Accordion.Toggle>
                             </OverlayTrigger>
                           </Row>

@@ -276,7 +276,7 @@ export default class Profile extends Component {
                                 fraction = "Zivilisten";
                               }
 
-                              return (
+                              return vehicle.alive == 1 ? (
                                 <tr key={index} className="text-center">
                                   <td>{type}</td>
                                   <td>{status}</td>
@@ -303,7 +303,7 @@ export default class Profile extends Component {
                                     />
                                   </td>
                                 </tr>
-                              );
+                              ) : null;
                             })
                           ) : (
                             <tr className="text-center">
