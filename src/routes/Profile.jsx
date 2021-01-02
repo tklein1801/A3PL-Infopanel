@@ -275,7 +275,8 @@ export default class Profile extends Component {
                               } else {
                                 fraction = "Zivilisten";
                               }
-
+                              const vehiclePlate = vehicle.plate,
+                                formattedPlate = `${vehiclePlate.substring(0, 2)} ${vehiclePlate.substring(2,4)} ${vehiclePlate.substring(4, 8)}`;
                               return vehicle.alive == 1 ? (
                                 <tr key={index} className="text-center">
                                   <td>{type}</td>
@@ -288,11 +289,11 @@ export default class Profile extends Component {
                                   </td>
                                   <td>
                                     <Badge className="p-2" variant="primary">
-                                      {vehicle.plate}
+                                      {formattedPlate}
                                     </Badge>
                                   </td>
                                   <td>
-                                    <p className="text mb-0">{vehicle.kilometer_total} Km</p>
+                                    <p className="text mb-0">{vehicle.kilometer_total.toLocaleString(undefined)} Km</p>
                                   </td>
                                   <td>
                                     <ProgressBar
