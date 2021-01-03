@@ -377,7 +377,7 @@ export default class Profile extends Component {
                                       variant="primary"
                                       size="sm"
                                       onClick={() =>
-                                        (window.location = `https://info.realliferpg.de/map?x=${loc[0]}&amp;y=${loc[1]}`)
+                                        (window.location = `https://info.realliferpg.de/map?x=${loc[0]}&y=${loc[1]}`)
                                       }
                                     >
                                       <FontAwesomeIcon icon={faMapMarkedAlt} className="icon" />
