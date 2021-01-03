@@ -42,13 +42,14 @@ export default class Contacts extends Component {
   submitForm = async (event) => {
     event.preventDefault();
     const { profile, displayedContacts } = this.state;
-    const { phone } = event.target.elements;
+    const { phone, iban } = event.target.elements;
     try {
       const result = await new Contact().create(
         profile.name,
         profile.pid,
         profile.avatar_full,
-        phone.value
+        phone.value,
+        iban.value
       );
       if (result.error === null) {
         // Display the inserted contact
@@ -58,6 +59,7 @@ export default class Contacts extends Component {
           playerId: profile.pid,
           avatarUrl: profile.avatar_full,
           telNo: phone.value,
+          iban: iban.value,
         });
       } else {
         console.error(result.error);
@@ -163,7 +165,7 @@ export default class Contacts extends Component {
                               <Col xs={12} md={12} lg={6} xl={6}>
                                 <p className="text text-center font-weight-bold mb-0">
                                   <FontAwesomeIcon icon={faCreditCard} className="icon mr-2" />
-                                  Nicht verfügbar
+                                  {contact.iban}
                                 </p>
                               </Col>
                             </Row>
@@ -192,7 +194,7 @@ export default class Contacts extends Component {
                             <Col xs={12} md={12} lg={6} xl={6}>
                               <p className="text text-center font-weight-bold mb-0">
                                 <FontAwesomeIcon icon={faCreditCard} className="icon mr-2" />
-                                Nicht verfügbar
+                                {contact.iban}
                               </p>
                             </Col>
                           </Row>
@@ -253,7 +255,6 @@ export default class Contacts extends Component {
                     type="text"
                     name="iban"
                     value={profile !== undefined ? profile.bank_main[0].iban : "Unbekannt"}
-                    disabled
                   />
                 </Col>
               </Form.Group>

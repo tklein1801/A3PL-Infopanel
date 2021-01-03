@@ -7,13 +7,15 @@ class Contact {
    * @param {string} playerId Steam64 id
    * @param {string} avatarUrl Steam avatar url
    * @param {string} telNo ReallifeRPG telephone number
+   * @param {string} iban IBAN from players bank account
    */
-  async create(playerName, playerId, avatarUrl, telNo) {
+  async create(playerName, playerId, avatarUrl, telNo, iban) {
     const formData = new FormData();
     formData.append("playerName", playerName);
     formData.append("playerId", playerId);
     formData.append("avatarUrl", avatarUrl);
     formData.append("telNo", telNo);
+    formData.append("iban", iban);
     const response = await fetch("https://api.dulliag.de/acon/v1/create.php", {
       method: "POST",
       body: formData,
