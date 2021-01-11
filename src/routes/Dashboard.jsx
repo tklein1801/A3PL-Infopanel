@@ -62,8 +62,11 @@ export default class Dashboard extends Component {
                 console.error(err);
               }
 
+              const playerList = server.Players,
+                sortedPlayerList = playerList.sort();
+
               const chartData = {
-                  labels: ["Polizisten", "Mediziner", "RAC", "Zivilisten"],
+                  labels: ["Polizisten", "RAC", "Mediziner", "Zivilisten"],
                   datasets: [
                     {
                       fill: false,
@@ -129,7 +132,7 @@ export default class Dashboard extends Component {
                             ) : null}
                           </h5>
                           <ul>
-                            {server.Players.map((player, index) => {
+                            {sortedPlayerList.map((player, index) => {
                               return <li key={index}>{player}</li>;
                             })}
                           </ul>
