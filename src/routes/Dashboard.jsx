@@ -78,7 +78,7 @@ export default class Dashboard extends Component {
                       pointHoverRadius: 7,
                       pointColor: "#fff",
                       pointBackgroundColor: "#fff",
-                      backgroundColor: ["#007bff", "#dc3545", "#ffc107", "#28a745"],
+                      backgroundColor: ["#007bff", "#ffc107", "#dc3545", "#28a745"],
                       data: [server.Cops, server.Adac, server.Medics, server.Civilians],
                     },
                   ],
