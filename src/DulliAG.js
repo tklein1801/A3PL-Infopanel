@@ -16,7 +16,7 @@ class Contact {
     formData.append("avatarUrl", avatarUrl);
     formData.append("telNo", telNo);
     formData.append("iban", iban);
-    const response = await fetch("https://api.dulliag.de/acon/v1/create.php", {
+    const response = await fetch("https://api.dulliag.de/acon/v1/create", {
       method: "POST",
       body: formData,
     });
@@ -30,7 +30,7 @@ class Contact {
   async delete(contactId) {
     const formData = new FormData();
     formData.append("contactId", contactId);
-    const response = await fetch("https://api.dulliag.de/acon/v1/delete.php", {
+    const response = await fetch("https://api.dulliag.de/acon/v1/delete", {
       method: "POST",
       body: formData,
     });
@@ -39,7 +39,7 @@ class Contact {
   }
 
   async getAll() {
-    const response = await fetch("https://api.dulliag.de/acon/v1/getAll.php", {
+    const response = await fetch("https://api.dulliag.de/acon/v1/all", {
       method: "GET",
     });
     const data = await response.json();
@@ -50,9 +50,12 @@ class Contact {
    * @param {string} playerId Steam64 id
    */
   async getByPlayerId(playerId) {
-    const response = await fetch(`https://api.dulliag.de/acon/v1/getAll.php?playerId=${playerId}`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `https://api.dulliag.de/acon/v1/getByPlayerId?playerId=${playerId}`,
+      {
+        method: "GET",
+      }
+    );
     const data = await response.json();
     return data;
   }
@@ -61,12 +64,9 @@ class Contact {
    * @param {number} contactId
    */
   async get(contactId) {
-    const response = await fetch(
-      `https://api.dulliag.de/acon/v1/getAll.php?contactId=${contactId}`,
-      {
-        method: "GET",
-      }
-    );
+    const response = await fetch(`https://api.dulliag.de/acon/v1/get?contactId=${contactId}`, {
+      method: "GET",
+    });
     const data = await response.json();
     return data;
   }
