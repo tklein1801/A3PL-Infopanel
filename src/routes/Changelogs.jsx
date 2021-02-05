@@ -100,7 +100,7 @@ export default class Changelogs extends Component {
                             ) : null}
 
                             {changelog.change_map.length > 0 ? (
-                              <h5 className="text font-weight-bold">Mod</h5>
+                              <h5 className="text font-weight-bold">Karte</h5>
                             ) : null}
                             {changelog.change_map.length > 0 ? (
                               <ul>
@@ -111,7 +111,7 @@ export default class Changelogs extends Component {
                             ) : null}
 
                             {changelog.change_mod.length > 0 ? (
-                              <h5 className="text font-weight-bold">Karte</h5>
+                              <h5 className="text font-weight-bold">Mod</h5>
                             ) : null}
                             {changelog.change_mod.length > 0 ? (
                               <ul>
