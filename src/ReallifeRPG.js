@@ -1,4 +1,4 @@
-import { topJobs } from "./config.json";
+import { topJobs, bonus, illegalItems } from "./config.json";
 
 export default class ReallifeRPG {
   constructor() {
@@ -13,6 +13,13 @@ export default class ReallifeRPG {
     const response = await fetch(this.api + "servers/");
     const data = await response.json();
     return data;
+  }
+
+  async getServer(serverId) {
+    const response = await fetch(this.api + "servers/");
+    const json = await response.json();
+    const serverData = json.data.filter((server) => server.Id == serverId);
+    return serverData;
   }
 
   /**
@@ -60,20 +67,37 @@ export default class ReallifeRPG {
    * @param {number} amount Amount of items
    */
   async getTopJobs(serverId, amount) {
+    const serverData = await this.getServer(serverId);
+    const response = await fetch(`${this.api}market/${serverId}`);
+    const marketData = await response.json();
     var temp = [],
-      // topItems = [];
       topItems = {
         items: [],
         prices: [],
+        itemName: [],
       };
-    const response = await fetch(`${this.api}market/${serverId}`);
-    const data = await response.json();
-    data.data.forEach((item) => {
+    marketData.data.forEach((item) => {
+      // Check if the items are blacklisted for the top-jobs
       if (!this.blacklistItems.includes(item.item)) {
-        temp.push([item.localized, item.price]);
+        // If the length equals 1 the server is online
+        if (serverData.length === 1 && illegalItems.includes(item.item)) {
+          let copAmount =
+            serverData.length === 1
+              ? serverData[0].Side.Cops.filter((player) => player.includes("[C")).length
+              : null;
+          let multiplier = bonus.filter((boni) => boni.amount === copAmount)[0].multiplier;
+          let newPrice = parseInt(item.price * multiplier).toFixed(0);
+          temp.push([item.localized, newPrice, item.item]);
+        } else {
+          temp.push([item.localized, item.price, item.item]);
+        }
       }
     });
+
+    // Sort the items
     temp.sort((a, b) => a[1] - b[1]);
+
+    // Get the top 10 items
     for (let i = temp.length - 1; i > temp.length - (amount + 1); i--) {
       const item = temp[i];
       // We're gonna use an object with contains 2 different array instean an array which contains multiple objects
@@ -84,7 +108,9 @@ export default class ReallifeRPG {
       // });
       topItems.items.push(item[0]);
       topItems.prices.push(item[1]);
+      topItems.itemName.push(item[2]);
     }
+
     return topItems;
   }
 

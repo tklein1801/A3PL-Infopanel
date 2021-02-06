@@ -5,7 +5,7 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loader from "../components/Loader";
 import ReallifeRPG from "../ReallifeRPG";
-import { topJobs } from "../config.json";
+import { topJobs, bonus, illegalItems } from "../config.json";
 import "../style/routes/market.scss";
 
 export default class Market extends Component {
@@ -19,15 +19,28 @@ export default class Market extends Component {
 
   async componentDidMount() {
     const market = await new ReallifeRPG().getGlobalMarket();
-
     market.data.map(async (server) => {
-      if (server.online) {
-        const serverId = server.server_id,
-          topItems = await new ReallifeRPG().getTopJobs(serverId, topJobs.amount);
-        this.setState({ [`tj${serverId}`]: topItems });
-      }
+      const marketData = server.market,
+        serverId = server.server_id,
+        online = server.online,
+        serverData = await new ReallifeRPG().getServer(serverId),
+        topItems = await new ReallifeRPG().getTopJobs(serverId, topJobs.amount);
+
+      let copAmount =
+        serverData.length === 1
+          ? serverData[0].Side.Cops.filter((player) => player.includes("[C")).length
+          : null;
+      marketData.map((item) => {
+        if (illegalItems.includes(item.item) && serverData.length === 1) {
+          let multiplier = bonus.filter((boni) => boni.amount === copAmount)[0].multiplier;
+          item.boniPrice = parseInt((item.price * multiplier).toFixed(0));
+        }
+      });
+      // The cop-bonus for the top-jobs are calculated in the new ReallifeRPG().getTopJobs()-function
+      if (online) this.setState({ [`tj${serverId}`]: topItems });
+
+      this.setState({ market: market, loading: false });
     });
-    this.setState({ market: market, loading: false });
   }
 
   render() {
@@ -91,7 +104,33 @@ export default class Market extends Component {
                                     <tr onClick={() => this.setState({ active: item.item })}>
                                       <td>{item.localized}</td>
                                       <td className="text-right">
-                                        {item.price.toLocaleString(undefined)} €
+                                        {illegalItems.includes(item.item) ? (
+                                          <OverlayTrigger
+                                            trigger="hover"
+                                            placement="top"
+                                            overlay={
+                                              <Popover>
+                                                <Popover.Title as="h3">
+                                                  Bonus ({item.boniPrice - item.price} €)
+                                                </Popover.Title>
+                                                <Popover.Content className="text-center">
+                                                  {item.boniPrice !== undefined &&
+                                                    item.boniPrice.toLocaleString(undefined) + " €"}
+                                                </Popover.Content>
+                                              </Popover>
+                                            }
+                                          >
+                                            <p className="mb-0">
+                                              <FontAwesomeIcon
+                                                icon={faInfoCircle}
+                                                className="icon mr-2"
+                                              />
+                                              {item.price.toLocaleString(undefined) + " €"}
+                                            </p>
+                                          </OverlayTrigger>
+                                        ) : (
+                                          item.price.toLocaleString(undefined) + " €"
+                                        )}
                                       </td>
                                     </tr>
                                   );
