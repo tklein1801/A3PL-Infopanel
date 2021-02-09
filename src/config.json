@@ -15,10 +15,10 @@
     "blacklist": ["beer"]
   },
   "bonus": [
-    { "amount": 0, "multiplier": -0.7 },
-    { "amount": 1, "multiplier": -0.7 },
-    { "amount": 2, "multiplier": -0.7 },
-    { "amount": 3, "multiplier": -0.7 },
+    { "amount": 0, "multiplier": 0.3 },
+    { "amount": 1, "multiplier": 0.3 },
+    { "amount": 2, "multiplier": 0.3 },
+    { "amount": 3, "multiplier": 0.3 },
     { "amount": 4, "multiplier": 1.15 },
     { "amount": 5, "multiplier": 1.2 },
     { "amount": 6, "multiplier": 1.2 },
