@@ -92,10 +92,6 @@ export default class Settings extends Component {
                     <a href="https://info.realliferpg.de">hier</a> gefunden werden.
                     <p className="text mb-0">
                       <strong className="mb-0">Version: {application.version}</strong> <br />
-                      <strong className="mb-0">
-                        Beta: <a href={application.beta}>{application.beta}</a>
-                      </strong>{" "}
-                      <br />
                       <strong className="mb-0">Beschreibung</strong> <br />
                       {application.description}
                       <br />
