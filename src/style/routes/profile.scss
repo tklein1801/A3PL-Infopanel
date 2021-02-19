@@ -8,16 +8,6 @@
     border-radius: 50%;
   }
 
-  .level-progress-container {
-    .progress {
-      height: 1.5rem;
-      border-radius: $smallBorderRadius;
-      .progress-bar {
-        background-color: $primary;
-      }
-    }
-  }
-
   .fraction-level-container {
     .fraction-level {
       text-align: center;

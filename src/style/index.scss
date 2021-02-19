@@ -66,6 +66,15 @@ body {
     }
   }
 
+  // Progressbar
+  .progress {
+    height: 1.5rem;
+    border-radius: $smallBorderRadius;
+    .progress-bar {
+      background-color: $primary;
+    }
+  }
+
   // Card
   .card {
     border-radius: $borderRadius !important;
@@ -82,6 +91,16 @@ body {
     }
     .card-body {
       padding-bottom: 1rem;
+    }
+  }
+  .cbs-card {
+    .item-icon {
+      width: 3rem;
+      height: 3rem;
+      margin-right: 1rem;
+    }
+    .badge:hover {
+      cursor: pointer;
     }
   }
 
