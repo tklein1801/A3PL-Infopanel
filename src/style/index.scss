@@ -268,6 +268,13 @@ body {
       .modal-footer {
         padding-top: 0;
         border-top: 0px;
+        .btn.btn-white {
+          transition: 200ms;
+          background-color: white;
+          &:hover {
+            background-color: $light;
+          }
+        }
       }
     }
   }
