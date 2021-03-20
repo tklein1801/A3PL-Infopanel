@@ -23,6 +23,36 @@ export default class Profile extends Component {
     };
   }
 
+  _renderCreditCard = (company = false, owner, iban, balance) => {
+    return (
+      <div key={iban} className={company === true ? "credit-card company" : "credit-card private"}>
+        <img
+          src="https://i0.wp.com/realliferpg.de/wp-content/uploads/2017/10/realliferpg100x100.png?fit=100%2C100&ssl=1"
+          alt="rlrpg logo"
+        />
+        <h4 className="text font-weight-bold">NH-Bank</h4>
+        <Form.Group className="mb-3">
+          <Form.Label>IBAN</Form.Label>
+          <Form.Control type="text" value={iban} disabled />
+        </Form.Group>
+        <Form.Row>
+          <Col xs={7}>
+            <Form.Group>
+              <Form.Label>Inhaber</Form.Label>
+              <Form.Control type="text" value={owner} disabled />
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group>
+              <Form.Label>Kontostand</Form.Label>
+              <Form.Control type="text" value={balance} disabled />
+            </Form.Group>
+          </Col>
+        </Form.Row>
+      </div>
+    );
+  };
+
   async componentDidMount() {
     const apiKey = localStorage.getItem("@dag_apiKey"),
       rlrpg = new ReallifeRPG(),
@@ -167,9 +197,10 @@ export default class Profile extends Component {
                     </Nav>
                   </div>
                   <Tab.Content>
-                    <Tab.Pane eventKey="bank-accounts" className="p-3">
-                      <Row>
-                        {profile.data[0].bank_main.map((bankAcc) => {
+                    <Tab.Pane eventKey="bank-accounts">
+                      <Alert message="Hier werden nur die Firmenkonten von aktiven Firmen angezeigt!" />
+                      <Row className="pr-3 pb-3 pl-3">
+                        {profile.data[0].bank_main.map((acc) => {
                           return (
                             <Col
                               xs={12}
@@ -178,36 +209,47 @@ export default class Profile extends Component {
                               xl={4}
                               className="mb-3 mb-md-0 credit-card-container"
                             >
-                              <div className="credit-card">
-                                <img
-                                  src="https://i0.wp.com/realliferpg.de/wp-content/uploads/2017/10/realliferpg100x100.png?fit=100%2C100&ssl=1"
-                                  alt="rlrpg logo"
-                                />
-                                <h4 className="text font-weight-bold">NH-Bank</h4>
-                                <Form.Group className="mb-3">
-                                  <Form.Label>IBAN</Form.Label>
-                                  <Form.Control type="text" value={bankAcc.iban} disabled />
-                                </Form.Group>
-                                <Form.Row>
-                                  <Col xs={7}>
-                                    <Form.Group>
-                                      <Form.Label>Inhaber</Form.Label>
-                                      <Form.Control type="text" value={bankAcc.pid} disabled />
-                                    </Form.Group>
-                                  </Col>
-                                  <Col>
-                                    <Form.Group>
-                                      <Form.Label>Kontostand</Form.Label>
-                                      <Form.Control
-                                        type="text"
-                                        value={`${bankAcc.balance.toLocaleString(undefined)} €`}
-                                        disabled
-                                      />
-                                    </Form.Group>
-                                  </Col>
-                                </Form.Row>
-                              </div>
+                              {this._renderCreditCard(
+                                false,
+                                acc.pid,
+                                acc.iban,
+                                `${acc.balance.toLocaleString(undefined)} €`
+                              )}
                             </Col>
+                          );
+                        })}
+                        {companies.map((company) => {
+                          return (
+                            <>
+                              <Col
+                                xs={12}
+                                md={12}
+                                lg={6}
+                                xl={4}
+                                className="mb-3 mb-md-0 credit-card-container"
+                              >
+                                {this._renderCreditCard(
+                                  true,
+                                  company.name,
+                                  company.bank_1,
+                                  "UNBEKANNT"
+                                )}
+                              </Col>
+                              <Col
+                                xs={12}
+                                md={12}
+                                lg={6}
+                                xl={4}
+                                className="mb-3 mb-md-0 credit-card-container"
+                              >
+                                {this._renderCreditCard(
+                                  true,
+                                  company.name,
+                                  company.bank_2,
+                                  "UNBEKANNT"
+                                )}
+                              </Col>
+                            </>
                           );
                         })}
                       </Row>
