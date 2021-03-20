@@ -24,24 +24,35 @@
       }
     }
   }
-
-  @media (max-width: $brSm) {
+  @media (max-width: $br3Xl) {
     .main-container {
       width: 100%;
       margin-left: 0;
-
       .content {
-        min-height: calc(100% - 4rem); // TODO use scss var
+        margin-left: 20%;
+        &.full {
+          margin-left: 0;
+        }
       }
     }
   }
-
   @media (max-width: $brXl) {
     .main-container {
       width: 100%;
       margin-left: 0;
       .content {
         min-height: calc(100% - 4rem); // TODO use scss var
+        margin-left: unset;
+      }
+    }
+  }
+  @media (max-width: $brSm) {
+    .main-container {
+      width: 100%;
+      margin-left: 0;
+      .content {
+        min-height: calc(100% - 4rem); // TODO use scss var
+        margin-left: unset;
       }
     }
   }

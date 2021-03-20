@@ -5,6 +5,7 @@ $brSm: 576px; // Small devices (landscape phones, 576px and up)
 $brMd: 768px; // Medium devices (tablets, 768px and up)
 $brLg: 992px; // Large devices (desktops, 992px and up)
 $brXl: 1200px; // Extra large devices (large desktops, 1200px and up)
+$br3Xl: 1600px; // greater than
 
 // General colors
 // $primary: #060b26;
@@ -34,6 +35,7 @@ $hamburgerColor: #212529;
 // Sidebar
 $sidebarWidth: 15%;
 $sidebarXlWidth: 30%;
+$sidebar3XlWidth: 25%;
 // $sidebarBackground: #060b26;
 $sidebarBackground: #333;
 $sidebarColor: #fff;

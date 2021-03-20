@@ -11,33 +11,34 @@
   box-shadow: $navbarShadow;
   -webkit-box-shadow: $navbarShadow;
   -moz-box-shadow: $navbarShadow;
-
   .hamburger {
     display: none;
     padding-right: 1rem;
     font-size: 2.3rem;
     color: $hamburgerColor;
-
     &:hover {
       cursor: pointer;
     }
   }
-
-  @media (max-width: $brSm) {
+  @media (max-width: $br3Xl) {
     .hamburger {
       display: unset;
       font-size: 2.3rem;
     }
   }
-
   @media (max-width: $brXl) {
     .hamburger {
       display: unset;
       font-size: 2.3rem;
     }
   }
+  @media (max-width: $brSm) {
+    .hamburger {
+      display: unset;
+      font-size: 2.3rem;
+    }
+  }
 }
-
 @media (max-width: $brSm) {
   .main-navbar {
     z-index: 1200;

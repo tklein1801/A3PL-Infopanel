@@ -95,7 +95,7 @@ export default class Contacts extends Component {
       <div className="contacts">
         <h1>Kontaktbuch</h1>
         <Row>
-          <Col xs={12} md={12} lg={6} xl={3}>
+          <Col xs={12} md={12} lg={6} xl={4}>
             {loading ? (
               <Card className="border-top shadow-md p-5">
                 <Loader />
