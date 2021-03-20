@@ -13,6 +13,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Alert } from "../components/Alerts";
 import ReallifeRPG from "../ReallifeRPG";
+// Stylesheets
 import "../style/routes/profile.scss";
 
 export default class Profile extends Component {
@@ -22,6 +23,202 @@ export default class Profile extends Component {
       loading: true,
     };
   }
+
+  _renderBuilding = (profile, building) => {
+    let status;
+    status =
+      building.disabled === 0 ? (
+        <Badge variant="primary" className="p-2">
+          Aktiv
+        </Badge>
+      ) : (
+        <Badge variant="danger" className="p-2">
+          Zerstört
+        </Badge>
+      );
+    const loc = building.location.substring(1, building.location.length - 1).split(",");
+    return (
+      <tr key={building.id} className="text-center">
+        <td>
+          <p className="text mb-0">{building.id}</p>
+        </td>
+        <td>{status}</td>
+        <td>
+          <p className="text mb-0">{building.stage}</p>
+        </td>
+        <td>
+          <p className="text mb-0">{profile.data[0].name}</p>
+        </td>
+        <td>
+          {building.players.map((player) => {
+            return (
+              <Badge variant="primary" className="px-2 mr-1">
+                {player}
+              </Badge>
+            );
+          })}
+        </td>
+        <td>
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() =>
+              (window.location = `https://info.realliferpg.de/map?x=${loc[0]}&amp;y=${loc[1]}`)
+            }
+          >
+            <FontAwesomeIcon icon={faMapMarkedAlt} className="icon" />
+          </Button>
+        </td>
+      </tr>
+    );
+  };
+
+  _renderRental = (profile, rental) => {
+    <tr key={rental.id} className="text-center">
+      <td>
+        <p className="text mb-0">{rental.id}</p>
+      </td>
+      <td>
+        <p className="text mb-0">
+          <Badge variant="primary" className="p-2">
+            Gemietet
+          </Badge>
+        </p>
+      </td>
+      <td>
+        <p className="text mb-0">{rental.payed_for / 24} Tage</p>
+      </td>
+      <td>
+        <p className="text mb-0">{profile.data[0].name}</p>
+      </td>
+    </tr>;
+  };
+
+  _renderHouse = (profile, house) => {
+    let status;
+    status =
+      house.disabled === 0 ? (
+        <Badge variant="primary" className="p-2">
+          Gewartet
+        </Badge>
+      ) : (
+        <Badge variant="danger" className="p-2">
+          Zerstört
+        </Badge>
+      );
+    const loc = house.location.substring(1, house.location.length - 1).split(",");
+    return (
+      <tr key={house.id} className="text-center">
+        <td>
+          <p className="text mb-0">{house.id}</p>
+        </td>
+        <td>{status}</td>
+        <td>
+          <p className="text mb-0">{profile.data[0].name}</p>
+        </td>
+        <td>
+          {house.players.map((player) => {
+            return (
+              <Badge variant="primary" className="px-2 mr-1">
+                {player}
+              </Badge>
+            );
+          })}
+        </td>
+        <td>
+          <p className="text mb-0">{house.payed_for / 24} Tage</p>
+        </td>
+        <td>
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() =>
+              (window.location = `https://info.realliferpg.de/map?x=${loc[0]}&y=${loc[1]}`)
+            }
+          >
+            <FontAwesomeIcon icon={faMapMarkedAlt} className="icon" />
+          </Button>
+        </td>
+      </tr>
+    );
+  };
+
+  _renderVehicle = (vehicle) => {
+    var type, status, fraction;
+    // Vehicle type
+    if (vehicle.type === "Ship") {
+      type = <FontAwesomeIcon icon={faShip} className="icon" />;
+    } else if (vehicle.type === "Air") {
+      type = <FontAwesomeIcon icon={faPlane} className="icon" />;
+    } else {
+      type = <FontAwesomeIcon icon={faCar} className="icon" />;
+    }
+
+    // Vehicle status
+    if (vehicle.active === 1) {
+      status = (
+        <Badge variant="success" className="p-2">
+          Ausgeparkt
+        </Badge>
+      );
+    } else if (vehicle.impound === 1) {
+      status = (
+        <Badge variant="danger" className="p-2">
+          Beschlagnahmt
+        </Badge>
+      );
+    } else {
+      status = (
+        <Badge variant="primary" className="p-2">
+          Geparkt
+        </Badge>
+      );
+    }
+
+    // Fraction
+    if (vehicle.side === "COP") {
+      fraction = "Polizei";
+    } else if (vehicle.side === "EAST") {
+      fraction = "RAC";
+    } else if (vehicle.side === "MEDIC" || vehicle.side === "GUER") {
+      fraction = "Medic";
+    } else {
+      fraction = "Zivilisten";
+    }
+    const vehiclePlate = vehicle.plate,
+      formattedPlate = `${vehiclePlate.substring(0, 2)} ${vehiclePlate.substring(
+        2,
+        4
+      )} ${vehiclePlate.substring(4, 8)}`;
+    return vehicle.alive === 1 ? (
+      <tr key={vehicle.id} className="text-center">
+        <td>{type}</td>
+        <td>{status}</td>
+        <td>
+          <p className="text mb-0">{vehicle.vehicle_data.name}</p>
+        </td>
+        <td>
+          <p className="text mb-0">{fraction}</p>
+        </td>
+        <td>
+          <Badge className="p-2" variant="primary">
+            {formattedPlate}
+          </Badge>
+        </td>
+        <td>
+          <p className="text mb-0">{vehicle.kilometer_total.toLocaleString(undefined)} Km</p>
+        </td>
+        <td>
+          <ProgressBar
+            animated
+            variant="danger"
+            now={vehicle.fuel * 100}
+            // label={`${(vehicle.fuel * 100).toFixed(2)}%`}
+          />
+        </td>
+      </tr>
+    ) : null;
+  };
 
   _renderCompany = (company) => {
     const createdAt = new Date(company.created_at);
@@ -212,12 +409,12 @@ export default class Profile extends Component {
                     <p>{(profile.data[0].play_time.total / 60).toFixed(2)} Stunden</p>
                   </div>
 
-                  <div class="item">
+                  <div className="item mb-3">
                     <p>Zuletzt online</p>
                     <p>
                       {lsDate.days > 9 ? lsDate.days : `0${lsDate.days}`}.
                       {lsDate.month > 9 ? lsDate.month : `0${lsDate.month}`}.
-                      {lsDate.year > 9 ? lsDate.year : `0${lsDate.year}`} |{" "}
+                      {lsDate.year > 9 ? lsDate.year : `0${lsDate.year}`} um{" "}
                       {lsDate.hours > 9 ? lsDate.hours : `0${lsDate.hours}`}:
                       {lsDate.minutes > 9 ? lsDate.minutes : `0${lsDate.minutes}`} Uhr
                     </p>
@@ -226,7 +423,6 @@ export default class Profile extends Component {
               </Card>
             )}
           </Col>
-
           <Col xs={12} md={6} lg={7} xl={9}>
             {loading ? (
               <Card className="border-top shadow-md p-4">
@@ -336,84 +532,8 @@ export default class Profile extends Component {
                         </thead>
                         <tbody>
                           {vehicles.data.length > 0 ? (
-                            vehicles.data.map((vehicle, index) => {
-                              let type, status, fraction;
-                              // Vehicle type
-                              switch (vehicle.type) {
-                                case "Ship":
-                                  type = <FontAwesomeIcon icon={faShip} className="icon" />;
-                                  break;
-
-                                case "Air":
-                                  type = <FontAwesomeIcon icon={faPlane} className="icon" />;
-                                  break;
-
-                                default:
-                                  type = <FontAwesomeIcon icon={faCar} className="icon" />;
-                                  break;
-                              }
-
-                              // Vehicle status
-                              if (vehicle.active === 1) {
-                                status = (
-                                  <Badge variant="success" className="p-2">
-                                    Ausgeparkt
-                                  </Badge>
-                                );
-                              } else if (vehicle.impound === 1) {
-                                status = (
-                                  <Badge variant="danger" className="p-2">
-                                    Beschlagnahmt
-                                  </Badge>
-                                );
-                              } else {
-                                status = (
-                                  <Badge variant="primary" className="p-2">
-                                    Geparkt
-                                  </Badge>
-                                );
-                              }
-
-                              // Fraction
-                              if (vehicle.side === "COP") {
-                                fraction = "Polizei";
-                              } else if (vehicle.side === "EAST") {
-                                fraction = "RAC";
-                              } else if (vehicle.side === "MEDIC" || vehicle.side === "GUER") {
-                                fraction = "Medic";
-                              } else {
-                                fraction = "Zivilisten";
-                              }
-                              const vehiclePlate = vehicle.plate,
-                                formattedPlate = `${vehiclePlate.substring(0, 2)} ${vehiclePlate.substring(2,4)} ${vehiclePlate.substring(4, 8)}`;
-                              return vehicle.alive == 1 ? (
-                                <tr key={index} className="text-center">
-                                  <td>{type}</td>
-                                  <td>{status}</td>
-                                  <td>
-                                    <p className="text mb-0">{vehicle.vehicle_data.name}</p>
-                                  </td>
-                                  <td>
-                                    <p className="text mb-0">{fraction}</p>
-                                  </td>
-                                  <td>
-                                    <Badge className="p-2" variant="primary">
-                                      {formattedPlate}
-                                    </Badge>
-                                  </td>
-                                  <td>
-                                    <p className="text mb-0">{vehicle.kilometer_total.toLocaleString(undefined)} Km</p>
-                                  </td>
-                                  <td>
-                                    <ProgressBar
-                                      animated
-                                      variant="danger"
-                                      now={vehicle.fuel * 100}
-                                      // label={`${(vehicle.fuel * 100).toFixed(2)}%`}
-                                    />
-                                  </td>
-                                </tr>
-                              ) : null;
+                            vehicles.data.map((vehicle) => {
+                              return this._renderVehicle(vehicle);
                             })
                           ) : (
                             <tr className="text-center">
@@ -426,11 +546,7 @@ export default class Profile extends Component {
                       </Table>
                     </Tab.Pane>
                     <Tab.Pane eventKey="properties">
-                      <Alert
-                        message={
-                          "Hier werden nur Immobilien, Appartments & Baustellen angezeigt für welche du einen Schlüssel besitzt!"
-                        }
-                      />
+                      <Alert message="Hier werden nur Immobilien, Appartments & Baustellen angezeigt für welche du einen Schlüssel besitzt!" />
 
                       <h4 className="text font-weight-bold px-3">Häuser</h4>
                       <Table className="no-wrap" responsive hover borderless>
@@ -445,55 +561,8 @@ export default class Profile extends Component {
                         </thead>
                         <tbody>
                           {profile.data[0].houses.length > 0 ? (
-                            profile.data[0].houses.map((house, index) => {
-                              let status;
-                              status =
-                                house.disabled === 0 ? (
-                                  <Badge variant="primary" className="p-2">
-                                    Gewartet
-                                  </Badge>
-                                ) : (
-                                  <Badge variant="danger" className="p-2">
-                                    Zerstört
-                                  </Badge>
-                                );
-                              const loc = house.location
-                                .substring(1, house.location.length - 1)
-                                .split(",");
-                              return (
-                                <tr key={index} className="text-center">
-                                  <td>
-                                    <p className="text mb-0">{house.id}</p>
-                                  </td>
-                                  <td>{status}</td>
-                                  <td>
-                                    <p className="text mb-0">{profile.data[0].name}</p>
-                                  </td>
-                                  <td>
-                                    {house.players.map((player) => {
-                                      return (
-                                        <Badge variant="primary" className="px-2 mr-1">
-                                          {player}
-                                        </Badge>
-                                      );
-                                    })}
-                                  </td>
-                                  <td>
-                                    <p className="text mb-0">{house.payed_for / 24} Tage</p>
-                                  </td>
-                                  <td>
-                                    <Button
-                                      variant="primary"
-                                      size="sm"
-                                      onClick={() =>
-                                        (window.location = `https://info.realliferpg.de/map?x=${loc[0]}&y=${loc[1]}`)
-                                      }
-                                    >
-                                      <FontAwesomeIcon icon={faMapMarkedAlt} className="icon" />
-                                    </Button>
-                                  </td>
-                                </tr>
-                              );
+                            profile.data[0].houses.map((house) => {
+                              return this._renderHouse(profile, house);
                             })
                           ) : (
                             <tr className="text-center">
@@ -517,27 +586,8 @@ export default class Profile extends Component {
                         </thead>
                         <tbody>
                           {profile.data[0].rentals.length > 0 ? (
-                            profile.data[0].rentals.map((rental, index) => {
-                              return (
-                                <tr key={index} className="text-center">
-                                  <td>
-                                    <p className="text mb-0">{rental.id}</p>
-                                  </td>
-                                  <td>
-                                    <p className="text mb-0">
-                                      <Badge variant="primary" className="p-2">
-                                        Gemietet
-                                      </Badge>
-                                    </p>
-                                  </td>
-                                  <td>
-                                    <p className="text mb-0">{rental.payed_for / 24} Tage</p>
-                                  </td>
-                                  <td>
-                                    <p className="text mb-0">{profile.data[0].name}</p>
-                                  </td>
-                                </tr>
-                              );
+                            profile.data[0].rentals.map((rental) => {
+                              return this._renderRental(profile, rental);
                             })
                           ) : (
                             <tr className="text-center">
@@ -564,55 +614,8 @@ export default class Profile extends Component {
                         </thead>
                         <tbody>
                           {profile.data[0].buildings.length > 0 ? (
-                            profile.data[0].buildings.map((building, index) => {
-                              let status;
-                              status =
-                                building.disabled === 0 ? (
-                                  <Badge variant="primary" className="p-2">
-                                    Aktiv
-                                  </Badge>
-                                ) : (
-                                  <Badge variant="danger" className="p-2">
-                                    Zerstört
-                                  </Badge>
-                                );
-                              const loc = building.location
-                                .substring(1, building.location.length - 1)
-                                .split(",");
-                              return (
-                                <tr key={index} className="text-center">
-                                  <td>
-                                    <p className="text mb-0">{building.id}</p>
-                                  </td>
-                                  <td>{status}</td>
-                                  <td>
-                                    <p className="text mb-0">{building.stage}</p>
-                                  </td>
-                                  <td>
-                                    <p className="text mb-0">{profile.data[0].name}</p>
-                                  </td>
-                                  <td>
-                                    {building.players.map((player) => {
-                                      return (
-                                        <Badge variant="primary" className="px-2 mr-1">
-                                          {player}
-                                        </Badge>
-                                      );
-                                    })}
-                                  </td>
-                                  <td>
-                                    <Button
-                                      variant="primary"
-                                      size="sm"
-                                      onClick={() =>
-                                        (window.location = `https://info.realliferpg.de/map?x=${loc[0]}&amp;y=${loc[1]}`)
-                                      }
-                                    >
-                                      <FontAwesomeIcon icon={faMapMarkedAlt} className="icon" />
-                                    </Button>
-                                  </td>
-                                </tr>
-                              );
+                            profile.data[0].buildings.map((building) => {
+                              return this._renderBuilding(profile, building);
                             })
                           ) : (
                             <tr className="text-center">
