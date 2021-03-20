@@ -23,6 +23,46 @@ export default class Profile extends Component {
     };
   }
 
+  _renderCompany = (company) => {
+    const createdAt = new Date(company.created_at);
+    const createDate = {
+      day: createdAt.getDate() > 9 ? createdAt.getDate() : `0${createdAt.getDate()}`,
+      month:
+        createdAt.getMonth() + 1 > 9 ? createdAt.getMonth() + 1 : `0${createdAt.getMonth() + 1}`,
+      year: createdAt.getFullYear(),
+      hours: createdAt.getHours() > 9 ? createdAt.getHours() : `0${createdAt.getHours()}`,
+      minutes: createdAt.getMinutes() > 9 ? createdAt.getMinutes() : `0${createdAt.getMinutes()}`,
+    };
+    return (
+      <Col xs={12} md={12} lg={6} xl={6} className="company-container">
+        <div className="bg-light rounded p-3">
+          <h4 className="text-center font-weight-bold">{company.name}</h4>
+          <Row className="text-center">
+            <Col xs={12} md={12} lg={6} xl={6}>
+              <h6 className="font-weight-bold mb-1">Bankkonto 1</h6>
+              <p>{company.bank_1}</p>
+            </Col>
+            <Col xs={12} md={12} lg={6} xl={6}>
+              <h6 className="font-weight-bold mb-1">Bankkonto 2</h6>
+              <p>{company.bank_2}</p>
+            </Col>
+            <Col xs={12} md={12} lg={6} xl={6}>
+              <h6 className="font-weight-bold mb-1">Telefonnummer</h6>
+              <p className="mb-0">{company.phone}</p>
+            </Col>
+            <Col xs={12} md={12} lg={6} xl={6}>
+              <h6 className="font-weight-bold mb-1">Gegründet am</h6>
+              <p className="mb-0">
+                {createDate.day}.{createDate.month}.{createDate.year} um {createDate.hours}:
+                {createDate.minutes} Uhr
+              </p>
+            </Col>
+          </Row>
+        </div>
+      </Col>
+    );
+  };
+
   _renderCreditCard = (company = false, owner, iban, balance) => {
     return (
       <div key={iban} className={company === true ? "credit-card company" : "credit-card private"}>
@@ -57,12 +97,18 @@ export default class Profile extends Component {
     const apiKey = localStorage.getItem("@dag_apiKey"),
       rlrpg = new ReallifeRPG(),
       player = await rlrpg.getProfile(apiKey),
-      vehicles = await rlrpg.getPlayerVehicles(apiKey);
-    this.setState({ profile: player, vehicles: vehicles, loading: false });
+      vehicles = await rlrpg.getPlayerVehicles(apiKey),
+      ownedCompanies = player.data[0].company_owned.filter((company) => company.disabled === 0);
+    this.setState({
+      profile: player,
+      vehicles: vehicles,
+      companies: ownedCompanies,
+      loading: false,
+    });
   }
 
   render() {
-    const { loading, profile, vehicles } = this.state;
+    const { loading, profile, vehicles, companies } = this.state;
 
     const lastSeen = !loading ? new Date(profile.data[0].last_seen.date) : null;
     const lsDate =
@@ -192,6 +238,9 @@ export default class Profile extends Component {
                   <div className="nav-container rounded">
                     <Nav variant="pills">
                       <Nav.Link eventKey="bank-accounts">Konten</Nav.Link>
+                      {companies.length > 0 && (
+                        <Nav.Link eventKey="owned-companies">Unternehmen</Nav.Link>
+                      )}
                       <Nav.Link eventKey="vehicles">Fahrzeuge</Nav.Link>
                       <Nav.Link eventKey="properties">Immobilien</Nav.Link>
                     </Nav>
@@ -254,6 +303,24 @@ export default class Profile extends Component {
                         })}
                       </Row>
                     </Tab.Pane>
+                    {companies.length > 0 && (
+                      <Tab.Pane eventKey="owned-companies">
+                        <Alert message="Hier werden nur aktive Firmen angezeigt!" />
+                        <Row className="pr-3 pb-3 pl-3">
+                          {companies.length > 0 ? (
+                            companies.map((company) => {
+                              return this._renderCompany(company);
+                            })
+                          ) : (
+                            <div className="rounded-light p-3">
+                              <p className="text-center font-weight-bold mb-0">
+                                Keine Unternehmen gefunden
+                              </p>
+                            </div>
+                          )}
+                        </Row>
+                      </Tab.Pane>
+                    )}
                     <Tab.Pane eventKey="vehicles">
                       <Table className="no-wrap" responsive hover borderless>
                         <thead>
