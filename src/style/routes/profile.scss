@@ -48,12 +48,28 @@
   //   padding: 1rem;
   // }
 
+  .nav-container .nav-link {
+    flex: 1 !important;
+  }
+
+  .credit-card-container:nth-child(1),
+  .credit-card-container:nth-child(2),
+  .credit-card-container:nth-child(3) {
+    .credit-card {
+      margin-top: 0;
+    }
+  }
   .credit-card {
     position: relative;
     padding: 1rem;
-    background-color: $primary;
+    margin-top: 1rem;
     border-radius: $borderRadius;
-
+    &.private {
+      background-color: $primary;
+    }
+    &.company {
+      background-color: $lightBlue;
+    }
     .text {
       color: #fff;
     }
@@ -85,8 +101,13 @@
     }
   }
 
-  .nav-container .nav-link {
-    width: calc(100% / 3) !important;
+  .company-container {
+    margin-top: 1rem;
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      margin-top: 0rem;
+    }
   }
 
   @media (min-width: 2100px) {
@@ -99,10 +120,18 @@
   @media (max-width: $brSm) {
     .nav-container .nav-link {
       width: 50% !important;
-
       // Bcause we got an odd number of nav-pills the last one should be the full width
       &:last-child {
         width: 100% !important;
+      }
+    }
+    .credit-card {
+      margin-top: 0;
+    }
+    .company-container {
+      margin-top: 1rem !important;
+      &:nth-child(1) {
+        margin-top: 0 !important;
       }
     }
   }
