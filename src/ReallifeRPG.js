@@ -7,7 +7,7 @@ export default class ReallifeRPG {
   }
 
   /**
-   * Returns an array includes the current server list
+   * @returns array
    */
   async getServers() {
     const response = await fetch(this.api + "servers/");
@@ -15,6 +15,11 @@ export default class ReallifeRPG {
     return data;
   }
 
+  /**
+   *
+   * @param {number} serverId
+   * @returns array
+   */
   async getServer(serverId) {
     const response = await fetch(this.api + "servers/");
     const json = await response.json();
@@ -25,6 +30,7 @@ export default class ReallifeRPG {
   /**
    * Get an ReallifeRPG player profile
    * @param {string} apiKey ReallifeRPG API-Key
+   * @returns array
    */
   async getProfile(apiKey) {
     const response = await fetch(`${this.api}player/${apiKey}`);
@@ -35,6 +41,7 @@ export default class ReallifeRPG {
   /**
    * Get an ReallifeRPG player vehicles
    * @param {string} apiKey ReallifeRPG API-Key
+   * @returns array
    */
   async getPlayerVehicles(apiKey) {
     const response = await fetch(`${this.api}player/${apiKey}/vehicles`);
@@ -44,6 +51,7 @@ export default class ReallifeRPG {
 
   /**
    * Get the current market prices for each server
+   * @returns array
    */
   async getGlobalMarket() {
     const response = await fetch(this.api + "market_all/");
@@ -54,6 +62,7 @@ export default class ReallifeRPG {
   /**
    * Get the current market prices for an server
    * @param {number} serverId
+   * @returns array
    */
   async getMarket(serverId) {
     const response = await fetch(`${this.api}market/${serverId}`);
@@ -65,6 +74,7 @@ export default class ReallifeRPG {
    * Get an list of the highest paid items
    * @param {number} serverId ReallifeRPG server id
    * @param {number} amount Amount of items
+   * @returns array
    */
   async getTopJobs(serverId, amount) {
     const serverData = await this.getServer(serverId);
@@ -119,6 +129,7 @@ export default class ReallifeRPG {
    * @param {number} serverId
    * @param {string} itemName
    * @param {number} backlogTime Backlog in hours
+   * @returns array
    */
   async getItemBacklog(serverId, itemName, backlogTime) {
     const response = await fetch(`${this.api}market/${serverId}/${itemName}/${backlogTime / 6}`);
@@ -128,6 +139,7 @@ export default class ReallifeRPG {
 
   /**
    * Get an list with all avaiable changelogs
+   * @returns array
    */
   async getChangelogs() {
     const response = await fetch(this.api + "changelog");
@@ -137,6 +149,7 @@ export default class ReallifeRPG {
 
   /**
    * Get all Twitch livestreams
+   * @returns array
    */
   async getStreams() {
     const response = await fetch(this.api + "twitch");
@@ -146,6 +159,7 @@ export default class ReallifeRPG {
 
   /**
    * Returns a list with all community buildings
+   * @returns array
    */
   async getCBS() {
     const response = await fetch(this.api + "cbs");
@@ -156,6 +170,7 @@ export default class ReallifeRPG {
   /**
    * Get a list of all avaiable item or vehicle shops
    * @param {string} category Should be vehicles or items
+   * @returns array
    */
   async getShops(category) {
     const response = await fetch(`${this.api}info/${category}_shoptypes`);
@@ -167,6 +182,7 @@ export default class ReallifeRPG {
    * Get a list of all offered items for an specific shop
    * @param {string} category Should be vehicles or items
    * @param {string} shoptype
+   * @returns array
    */
   async getShopItems(category, shoptype) {
     const response = await fetch(`${this.api}info/${category}/${shoptype}`);
