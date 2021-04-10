@@ -48,16 +48,7 @@ class App extends Component {
             <Sidebar />
             <div className="main-container">
               <Navbar toggleFunc={this.toggleSidebar} />
-              <div
-                className="content"
-                onClick={() => {
-                  // If the sidebar is active it will close if we click on the screen the sidebar will close
-                  const sidebar = document.querySelector(".main-sidebar");
-                  if (sidebar.querySelector(".nav-menu").classList.contains("active")) {
-                    sidebar.querySelector(".nav-menu").classList.remove("active");
-                  }
-                }}
-              >
+              <div className="content">
                 <div className="alert-container">
                   <BannedAlert />
                   <JailAlert />
