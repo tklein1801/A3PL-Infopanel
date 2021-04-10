@@ -29,7 +29,9 @@ class Alert extends Component {
             <p className="mb-0">{message}</p>
           </div>
           <div>
-            <FontAwesomeIcon icon={faTimes} className="icon" onClick={this.unshow} />
+            <button className="close-btn" onClick={this.unshow}>
+              <FontAwesomeIcon icon={faTimes} className="icon" />
+            </button>
           </div>
         </div>
       );

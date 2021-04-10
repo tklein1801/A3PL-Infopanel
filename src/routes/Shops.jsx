@@ -1,5 +1,7 @@
 import { Component } from "react";
 import { Row, Col, Card, Tab, Nav, Table, Modal, Button } from "react-bootstrap";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loader from "../components/Loader";
 import ReallifeRPG from "../ReallifeRPG";
 
@@ -131,8 +133,11 @@ export default class Shops extends Component {
         </Row>
 
         <Modal show={itemModal} onHide={this.handleClose} size="lg" centered>
-          <Modal.Header /*closeButton*/>
+          <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">Angebot</Modal.Title>
+            <button className="close-btn" onClick={this.handleClose}>
+              <FontAwesomeIcon icon={faTimes} className="icon" />
+            </button>
           </Modal.Header>
           <Modal.Body className="p-0">
             {loadingItems ? (

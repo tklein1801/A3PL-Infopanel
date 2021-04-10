@@ -13,6 +13,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Alert } from "../components/Alerts";
 import ReallifeRPG from "../ReallifeRPG";
+import RLRPG_LOGO from "../img/rlrpg-logo.png";
 // Stylesheets
 import "../style/routes/profile.scss";
 
@@ -232,23 +233,23 @@ export default class Profile extends Component {
     };
     return (
       <Col xs={12} md={12} lg={6} xl={6} className="company-container">
-        <div className="bg-light rounded p-3">
+        <div className="card bg-light rounded p-3">
           <h4 className="text-center font-weight-bold">{company.name}</h4>
-          <Row className="text-center">
+          <Row className="text-center mt-3">
             <Col xs={12} md={12} lg={6} xl={6}>
-              <h6 className="font-weight-bold mb-1">Bankkonto 1</h6>
+              <h6 className="font-weight-bold mb-0">Bankkonto 1</h6>
               <p>{company.bank_1}</p>
             </Col>
             <Col xs={12} md={12} lg={6} xl={6}>
-              <h6 className="font-weight-bold mb-1">Bankkonto 2</h6>
+              <h6 className="font-weight-bold mb-0">Bankkonto 2</h6>
               <p>{company.bank_2}</p>
             </Col>
             <Col xs={12} md={12} lg={6} xl={6}>
-              <h6 className="font-weight-bold mb-1">Telefonnummer</h6>
+              <h6 className="font-weight-bold mb-0">Telefonnummer</h6>
               <p className="mb-0">{company.phone}</p>
             </Col>
             <Col xs={12} md={12} lg={6} xl={6}>
-              <h6 className="font-weight-bold mb-1">Gegründet am</h6>
+              <h6 className="font-weight-bold mb-0">Gegründet am</h6>
               <p className="mb-0">
                 {createDate.day}.{createDate.month}.{createDate.year} um {createDate.hours}:
                 {createDate.minutes} Uhr
@@ -263,10 +264,7 @@ export default class Profile extends Component {
   _renderCreditCard = (company = false, owner, iban, balance) => {
     return (
       <div key={iban} className={company === true ? "credit-card company" : "credit-card private"}>
-        <img
-          src="https://i0.wp.com/realliferpg.de/wp-content/uploads/2017/10/realliferpg100x100.png?fit=100%2C100&ssl=1"
-          alt="rlrpg logo"
-        />
+        <img src={RLRPG_LOGO} alt="ReallifeRPG Logo" />
         <h4 className="text font-weight-bold">NH-Bank</h4>
         <Form.Group className="mb-3">
           <Form.Label>IBAN</Form.Label>

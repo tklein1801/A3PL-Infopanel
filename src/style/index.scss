@@ -78,7 +78,7 @@ body {
   // Card
   .card {
     border-radius: $borderRadius !important;
-    border: 0;
+    border: 1px solid #ededed;
     &.border-top {
       border-top: 4px solid $primary !important;
 
@@ -140,11 +140,9 @@ body {
     td {
       vertical-align: middle !important;
     }
-
     th {
       font-family: "Quicksand-Bold" !important;
     }
-
     tbody tr:hover {
       background-color: $light !important;
       td {
@@ -166,25 +164,36 @@ body {
 
   // Buttons
   .btn {
+    outline: none !important;
     border-radius: $borderRadius;
     &:focus {
       box-shadow: none !important;
     }
-
     &.btn-primary {
       background-color: $primary !important;
       border-color: $primary !important;
     }
-
     &.btn-outline-primary {
       border-color: $primary !important;
       color: $primary !important;
-
       &:hover,
       :focus {
         background-color: $primary !important;
         color: #fff;
       }
+    }
+  }
+  .close-btn {
+    outline: none !important;
+    transition: background-color 0.2s ease;
+    padding: 0.3rem 0.7rem;
+    border: 0;
+    background-color: transparent;
+    border-radius: 50%;
+    color: white;
+    &:hover {
+      background-color: rgba($color: #000, $alpha: 0.3);
+      color: rgba($color: #fff, $alpha: 0.95);
     }
   }
 
@@ -253,7 +262,6 @@ body {
     &.modal-static .modal-dialog {
       transform: scale(1) !important;
     }
-
     .modal-content {
       border-radius: 18px;
       padding: 0.5rem;
@@ -263,8 +271,11 @@ body {
         .modal-title {
           font-weight: bold;
         }
+        .close-btn {
+          margin: -0.5rem -0.5rem -1rem auto;
+          color: #212529;
+        }
       }
-
       .modal-footer {
         padding-top: 0;
         border-top: 0px;
@@ -273,6 +284,7 @@ body {
           background-color: white;
           &:hover {
             background-color: $light;
+            border: 1px solid #ededed;
           }
         }
       }

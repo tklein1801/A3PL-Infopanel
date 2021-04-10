@@ -12,7 +12,6 @@ export default class Navbar extends Component {
   render() {
     return (
       <div className="main-navbar">
-        {/* TODO Add an custom animated hamburger */}
         <FontAwesomeIcon icon={faBars} className="hamburger icon" onClick={() => this.toggle()} />
       </div>
     );
