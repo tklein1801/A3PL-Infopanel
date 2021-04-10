@@ -3,6 +3,7 @@ import { Card, Row, Col, OverlayTrigger, Popover } from "react-bootstrap";
 import Loader from "../components/Loader";
 import { Doughnut } from "@reactchartjs/react-chart.js";
 import ReallifeRPG from "../ReallifeRPG";
+import { settings } from "../config.json";
 import "../style/routes/dashboard.scss";
 
 export default class Dashboard extends Component {
@@ -14,13 +15,19 @@ export default class Dashboard extends Component {
   }
 
   async componentDidMount() {
-    const rlrpg = new ReallifeRPG(),
-      apiKey = localStorage.getItem("@dag_apiKey"),
-      profile = await rlrpg.getProfile(apiKey),
-      servers = await rlrpg.getServers();
+    const rlrpg = new ReallifeRPG();
+    const apiKey = localStorage.getItem("@dag_apiKey");
+    var profile = await rlrpg.getProfile(apiKey);
+    var serverlist = await rlrpg.getServers();
+    serverlist = serverlist.data;
+    if (!settings.show_gungame) {
+      serverlist = serverlist.filter(
+        (server) => !server.Servername.toLowerCase().includes("gungame")
+      );
+    }
     this.setState({
       profile: profile.data !== undefined ? profile.data[0] : null,
-      servers: servers.data,
+      servers: serverlist,
       loading: false,
     });
   }
@@ -48,7 +55,7 @@ export default class Dashboard extends Component {
                   clanTag = hasClanTag[0] + "]";
                 // if the length if above 1 the player has an active clan tag
                 if (hasClanTag.length > 1) {
-                  playerList.map((player) => {
+                  playerList.forEach((player) => {
                     if (
                       player.includes(clanTag) &&
                       player !== playerName &&
@@ -112,7 +119,7 @@ export default class Dashboard extends Component {
                             Spielerliste
                             {friends.length > 0 ? (
                               <OverlayTrigger
-                                trigger="click"
+                                trigger="hover"
                                 placement="right"
                                 overlay={
                                   <Popover>

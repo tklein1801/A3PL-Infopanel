@@ -10,6 +10,9 @@
   "sidebar": {
     "logo": "../dag-512.png"
   },
+  "settings": {
+    "show_gungame": false
+  },
   "topJobs": {
     "amount": 10,
     "blacklist": ["beer"]
