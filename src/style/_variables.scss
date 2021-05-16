@@ -9,33 +9,31 @@ $br3Xl: 1600px; // greater than
 
 // General colors
 // $primary: #060b26;
-$primary: #28a745;
+$blurple: #5865f2;
+$primary: $blurple;
 $light: #f8f9fa;
 $lightBlue: #1a83ff;
 $text: #212529;
-
-// Other
-$borderRadius: 8px;
-$smallBorderRadius: 6px;
-$shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
-
-// Main-container
-$mainConWidth: 85%;
-
-// Navbar
-$navbarWidth: 100%; // 100% bcause the parent container is .main-container
-$navbarHeight: 4rem;
-$navbarSmHeight: 4rem;
-// $navbarBackground: #060b26; // #19235a
-$navbarBackground: #fff;
-$navbarColor: #fff;
-$navbarShadow: $shadow;
-$hamburgerColor: #212529;
+$borderColor: #e1e5eb;
 
 // Sidebar
-$sidebarWidth: 15%;
-$sidebarXlWidth: 30%;
-$sidebar3XlWidth: 25%;
-// $sidebarBackground: #060b26;
-$sidebarBackground: #333;
-$sidebarColor: #fff;
+$sidebarWidth: 17.5%;
+$sidebarBackground: #fff;
+$sidebarIcon: #cacedb;
+$sidebarText: #3d5170;
+$sidebarHover: #f8f9fa;
+
+// Main container
+$mcWidth: 82.5%;
+
+// Navbar
+$navbarHeight: 3.75rem;
+$navbarBackground: #fff;
+
+// Page container
+$pcHeight: calc(100% - 3.75rem);
+
+// Other
+$borderRadius: 7px;
+$smallBorderRadius: 6px;
+$shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);

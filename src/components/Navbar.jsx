@@ -1,19 +1,29 @@
 import { Component } from "react";
+// Components
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// Stylesheet
 import "../style/navbar.scss";
 
-export default class Navbar extends Component {
-  toggle() {
-    document.querySelector("#root > div > aside > nav").classList.toggle("active");
-    document.querySelector("#root > div > div > div.content").classList.toggle("full");
+class Navbar extends Component {
+  constructor() {
+    super();
   }
 
   render() {
     return (
-      <div className="main-navbar">
-        <FontAwesomeIcon icon={faBars} className="hamburger icon" onClick={() => this.toggle()} />
-      </div>
+      <nav className="navbar sticky-top">
+        <button
+          className="sidebar-toggler"
+          onClick={() => {
+            document.querySelector(".sidebar").classList.add("shown");
+          }}
+        >
+          <FontAwesomeIcon icon={faBars} className="icon" />
+        </button>
+      </nav>
     );
   }
 }
+
+export default Navbar;

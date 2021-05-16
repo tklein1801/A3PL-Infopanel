@@ -11,9 +11,8 @@ import Changelogs from "./routes/Changelogs";
 import Settings from "./routes/Settings";
 // Components
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Loader from "./components/Loader";
-import Navbar from "./components/Navbar";
 import { Banned as BannedAlert, Jail as JailAlert } from "./components/Alerts";
+import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { SetKeyModal } from "./components/Modals";
 // Stylesheets
@@ -31,29 +30,29 @@ class App extends Component {
 
   componentDidMount() {
     const apiKey = localStorage.getItem("@dag_apiKey");
-    apiKey === null || apiKey === "" || apiKey === undefined
-      ? this.setState({ showKeyModal: true, apiKey: apiKey, loading: false })
-      : this.setState({ loading: false });
+    if (apiKey === null || apiKey === "" || apiKey === undefined) {
+      this.setState({ loading: false, showKeyModal: true, apiKey: apiKey });
+    } else {
+      this.setState({ loading: false });
+    }
   }
 
   render() {
     const { loading, showKeyModal } = this.state;
 
     if (loading) {
-      return <Loader />;
+      return null;
     } else {
       return (
         <div className="wrapper">
           <Router>
             <Sidebar />
             <div className="main-container">
-              <Navbar toggleFunc={this.toggleSidebar} />
-              <div className="content">
-                <div className="alert-container">
-                  <BannedAlert />
-                  <JailAlert />
-                </div>
-                <div className="page-content">
+              <Navbar />
+              <BannedAlert />
+              <JailAlert />
+              <div className="page-content">
+                <div className="content-container">
                   <Switch>
                     <Route path="/" exact component={Dashboard} />
                     <Route path="/Dashboard/" exact component={Dashboard} />

@@ -1,4 +1,7 @@
 import { Component } from "react";
+import { version } from "../../package.json";
+// Components
+import DAG_Logo from "../img/dag-logo.png";
 import { Link, withRouter } from "react-router-dom";
 import {
   faAddressBook,
@@ -10,16 +13,16 @@ import {
   faShoppingBag,
   faTv,
   faUserCircle,
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { sidebar } from "../config.json";
+// Stylesheet
 import "../style/sidebar.scss";
 
 class Sidebar extends Component {
   constructor() {
     super();
     this.state = {
-      loading: true, // equals the key of the active menu link
       links: [
         {
           name: "Dashboard",
@@ -70,14 +73,17 @@ class Sidebar extends Component {
     };
   }
 
+  close = () => {
+    if (document.querySelector(".sidebar").classList.contains("shown")) {
+      document.querySelector(".sidebar").classList.remove("shown");
+    }
+  };
+
   componentDidMount() {
-    const { history } = this.props,
-      location = history.location,
-      curRoute = location.pathname.split("/")[1];
+    const { history } = this.props;
+    const location = history.location;
+    const curRoute = location.pathname.split("/")[1];
     this.setState({ route: curRoute !== "" ? curRoute : "Dashboard", loading: false });
-    // We're gonna check if the route is equal to "" because if were on the landingpage of the
-    // application the indexroute will be "/" which equals "" after we splitted the pathname
-    // Listen for route changes
     history.listen((location) => {
       const newRoute = location.pathname.split("/")[1];
       this.setState({ route: newRoute !== "" ? newRoute : "Dashboard" });
@@ -85,39 +91,54 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { loading, links, route } = this.state;
+    const { links } = this.state;
 
-    if (loading) {
-      return null;
-    } else {
+    const SidebarLink = (props) => {
+      const { route } = this.state;
+      const { name, icon, path } = props;
       return (
-        <aside className="main-sidebar shadow-lg">
-          <nav className="nav-menu">
-            <div className="header">
-              <img className="logo" src={sidebar.logo} alt="ReallifeRPG Logo" />
-            </div>
-            <ul className="nav-menu-items">
+        <li>
+          <Link
+            to={path}
+            onClick={this.close}
+            className={path.includes(route) ? "sidebar-link active" : "sidebar-link"}
+          >
+            {icon}
+            <span>{name}</span>
+          </Link>
+        </li>
+      );
+    };
+
+    return (
+      <aside className="sidebar sticky-top">
+        <div className="sidebar-header">
+          <img className="brand-logo" src={DAG_Logo} alt="DulliAG Logo" />
+          <button
+            className="sidebar-toggler"
+            onClick={() => {
+              document.querySelector(".sidebar").classList.remove("shown");
+            }}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} className="icon" />
+          </button>
+        </div>
+        <div className="sidebar-body">
+          <nav>
+            <ul>
               {links.map((link, index) => {
                 return (
-                  <li key={index} className={"nav-text"}>
-                    <Link
-                      to={link.path}
-                      className={link.path.includes(route) ? "active" : null}
-                      onClick={() =>
-                        document.querySelector(".main-sidebar .nav-menu").classList.remove("active")
-                      }
-                    >
-                      {link.icon}
-                      <span>{link.name}</span>
-                    </Link>
-                  </li>
+                  <SidebarLink key={index} name={link.name} icon={link.icon} path={link.path} />
                 );
               })}
             </ul>
           </nav>
-        </aside>
-      );
-    }
+        </div>
+        <div className="sidebar-footer">
+          <p>Version {version}</p>
+        </div>
+      </aside>
+    );
   }
 }
 

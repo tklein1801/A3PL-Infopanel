@@ -2,62 +2,40 @@
 
 .wrapper {
   display: flex;
-  width: 100%;
+  flex-direction: row;
   min-height: 100%;
-  background-color: $light;
+  background: $sidebarHover !important;
+}
+.main-container {
+  width: $mcWidth;
+  margin-left: $sidebarWidth;
+}
+.page-content {
+  min-height: $pcHeight;
+  .content-container {
+    padding: 1rem;
 
-  .main-container {
-    width: $mainConWidth;
-    margin-left: $sidebarWidth;
-    .content {
-      min-height: calc(100% - 4rem); // TODO use scss var
-      background-color: $light;
-
-      .page-content {
-        padding: 0.5rem 1rem;
-
-        div > h1 {
-          font-family: "Quicksand-Bold";
-          font-size: 2.1rem;
-          margin-bottom: 0.5rem;
-        }
-      }
     .page-subtitle {
       font-family: "Quicksand-Medium";
       letter-spacing: 0.75px;
       margin-bottom: 0;
     }
-  }
-  @media (max-width: $br3Xl) {
-    .main-container {
-      width: 100%;
-      margin-left: 0;
-      .content {
-        margin-left: 20%;
-        &.full {
-          margin-left: 0;
-        }
-      }
+    .page-title {
+      margin-bottom: 0.5rem;
+      font-family: "Quicksand-SemiBold";
+      font-size: 1.75rem;
+      letter-spacing: 0.5px;
     }
   }
-  @media (max-width: $brXl) {
-    .main-container {
-      width: 100%;
-      margin-left: 0;
-      .content {
-        min-height: calc(100% - 4rem); // TODO use scss var
-        margin-left: unset;
-      }
-    }
+}
+
+@media (max-width: $brLg) {
+  .main-container {
+    width: 100%;
+    margin-left: 0;
   }
-  @media (max-width: $brSm) {
-    .main-container {
-      width: 100%;
-      margin-left: 0;
-      .content {
-        min-height: calc(100% - 4rem); // TODO use scss var
-        margin-left: unset;
-      }
-    }
+  .page-subtitle,
+  .page-title {
+    text-align: center;
   }
 }
