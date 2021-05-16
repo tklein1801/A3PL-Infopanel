@@ -156,9 +156,9 @@ export default class Market extends Component {
               <Card className="shadow-md border-top chart-card">
                 <Tab.Container defaultActiveKey={mData[0].server_id}>
                   <Card.Header>
-                    <Card.Title className="text font-weight-bold mb-0">
+                    <Card.Title className="text mb-0">
                       <OverlayTrigger
-                        trigger="click"
+                        trigger="hover"
                         placement="right"
                         overlay={
                           <Popover>

@@ -69,6 +69,7 @@
         }
         &.active {
           border-left-color: $blurple;
+          font-family: "Quicksand-Medium";
           .icon,
           svg {
             color: $blurple;
