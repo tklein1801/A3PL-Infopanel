@@ -23,7 +23,7 @@ export default class Dashboard extends Component {
 
     return (
       <div className="streams">
-        <h1>Streams</h1>
+        <h3 className="page-title">Streams</h3>
         <Row>
           {loading ? (
             <Col xs={12} md={6} lg={6} xl={3}>

@@ -318,7 +318,7 @@ export default class Profile extends Component {
         : null;
     return (
       <div className="profile">
-        <h1>Spielerprofil</h1>
+        <h3 className="page-title">Spielerprofil</h3>
         <Row>
           <Col xs={12} md={6} lg={5} xl={3} className="mb-3">
             {loading ? (

@@ -90,7 +90,7 @@ export default class Shops extends Component {
 
     return (
       <div className="shops">
-        <h1>Händler</h1>
+        <h3 className="page-title">Händler</h3>
         <Row>
           <Col xs={12} md={12} lg={6} xl={4}>
             {loading ? (

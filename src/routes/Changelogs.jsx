@@ -21,7 +21,7 @@ export default class Changelogs extends Component {
 
     return (
       <div className="changelogs">
-        <h1>Changelogs</h1>
+        <h3 className="page-title">Changelogs</h3>
         <Row>
           <Col md={6}>
             {loading ? (

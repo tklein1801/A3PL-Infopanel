@@ -49,7 +49,7 @@ export default class Market extends Component {
 
     return (
       <div className="market">
-        <h1>Markt</h1>
+        <h3 className="page-title">Markt</h3>
         <Row>
           <Col xs={12} md={6} lg={4} xl={4}>
             {loading ? (

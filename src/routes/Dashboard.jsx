@@ -37,7 +37,7 @@ export default class Dashboard extends Component {
 
     return (
       <div className="dashboard">
-        <h1>Dashboard</h1>
+        <h3 className="page-title">Dashboard</h3>
         <Row>
           {loading ? (
             <Col xs={12} md={12} lg={6} xl={6}>

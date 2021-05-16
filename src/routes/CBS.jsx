@@ -158,7 +158,7 @@ export default class CBS extends Component {
 
     return (
       <div className="cbs">
-        <h1>CBS</h1>
+        <h3 className="page-title">CBS</h3>
         <Row>
           {loading ? (
             <Col xs={12} md={6} lg={6} xl={4}>

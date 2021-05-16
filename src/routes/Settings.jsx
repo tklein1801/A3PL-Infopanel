@@ -33,7 +33,7 @@ export default class Settings extends Component {
     } else {
       return (
         <div className="settings">
-          <h1>Einstellungen</h1>
+          <h3 className="page-title">Einstellungen</h3>
           <Row>
             <Col xs={12} md={6} lg={6} xl={4} className="mb-3">
               <Card className="shadow-md border-top">

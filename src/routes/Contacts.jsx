@@ -93,7 +93,7 @@ export default class Contacts extends Component {
     const { loading, displayedContacts, phoneNumbers } = this.state;
     return (
       <div className="contacts">
-        <h1>Kontaktbuch</h1>
+        <h3 className="page-title">Kontaktbuch</h3>
         <Row>
           <Col xs={12} md={12} lg={6} xl={4}>
             {loading ? (
