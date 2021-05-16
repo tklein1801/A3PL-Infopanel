@@ -5,6 +5,7 @@ import Profile from "./routes/Profile";
 import Market from "./routes/Market";
 import Contacts from "./routes/Contacts";
 import Shops from "./routes/Shops";
+import CompanyShops from "./routes/CompanyShops";
 import CBS from "./routes/CBS";
 import Streams from "./routes/Streams";
 import Changelogs from "./routes/Changelogs";
@@ -60,6 +61,7 @@ class App extends Component {
                     <Route path="/Markt/" component={Market} />
                     <Route path="/Kontaktbuch/" component={Contacts} />
                     <Route path="/CBS/" component={CBS} />
+                    <Route path="/Companies/" component={CompanyShops} />
                     <Route path="/Shops/" component={Shops} />
                     <Route path="/Streams/" component={Streams} />
                     <Route path="/Changelogs/" component={Changelogs} />

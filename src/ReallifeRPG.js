@@ -23,7 +23,7 @@ export default class ReallifeRPG {
   async getServer(serverId) {
     const response = await fetch(this.api + "servers/");
     const json = await response.json();
-    const serverData = json.data.filter((server) => server.Id == serverId);
+    const serverData = json.data.filter((server) => server.Id === serverId);
     return serverData;
   }
 
@@ -186,6 +186,16 @@ export default class ReallifeRPG {
    */
   async getShopItems(category, shoptype) {
     const response = await fetch(`${this.api}info/${category}/${shoptype}`);
+    const data = await response.json();
+    return data;
+  }
+
+  /**
+   *
+   * @returns {[object]}
+   */
+  async getCompanies() {
+    const response = await fetch(this.api + "company_shops/");
     const data = await response.json();
     return data;
   }

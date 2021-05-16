@@ -14,6 +14,7 @@ import {
   faTv,
   faUserCircle,
   faArrowLeft,
+  faIndustry,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // Stylesheet
@@ -43,6 +44,11 @@ class Sidebar extends Component {
           name: "Kontaktbuch",
           path: "/Kontaktbuch/",
           icon: <FontAwesomeIcon icon={faAddressBook} className="icon" />,
+        },
+        {
+          name: "Warenankauf",
+          path: "/Companies/",
+          icon: <FontAwesomeIcon icon={faIndustry} className="icon" />,
         },
         {
           name: "Shops",
