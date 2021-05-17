@@ -75,24 +75,26 @@ export default class Profile extends Component {
   };
 
   _renderRental = (profile, rental) => {
-    <tr key={rental.id} className="text-center">
-      <td>
-        <p className="text mb-0">{rental.id}</p>
-      </td>
-      <td>
-        <p className="text mb-0">
-          <Badge variant="primary" className="p-2">
-            Gemietet
-          </Badge>
-        </p>
-      </td>
-      <td>
-        <p className="text mb-0">{rental.payed_for / 24} Tage</p>
-      </td>
-      <td>
-        <p className="text mb-0">{profile.data[0].name}</p>
-      </td>
-    </tr>;
+    return (
+      <tr key={rental.id} className="text-center">
+        <td>
+          <p className="text mb-0">{rental.id}</p>
+        </td>
+        <td>
+          <p className="text mb-0">
+            <Badge variant="primary" className="p-2">
+              Gemietet
+            </Badge>
+          </p>
+        </td>
+        <td>
+          <p className="text mb-0">{rental.payed_for / 24} Tage</p>
+        </td>
+        <td>
+          <p className="text mb-0">{profile.data[0].name}</p>
+        </td>
+      </tr>
+    );
   };
 
   _renderHouse = (profile, house) => {
@@ -306,16 +308,13 @@ export default class Profile extends Component {
     const { loading, profile, vehicles, companies } = this.state;
 
     const lastSeen = !loading ? new Date(profile.data[0].last_seen.date) : null;
-    const lsDate =
-      lastSeen !== null
-        ? {
-            days: lastSeen.getDate(),
-            month: lastSeen.getMonth() + 1,
-            year: lastSeen.getFullYear(),
-            hours: lastSeen.getHours(),
-            minutes: lastSeen.getMinutes(),
-          }
-        : null;
+    const lsDate = lastSeen !== null && {
+      days: lastSeen.getDate(),
+      month: lastSeen.getMonth() + 1,
+      year: lastSeen.getFullYear(),
+      hours: lastSeen.getHours(),
+      minutes: lastSeen.getMinutes(),
+    };
     return (
       <div className="profile">
         <h3 className="page-title">Spielerprofil</h3>
