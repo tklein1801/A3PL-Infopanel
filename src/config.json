@@ -1,7 +1,7 @@
 {
   "application": {
     "name": "A3RLRPG-Infopanel",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Webanwendungen um deine Spielfortschritte von ReallifeRPG abzurufen.",
     "beta": "https://dev-app.dulliag.de",
     "github": "https://github.com/tklein1801/A3RLRPG-Infopanel/",
