@@ -52,6 +52,8 @@
 
 **3.** Run it on an local server using `npm start`
 
+**4. (Optional) For automatic deployment edit the  [main.yml](./github/workflows/main.yml)**
+
 ## :link: Used Ressources
 
 [ReactJS](https://discord.com/developers/docs/intro)
