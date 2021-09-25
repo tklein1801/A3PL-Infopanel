@@ -4,7 +4,7 @@ name: 🚀 Deploy A3RLRPG-Infopanel
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   web-deploy:
     name: 🎉 Deploy
