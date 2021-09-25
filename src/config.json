@@ -15,7 +15,7 @@
   },
   "topJobs": {
     "amount": 10,
-    "blacklist": ["beer"]
+    "blacklist": []
   },
   "bonus": [
     { "amount": 0, "multiplier": 0.3 },
@@ -49,6 +49,8 @@
     "white_russian",
     "lsd",
     "rum",
-    "vodka"
+    "vodka",
+    "beer",
+    "mead"
   ]
 }
