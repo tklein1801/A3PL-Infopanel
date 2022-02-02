@@ -53,17 +53,10 @@
     flex: 1 !important;
   }
 
-  .credit-card-container:nth-child(1),
-  .credit-card-container:nth-child(2),
-  .credit-card-container:nth-child(3) {
-    .credit-card {
-      margin-top: 0;
-    }
-  }
   .credit-card {
     position: relative;
     padding: 1rem;
-    margin-top: 1rem;
+    margin-bottom: 1rem !important;
     border-radius: $borderRadius;
     &.private {
       background-color: $green;
