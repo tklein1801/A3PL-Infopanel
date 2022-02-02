@@ -2,6 +2,8 @@ import { Component } from 'react';
 import Loader from '../components/Loader';
 import { Row, Col, Form, Card, Button } from 'react-bootstrap';
 import { application } from '../config.json';
+import { version } from '../../package.json';
+
 export default class Settings extends Component {
   constructor() {
     super();
@@ -91,7 +93,7 @@ export default class Settings extends Component {
                     <a href='https://realliferpg.de'>ReallifeRPG</a>. Das offizielle Infopanel kann{' '}
                     <a href='https://info.realliferpg.de'>hier</a> gefunden werden.
                     <p className='text mb-0'>
-                      <strong className='mb-0'>Version: {application.version}</strong> <br />
+                      <strong className='mb-0'>Version: {version}</strong> <br />
                       <strong className='mb-0'>Beschreibung</strong> <br />
                       {application.description}
                       <br />
