@@ -1,9 +1,9 @@
-import { Component } from "react";
+import { Component } from 'react';
 // Components
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Stylesheet
-import "../style/navbar.scss";
+import '../style/navbar.scss';
 
 class Navbar extends Component {
   constructor() {
@@ -12,14 +12,14 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar sticky-top">
+      <nav className='navbar sticky-top'>
         <button
-          className="sidebar-toggler"
+          className='sidebar-toggler'
           onClick={() => {
-            document.querySelector(".sidebar").classList.add("shown");
+            document.querySelector('.sidebar').classList.add('shown');
           }}
         >
-          <FontAwesomeIcon icon={faBars} className="icon" />
+          <FontAwesomeIcon icon={faBars} className='icon' />
         </button>
       </nav>
     );

@@ -1,8 +1,8 @@
-import { Component } from "react";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ReallifeRPG from "../ReallifeRPG";
-import "../style/alert.scss";
+import { Component } from 'react';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReallifeRPG from '../ReallifeRPG';
+import '../style/alert.scss';
 
 class Alert extends Component {
   constructor() {
@@ -24,13 +24,13 @@ class Alert extends Component {
       return null;
     } else {
       return (
-        <div className="alert">
+        <div className='alert'>
           <div>
-            <p className="mb-0">{message}</p>
+            <p className='mb-0'>{message}</p>
           </div>
           <div>
-            <button className="close-btn" onClick={this.unshow}>
-              <FontAwesomeIcon icon={faTimes} className="icon" />
+            <button className='close-btn' onClick={this.unshow}>
+              <FontAwesomeIcon icon={faTimes} className='icon' />
             </button>
           </div>
         </div>
@@ -53,7 +53,7 @@ class Banned extends Component {
 
   async componentDidMount() {
     let banned = false;
-    const apiKey = localStorage.getItem("@dag_apiKey");
+    const apiKey = localStorage.getItem('@dag_apiKey');
     if (apiKey !== undefined && apiKey !== null) {
       const player = await new ReallifeRPG().getProfile(apiKey);
       if (player.data !== undefined) {
@@ -69,15 +69,15 @@ class Banned extends Component {
       return null;
     } else {
       return (
-        <div className="alert">
+        <div className='alert'>
           <div>
-            <p className="mb-0">
+            <p className='mb-0'>
               Du wurdest leider aus der ReallifeRPG Community ausgeschlossen. Wende dich an den
               Support um entbannt zu werden.
             </p>
           </div>
           <div>
-            <FontAwesomeIcon icon={faTimes} className="icon" onClick={this.unshow} />
+            <FontAwesomeIcon icon={faTimes} className='icon' onClick={this.unshow} />
           </div>
         </div>
       );
@@ -100,7 +100,7 @@ class Jail extends Component {
   async componentDidMount() {
     let imprisoned = false,
       timeLeft = 0;
-    const apiKey = localStorage.getItem("@dag_apiKey");
+    const apiKey = localStorage.getItem('@dag_apiKey');
     if (apiKey !== undefined && apiKey !== null) {
       const player = await new ReallifeRPG().getProfile(apiKey);
       if (player.data !== undefined) {
@@ -123,15 +123,15 @@ class Jail extends Component {
       return null;
     } else {
       return (
-        <div className="alert">
+        <div className='alert'>
           <div>
-            <p className="mb-0">
-              Du sitzt derzeit leider im Bundesgefängnis eine Haftstrafe ab. Du wirst in{" "}
+            <p className='mb-0'>
+              Du sitzt derzeit leider im Bundesgefängnis eine Haftstrafe ab. Du wirst in{' '}
               {timeLeft / 2} Monaten entlassen.
             </p>
           </div>
           <div>
-            <FontAwesomeIcon icon={faTimes} className="icon" onClick={this.unshow} />
+            <FontAwesomeIcon icon={faTimes} className='icon' onClick={this.unshow} />
           </div>
         </div>
       );

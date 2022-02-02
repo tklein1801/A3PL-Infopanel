@@ -1,10 +1,10 @@
-import { Component } from "react";
-import { Card, Row, Col, OverlayTrigger, Popover } from "react-bootstrap";
-import Loader from "../components/Loader";
-import { Doughnut } from "@reactchartjs/react-chart.js";
-import ReallifeRPG from "../ReallifeRPG";
-import { settings } from "../config.json";
-import "../style/routes/dashboard.scss";
+import { Component } from 'react';
+import { Card, Row, Col, OverlayTrigger, Popover } from 'react-bootstrap';
+import Loader from '../components/Loader';
+import { Doughnut } from '@reactchartjs/react-chart.js';
+import ReallifeRPG from '../ReallifeRPG';
+import { settings } from '../config.json';
+import '../style/routes/dashboard.scss';
 
 export default class Dashboard extends Component {
   constructor() {
@@ -16,13 +16,13 @@ export default class Dashboard extends Component {
 
   async componentDidMount() {
     const rlrpg = new ReallifeRPG();
-    const apiKey = localStorage.getItem("@dag_apiKey");
+    const apiKey = localStorage.getItem('@dag_apiKey');
     var profile = await rlrpg.getProfile(apiKey);
     var serverlist = await rlrpg.getServers();
     serverlist = serverlist.data;
     if (!settings.show_gungame) {
       serverlist = serverlist.filter(
-        (server) => !server.Servername.toLowerCase().includes("gungame")
+        (server) => !server.Servername.toLowerCase().includes('gungame')
       );
     }
     this.setState({
@@ -36,12 +36,12 @@ export default class Dashboard extends Component {
     const { loading, profile, servers } = this.state;
 
     return (
-      <div className="dashboard">
-        <h3 className="page-title">Dashboard</h3>
+      <div className='dashboard'>
+        <h3 className='page-title'>Dashboard</h3>
         <Row>
           {loading ? (
             <Col xs={12} md={12} lg={6} xl={6}>
-              <Card className="border-top shadow-md p-4">
+              <Card className='border-top shadow-md p-4'>
                 <Loader />
               </Card>
             </Col>
@@ -51,8 +51,8 @@ export default class Dashboard extends Component {
               try {
                 const playerList = server.Players,
                   playerName = profile.name,
-                  hasClanTag = playerName.split("]"),
-                  clanTag = hasClanTag[0] + "]";
+                  hasClanTag = playerName.split(']'),
+                  clanTag = hasClanTag[0] + ']';
                 // if the length if above 1 the player has an active clan tag
                 if (hasClanTag.length > 1) {
                   playerList.forEach((player) => {
@@ -73,19 +73,19 @@ export default class Dashboard extends Component {
                 sortedPlayerList = playerList.sort();
 
               const chartData = {
-                  labels: ["Polizisten", "RAC", "Mediziner", "Zivilisten"],
+                  labels: ['Polizisten', 'RAC', 'Mediziner', 'Zivilisten'],
                   datasets: [
                     {
                       fill: false,
                       borderWidth: 2,
                       lineTension: 0,
                       spanGaps: true,
-                      borderColor: "#fff",
+                      borderColor: '#fff',
                       pointRadius: 3,
                       pointHoverRadius: 7,
-                      pointColor: "#fff",
-                      pointBackgroundColor: "#fff",
-                      backgroundColor: ["#007bff", "#ffc107", "#dc3545", "#28a745"],
+                      pointColor: '#fff',
+                      pointBackgroundColor: '#fff',
+                      backgroundColor: ['#007bff', '#ffc107', '#dc3545', '#28a745'],
                       data: [server.Cops, server.Adac, server.Medics, server.Civilians],
                     },
                   ],
@@ -99,12 +99,12 @@ export default class Dashboard extends Component {
                   },
                 };
               return (
-                <Col xs={12} md={12} lg={6} xl={6} className="server-card" key={index}>
-                  <Card className="border-top shadow-md">
+                <Col xs={12} md={12} lg={6} xl={6} className='server-card' key={index}>
+                  <Card className='border-top shadow-md'>
                     <Card.Header>
                       <Card.Title>
                         Server {server.Id}
-                        <small className="ml-2">
+                        <small className='ml-2'>
                           {server.Playercount} / {server.Slots} Spieler
                         </small>
                       </Card.Title>
@@ -115,17 +115,17 @@ export default class Dashboard extends Component {
                           <Doughnut data={chartData} options={chartOptions} />
                         </Col>
                         <Col xs={12} md={12} lg={6} xl={6}>
-                          <h5 className="text font-weight-bold mb-0">
+                          <h5 className='text font-weight-bold mb-0'>
                             Spielerliste
                             {friends.length > 0 ? (
                               <OverlayTrigger
-                                trigger="hover"
-                                placement="right"
+                                trigger='hover'
+                                placement='right'
                                 overlay={
                                   <Popover>
-                                    <Popover.Title as="h3">Clanmitglieder</Popover.Title>
+                                    <Popover.Title as='h3'>Clanmitglieder</Popover.Title>
                                     <Popover.Content>
-                                      <ul className="list-unstyled mb-0">
+                                      <ul className='list-unstyled mb-0'>
                                         {friends.map((friend) => {
                                           return <li>{friend}</li>;
                                         })}
@@ -134,7 +134,7 @@ export default class Dashboard extends Component {
                                   </Popover>
                                 }
                               >
-                                <small className="ml-2">Freunde</small>
+                                <small className='ml-2'>Freunde</small>
                               </OverlayTrigger>
                             ) : null}
                           </h5>

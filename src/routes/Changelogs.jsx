@@ -1,7 +1,7 @@
-import { Component } from "react";
-import { Row, Col, Accordion, Card, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
-import Loader from "../components/Loader";
-import ReallifeRPG from "../ReallifeRPG";
+import { Component } from 'react';
+import { Row, Col, Accordion, Card, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import Loader from '../components/Loader';
+import ReallifeRPG from '../ReallifeRPG';
 
 export default class Changelogs extends Component {
   constructor() {
@@ -20,17 +20,17 @@ export default class Changelogs extends Component {
     const { changelogs, loading } = this.state;
 
     return (
-      <div className="changelogs">
-        <h3 className="page-title">Changelogs</h3>
+      <div className='changelogs'>
+        <h3 className='page-title'>Changelogs</h3>
         <Row>
           <Col md={6}>
             {loading ? (
-              <Card className="border-top shadow-md p-4">
+              <Card className='border-top shadow-md p-4'>
                 <Loader />
               </Card>
             ) : (
-              <Card className="border-top shadow-md bg-light">
-                <Accordion defaultActiveKey="0">
+              <Card className='border-top shadow-md bg-light'>
+                <Accordion defaultActiveKey='0'>
                   {changelogs.data.map((changelog, index) => {
                     const releaseAt = new Date(changelog.release_at),
                       release = {
@@ -41,41 +41,41 @@ export default class Changelogs extends Component {
                         minutes: releaseAt.getMinutes(),
                       };
                     return (
-                      <Card className={index === 0 ? "mt-1" : null}>
+                      <Card className={index === 0 ? 'mt-1' : null}>
                         <Card.Header>
-                          <Row className="mx-0">
+                          <Row className='mx-0'>
                             <Accordion.Toggle
                               as={Button}
-                              variant="link"
+                              variant='link'
                               eventKey={index + 1}
-                              className="text font-weight-bold text-decoration-none text-dark px-0"
+                              className='text font-weight-bold text-decoration-none text-dark px-0'
                             >
                               Update {changelog.version}
                             </Accordion.Toggle>
 
                             <OverlayTrigger
-                              placement={"top"}
+                              placement={'top'}
                               overlay={
                                 <Tooltip>
-                                  Verfügbar ab{" "}
+                                  Verfügbar ab{' '}
                                   {release.date > 9 ? release.date : `0${release.date}`}.
                                   {release.month > 9 ? release.month : `0${release.month}`}.
-                                  {release.year > 9 ? release.year : `0${release.year}`} @{" "}
+                                  {release.year > 9 ? release.year : `0${release.year}`} @{' '}
                                   {release.hours > 9 ? release.hours : `0${release.hours}`}:
-                                  {release.minutes > 9 ? release.minutes : `0${release.minutes}`}{" "}
+                                  {release.minutes > 9 ? release.minutes : `0${release.minutes}`}{' '}
                                   Uhr
                                 </Tooltip>
                               }
                             >
                               <Accordion.Toggle
                                 as={Button}
-                                variant="link"
+                                variant='link'
                                 eventKey={index + 1}
-                                className="text font-weight-bold text-decoration-none text-dark px-0 ml-auto"
+                                className='text font-weight-bold text-decoration-none text-dark px-0 ml-auto'
                               >
                                 {release.date > 9 ? release.date : `0${release.date}`}.
                                 {release.month > 9 ? release.month : `0${release.month}`}.
-                                {release.year > 9 ? release.year : `0${release.year}`} @{" "}
+                                {release.year > 9 ? release.year : `0${release.year}`} @{' '}
                                 {release.hours > 9 ? release.hours : `0${release.hours}`}:
                                 {release.minutes > 9 ? release.minutes : `0${release.minutes}`} Uhr
                               </Accordion.Toggle>
@@ -84,12 +84,12 @@ export default class Changelogs extends Component {
                         </Card.Header>
                         <Accordion.Collapse eventKey={index + 1}>
                           <Card.Body>
-                            {changelog.note !== "" ? (
-                              <div className="p-3 mb-2 bg-light rounded">{changelog.note}</div>
+                            {changelog.note !== '' ? (
+                              <div className='p-3 mb-2 bg-light rounded'>{changelog.note}</div>
                             ) : null}
 
                             {changelog.change_mission.length > 0 ? (
-                              <h5 className="text font-weight-bold">Mission</h5>
+                              <h5 className='text font-weight-bold'>Mission</h5>
                             ) : null}
                             {changelog.change_mission.length > 0 ? (
                               <ul>
@@ -100,7 +100,7 @@ export default class Changelogs extends Component {
                             ) : null}
 
                             {changelog.change_map.length > 0 ? (
-                              <h5 className="text font-weight-bold">Karte</h5>
+                              <h5 className='text font-weight-bold'>Karte</h5>
                             ) : null}
                             {changelog.change_map.length > 0 ? (
                               <ul>
@@ -111,7 +111,7 @@ export default class Changelogs extends Component {
                             ) : null}
 
                             {changelog.change_mod.length > 0 ? (
-                              <h5 className="text font-weight-bold">Mod</h5>
+                              <h5 className='text font-weight-bold'>Mod</h5>
                             ) : null}
                             {changelog.change_mod.length > 0 ? (
                               <ul>

@@ -1,11 +1,11 @@
-@import "./_variables";
+@import './_variables';
 
 html,
 body {
   width: 100%;
   height: 100%;
   margin: 0;
-  font-family: "Quicksand", sans-serif !important;
+  font-family: 'Quicksand', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -20,7 +20,7 @@ body {
   }
 
   code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
 
   ::-webkit-scrollbar {
@@ -49,7 +49,7 @@ body {
     color: $text;
   }
   .text.font-weight-bold {
-    font-family: "Quicksand-Bold" !important;
+    font-family: 'Quicksand-Bold' !important;
     font-weight: normal !important;
   }
   p > a,
@@ -83,7 +83,7 @@ body {
       border-top: 4px solid $primary !important;
 
       .card-title {
-        font-family: "Quicksand-SemiBold";
+        font-family: 'Quicksand-SemiBold';
       }
     }
     .card-img-top {
@@ -118,7 +118,7 @@ body {
   // Badge
   .badge {
     letter-spacing: 0.3px;
-    font-family: "Quicksand-Medium";
+    font-family: 'Quicksand-Medium';
     border-radius: $borderRadius;
     &.badge-primary {
       background-color: $primary !important;
@@ -141,7 +141,7 @@ body {
       vertical-align: middle !important;
     }
     th {
-      font-family: "Quicksand-Medium" !important;
+      font-family: 'Quicksand-Medium' !important;
     }
     tbody tr:hover {
       background-color: $light !important;
@@ -201,7 +201,7 @@ body {
   .form-group {
     .form-label {
       margin-bottom: 0;
-      font-family: "Quicksand-Medium";
+      font-family: 'Quicksand-Medium';
     }
 
     .form-control {
@@ -231,7 +231,7 @@ body {
   .input-group {
     .form-label {
       margin-bottom: 0;
-      font-family: "Quicksand-Medium";
+      font-family: 'Quicksand-Medium';
     }
 
     .form-control {
@@ -302,7 +302,7 @@ body {
         transition: all 0.3s ease 0s;
         text-align: center;
         width: 50%;
-        font-family: "Quicksand-Medium";
+        font-family: 'Quicksand-Medium';
         border-radius: $borderRadius;
         color: #212529;
 

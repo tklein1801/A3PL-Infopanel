@@ -1,4 +1,4 @@
-@import "./_variables";
+@import './_variables';
 
 .sidebar-toggler {
   display: none;
@@ -69,7 +69,7 @@
         }
         &.active {
           border-left-color: $blurple;
-          font-family: "Quicksand-Medium";
+          font-family: 'Quicksand-Medium';
           .icon,
           svg {
             color: $blurple;
