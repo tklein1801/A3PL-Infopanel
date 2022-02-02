@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Loader from '../components/Loader';
-import { Card, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 import { faCreditCard, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Stylesheets
@@ -42,7 +42,7 @@ export default class Contacts extends Component {
   }
 
   render() {
-    const { loading, displayedContacts, phonebooks, phoneNumbers } = this.state;
+    const { loading, phonebooks, phoneNumbers } = this.state;
 
     const Contact = ({ name, iban, phone }) => {
       return (

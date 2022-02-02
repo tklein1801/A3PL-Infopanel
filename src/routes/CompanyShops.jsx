@@ -1,9 +1,8 @@
 import { Component } from 'react';
-import { topJobs, bonus, illegalItems } from '../config.json';
+// import { topJobs, bonus, illegalItems } from '../config.json';
 import ReallifeRPG from '../ReallifeRPG';
 // Components
-import { Row, Col, Card, Button, Nav, Tab, Table, OverlayTrigger, Popover } from 'react-bootstrap';
-import { Bar } from '@reactchartjs/react-chart.js';
+import { Row, Col, Card, Button, Table } from 'react-bootstrap';
 import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Loader from '../components/Loader';

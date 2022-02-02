@@ -1,5 +1,5 @@
 import { faMapPin } from '@fortawesome/free-solid-svg-icons';
-import { ProgressBar, Row, Col, Accordion, Card, Button, Badge, Image } from 'react-bootstrap';
+import { ProgressBar, Row, Col, Card, Badge, Image } from 'react-bootstrap';
 import { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Loader from '../components/Loader';

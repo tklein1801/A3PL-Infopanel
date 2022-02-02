@@ -6,10 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../style/navbar.scss';
 
 class Navbar extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <nav className='navbar sticky-top'>
