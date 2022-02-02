@@ -1,9 +1,9 @@
-import { Component } from "react";
-import Loader from "../components/Loader";
-import { Row, Col, Card, Button, Badge } from "react-bootstrap";
-import { faUsers } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ReallifeRPG from "../ReallifeRPG";
+import { Component } from 'react';
+import Loader from '../components/Loader';
+import { Row, Col, Card, Button, Badge } from 'react-bootstrap';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReallifeRPG from '../ReallifeRPG';
 
 export default class Dashboard extends Component {
   constructor() {
@@ -22,12 +22,12 @@ export default class Dashboard extends Component {
     const { loading, streams } = this.state;
 
     return (
-      <div className="streams">
-        <h3 className="page-title">Streams</h3>
+      <div className='streams'>
+        <h3 className='page-title'>Streams</h3>
         <Row>
           {loading ? (
             <Col xs={12} md={6} lg={6} xl={3}>
-              <Card className="border-top shadow-md p-4">
+              <Card className='border-top shadow-md p-4'>
                 <Loader />
               </Card>
             </Col>
@@ -40,28 +40,28 @@ export default class Dashboard extends Component {
                   md={6}
                   lg={6}
                   xl={3}
-                  className={index !== streams.data.length - 1 ? "mb-3" : "mb-0"}
+                  className={index !== streams.data.length - 1 ? 'mb-3' : 'mb-0'}
                 >
                   <Card>
-                    <Card.Header className="p-0 border-bottom-0 bg-white position-relative">
-                      <Card.Img variant="top" src={stream.preview_large} />
+                    <Card.Header className='p-0 border-bottom-0 bg-white position-relative'>
+                      <Card.Img variant='top' src={stream.preview_large} />
 
                       <Badge
-                        variant="success"
-                        className="position-absolute p-2"
-                        style={{ top: "1rem", right: "1rem" }}
+                        variant='success'
+                        className='position-absolute p-2'
+                        style={{ top: '1rem', right: '1rem' }}
                       >
-                        <FontAwesomeIcon icon={faUsers} className="icon" />
-                        <span className="ml-1">{stream.viewers}</span>
+                        <FontAwesomeIcon icon={faUsers} className='icon' />
+                        <span className='ml-1'>{stream.viewers}</span>
                       </Badge>
                     </Card.Header>
                     <Card.Body>
-                      <Card.Title className="mb-0" style={{ fontSize: "1.3rem" }}>
+                      <Card.Title className='mb-0' style={{ fontSize: '1.3rem' }}>
                         {stream.display_name}
                       </Card.Title>
                       <Card.Text>{stream.status}</Card.Text>
 
-                      <Button variant="primary" onClick={() => (window.location = stream.url)}>
+                      <Button variant='primary' onClick={() => (window.location = stream.url)}>
                         Zuschauen
                       </Button>
                     </Card.Body>
@@ -71,9 +71,9 @@ export default class Dashboard extends Component {
             })
           ) : (
             <Col xs={12} md={6} lg={6} xl={3}>
-              <Card className="border-top">
+              <Card className='border-top'>
                 <Card.Body>
-                  <p className="text text-center font-weight-bold mb-0">Kein Stream gefunden</p>
+                  <p className='text text-center font-weight-bold mb-0'>Kein Stream gefunden</p>
                 </Card.Body>
               </Card>
             </Col>

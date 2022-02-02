@@ -1,4 +1,4 @@
-@import "./_variables";
+@import './_variables';
 
 .wrapper {
   display: flex;
@@ -16,13 +16,13 @@
     padding: 1rem;
 
     .page-subtitle {
-      font-family: "Quicksand-Medium";
+      font-family: 'Quicksand-Medium';
       letter-spacing: 0.75px;
       margin-bottom: 0;
     }
     .page-title {
       margin-bottom: 0.5rem;
-      font-family: "Quicksand-SemiBold";
+      font-family: 'Quicksand-SemiBold';
       font-size: 1.75rem;
       letter-spacing: 0.5px;
     }

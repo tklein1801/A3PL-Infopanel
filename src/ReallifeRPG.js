@@ -1,8 +1,8 @@
-import { topJobs, bonus, illegalItems } from "./config.json";
+import { topJobs, bonus, illegalItems } from './config.json';
 
 export default class ReallifeRPG {
   constructor() {
-    this.api = "https://api.realliferpg.de/v1/";
+    this.api = 'https://api.realliferpg.de/v1/';
     this.blacklistItems = topJobs.blacklist;
   }
 
@@ -10,7 +10,7 @@ export default class ReallifeRPG {
    * @returns array
    */
   async getServers() {
-    const response = await fetch(this.api + "servers/");
+    const response = await fetch(this.api + 'servers/');
     const data = await response.json();
     return data;
   }
@@ -21,7 +21,7 @@ export default class ReallifeRPG {
    * @returns array
    */
   async getServer(serverId) {
-    const response = await fetch(this.api + "servers/");
+    const response = await fetch(this.api + 'servers/');
     const json = await response.json();
     const serverData = json.data.filter((server) => server.Id === serverId);
     return serverData;
@@ -54,7 +54,7 @@ export default class ReallifeRPG {
    * @returns array
    */
   async getGlobalMarket() {
-    const response = await fetch(this.api + "market_all/");
+    const response = await fetch(this.api + 'market_all/');
     const data = await response.json();
     return data;
   }
@@ -93,7 +93,7 @@ export default class ReallifeRPG {
         if (serverData.length === 1 && illegalItems.includes(item.item)) {
           let copAmount =
             serverData.length === 1
-              ? serverData[0].Side.Cops.filter((player) => player.includes("[C")).length
+              ? serverData[0].Side.Cops.filter((player) => player.includes('[C')).length
               : null;
           let multiplier = bonus.filter((boni) => boni.amount === copAmount)[0].multiplier;
           let newPrice = parseInt(item.price * multiplier).toFixed(0);
@@ -142,7 +142,7 @@ export default class ReallifeRPG {
    * @returns array
    */
   async getChangelogs() {
-    const response = await fetch(this.api + "changelog");
+    const response = await fetch(this.api + 'changelog');
     const data = await response.json();
     return data;
   }
@@ -152,7 +152,7 @@ export default class ReallifeRPG {
    * @returns array
    */
   async getStreams() {
-    const response = await fetch(this.api + "twitch");
+    const response = await fetch(this.api + 'twitch');
     const data = await response.json();
     return data;
   }
@@ -162,7 +162,7 @@ export default class ReallifeRPG {
    * @returns array
    */
   async getCBS() {
-    const response = await fetch(this.api + "cbs");
+    const response = await fetch(this.api + 'cbs');
     const data = await response.json();
     return data;
   }
@@ -195,7 +195,7 @@ export default class ReallifeRPG {
    * @returns {[object]}
    */
   async getCompanies() {
-    const response = await fetch(this.api + "company_shops/");
+    const response = await fetch(this.api + 'company_shops/');
     const data = await response.json();
     return data;
   }
