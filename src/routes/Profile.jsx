@@ -116,15 +116,27 @@ const Vehicle = ({ vehicle }) => {
   }
 
   // Fraction
-  if (vehicle.side === 'COP') {
-    fraction = 'Polizei';
-  } else if (vehicle.side === 'EAST') {
-    fraction = 'RAC';
-  } else if (vehicle.side === 'MEDIC' || vehicle.side === 'GUER') {
-    fraction = 'Medic';
-  } else {
-    fraction = 'Zivilisten';
+  switch (vehicle.side) {
+    case 'MEDIC':
+    case 'GUER':
+      fraction = 'Mediziner';
+      break;
+
+    case 'WEST':
+      if (coplevel == 0) fraction = 'Zivilisten';
+      fraction = coplevel == 1 ? 'Justiz' : 'Polizei';
+      break;
+
+    case 'EAST':
+      fraction = 'RAC';
+      break;
+
+    case 'CIV':
+    default:
+      fraction = 'Zivilisten';
+      break;
   }
+
   const vehiclePlate = vehicle.plate,
     formattedPlate = `${vehiclePlate.substring(0, 2)} ${vehiclePlate.substring(
       2,
