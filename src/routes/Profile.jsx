@@ -83,7 +83,7 @@ const Company = ({ company }) => {
   );
 };
 
-const Vehicle = ({ vehicle }) => {
+const Vehicle = ({ vehicle, coplevel }) => {
   var type, status, fraction;
   // Vehicle type
   if (vehicle.type === 'Ship') {
@@ -540,7 +540,11 @@ export default class Profile extends Component {
                         <tbody>
                           {vehicles.data.length > 0 ? (
                             vehicles.data.map((vehicle) => (
-                              <Vehicle key={vehicle.id} vehicle={vehicle} />
+                              <Vehicle
+                                key={vehicle.id}
+                                vehicle={vehicle}
+                                coplevel={player.data[0].coplevel}
+                              />
                             ))
                           ) : (
                             <tr className='text-center'>
