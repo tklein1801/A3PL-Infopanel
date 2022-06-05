@@ -543,7 +543,7 @@ export default class Profile extends Component {
                               <Vehicle
                                 key={vehicle.id}
                                 vehicle={vehicle}
-                                coplevel={player.data[0].coplevel}
+                                coplevel={profile.data[0].coplevel}
                               />
                             ))
                           ) : (
