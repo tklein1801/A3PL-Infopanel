@@ -1,50 +1,53 @@
 [[redirects]]
+from = "/home"
+to = "/home"
+status = 200
+force = false
+
+[[redirects]]
+from = "/personal"
+to = "/personal"
+status = 200
+force = false
+
+[[redirects]]
+from = "/garage"
+to = "/garage"
+status = 200
+force = false
+
+[[redirects]]
+from = "/properties"
+to = "/properties"
+status = 200
+force = false
+
+[[redirects]]
+from = "/market"
+to = "/market"
+status = 200
+force = false
+
+[[redirects]]
+from = "/trader"
+to = "/trader"
+status = 200
+force = false
+
+[[redirects]]
+from = "/changelogs"
+to = "/changelogs"
+status = 200
+force = false
+
+[[redirects]]
+from = "/settings"
+to = "/settings"
+status = 200
+force = false
+
+[[redirects]]
 from = "/*"
 to = "/index.html"
-status = 200
-force = false
-[[redirects]]
-from = "/Dashboard"
-to = "/index.html"
-status = 200
-force = false
-[[redirects]]
-from = "/Profil"
-to = "/Profil"
-status = 200
-force = false
-[[redirects]]
-from = "/Markt"
-to = "/Markt"
-status = 200
-force = false
-[[redirects]]
-from = "/Kontaktbuch"
-to = "/Kontaktbuch"
-status = 200
-force = false
-[[redirects]]
-from = "/Shops"
-to = "/Shops"
-status = 200
-force = false
-[[redirects]]
-from = "/CBS"
-to = "/CBS"
-status = 200
-force = false
-[[redirects]]
-from = "/Streams"
-to = "/Streams"
-status = 200
-force = false
-[[redirects]]
-from = "/Changelogs"
-to = "/Changelogs"
-status = 200
-force = false
-[[redirects]]
-from = "/Einstellungen"
-to = "/Einstellungen"
 status = 200
 force = false

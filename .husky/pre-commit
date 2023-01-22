@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+files=`git diff --name-only --staged --diff-filter=ACM`
+npx prettier --check $files
+
+exit 0
