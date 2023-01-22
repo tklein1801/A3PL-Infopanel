@@ -1,4 +1,10 @@
 [[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+force = false
+
+[[redirects]]
 from = "/home"
 to = "/home"
 status = 200
@@ -43,11 +49,5 @@ force = false
 [[redirects]]
 from = "/settings"
 to = "/settings"
-status = 200
-force = false
-
-[[redirects]]
-from = "/*"
-to = "/index.html"
 status = 200
 force = false
