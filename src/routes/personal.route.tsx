@@ -104,23 +104,15 @@ export const Personal = () => {
                           primary={license.export_licence.name}
                           secondary={
                             <Box>
-                              <Chip
-                                label={license.export_licence.side.getLabel()}
-                                size="small"
-                                sx={{ mr: 1 }}
-                              />
+                              <Chip label={license.export_licence.side.getLabel()} sx={{ mr: 1 }} />
                               <Chip
                                 icon={
                                   license.export_licence.illegal ? <CheckIcon /> : <CloseIcon />
                                 }
                                 label="Illegal"
-                                size="small"
                                 sx={{ mr: 1 }}
                               />
-                              <Chip
-                                label={parseCurrency(license.export_licence.price)}
-                                size="small"
-                              />
+                              <Chip label={parseCurrency(license.export_licence.price)} />
                             </Box>
                           }
                         />

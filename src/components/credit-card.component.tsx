@@ -38,7 +38,9 @@ export const CreditCard: React.FC<CreditCardProps> = ({
       position: 'absolute',
       top: theme.spacing(2),
       right: theme.spacing(2),
-      width: '2.6rem',
+      width: '40px',
+      height: '40px',
+      borderRadius: `${theme.shape.borderRadius}px`,
     },
   };
 

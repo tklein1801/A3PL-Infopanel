@@ -60,7 +60,7 @@ export const Phonebook: React.FC<PhonebookProps> = ({ phonebook }) => {
             <LabelValue label="Geburts" value={phonebook.identity.id_birthday.toString()} />
             <LabelValue
               label="Fraktion"
-              value={<Chip label={phonebook.identity.side.getLabel()} size="small" />}
+              value={<Chip label={phonebook.identity.side.getLabel()} />}
             />
           </Grid>
 
