@@ -15,7 +15,7 @@ import { ShopType } from '../types/shop';
 export class ReallifeService {
   static async validateSecret(apiKey: string): Promise<Boolean> {
     try {
-      const response = await fetch('https://api.realliferpg.de/v1/player/validate/' + apiKey);
+      const response = await fetch('https://api.panthor.de/v1/player/validate/' + apiKey);
       const json: ValidSecretResponse | ErrorResponse = await response.json();
       return json.status === 'Success';
     } catch (message) {
@@ -26,7 +26,7 @@ export class ReallifeService {
 
   static async getProfile(apiKey: string): Promise<Profile | null> {
     try {
-      const response = await fetch('https://api.realliferpg.de/v1/player/' + apiKey);
+      const response = await fetch('https://api.panthor.de/v1/player/' + apiKey);
       const json: ApiResponse<ProfileResponse> = await response.json();
       return new Profile(json.data[0]);
     } catch (message) {
@@ -37,7 +37,7 @@ export class ReallifeService {
 
   static async getVehicles(apiKey: string): Promise<Vehicle[]> {
     try {
-      const response = await fetch('https://api.realliferpg.de/v1/player/' + apiKey + '/vehicles');
+      const response = await fetch('https://api.panthor.de/v1/player/' + apiKey + '/vehicles');
       const json: ApiResponse<VehicleResponse> = await response.json();
       return json.data.map((props) => new Vehicle(props));
     } catch (message) {
@@ -48,7 +48,7 @@ export class ReallifeService {
 
   static async getChangelogs(): Promise<Changelog[]> {
     try {
-      const response = await fetch('https://api.realliferpg.de/v1/changelog');
+      const response = await fetch('https://api.panthor.de/v1/changelog');
       const json: ApiResponse<ChangelogResponse> = await response.json();
       return json.data.map((props) => new Changelog(props));
     } catch (message) {
@@ -59,7 +59,7 @@ export class ReallifeService {
 
   static async getServers(): Promise<RpgServer[] | Server[]> {
     try {
-      const response = await fetch('https://api.realliferpg.de/v1/servers');
+      const response = await fetch('https://api.panthor.de/v1/servers');
       const json: ApiResponse<RpgServerResponse | ServerResponse> = await response.json();
       return [
         ...json.data.map((server) =>
@@ -76,7 +76,7 @@ export class ReallifeService {
 
   static async getMarket(serverId: number): Promise<MarketItem[]> {
     try {
-      const response = await fetch('https://api.realliferpg.de/v1/market/' + serverId);
+      const response = await fetch('https://api.panthor.de/v1/market/' + serverId);
       const json: ApiResponse<MarketItemResponse> = await response.json();
       return json.data.map((item) => new MarketItem(item));
     } catch (message) {
