@@ -15,11 +15,12 @@ import React from 'react';
 import { Image } from '../components/base/image.component';
 import { SearchInput } from '../components/base/search.component';
 import { CopBonus as CopBonusComponent } from '../components/cop-bonus.component';
+import { NoItems } from '../components/core/no-items.component';
+import { Progress } from '../components/core/progress.component';
 import { MarketItemRefreshCountdown } from '../components/market-item-refresh-countdown.component';
 import type { MarketItemRefreshCountdownProps } from '../components/market-item-refresh-countdown.component';
-import { Progress } from '../components/progress.component';
 import { StoreContext } from '../context/store.context';
-import { ReallifeService } from '../services/reallife.service';
+import { PanthorService } from '../services/panthor.service';
 import { CopBonus } from '../types/cop-bonus';
 import { RpgServer } from '../types/server';
 import { parseCurrency } from '../utils/parseCurrency.util';
@@ -37,7 +38,7 @@ export const Market = () => {
     interval: 0,
   });
   const copsOnline = React.useMemo(() => (SERVER ? SERVER.cops : 0), [SERVER]);
-  const copBonus = React.useMemo(() => new CopBonus(copsOnline), [SERVER]);
+  const copBonus = React.useMemo(() => new CopBonus(copsOnline), [copsOnline]);
 
   const shownItems = React.useMemo(() => {
     if (keyword.length < 1) return marketItems;
@@ -48,18 +49,20 @@ export const Market = () => {
 
   React.useEffect(() => {
     setLoading(true);
-    ReallifeService.getMarket(SERVER ? SERVER.id : FALLBACK_SERVER_ID)
+    PanthorService.getMarket(SERVER ? SERVER.id : FALLBACK_SERVER_ID)
       .then(async (items) => {
         setMarketItems(items);
-        const [a, b] = await items[0].getPriceBacklog(SERVER ? SERVER.id : FALLBACK_SERVER_ID, 2);
-        setRefreshInterval({
-          refresh: a.createdAt,
-          interval: differenceInSeconds(a.createdAt, b.createdAt),
-        });
+        if (items && items.length > 0) {
+          const [a, b] = await items[0].getPriceBacklog(SERVER ? SERVER.id : FALLBACK_SERVER_ID, 2);
+          setRefreshInterval({
+            refresh: a.createdAt,
+            interval: differenceInSeconds(a.createdAt, b.createdAt),
+          });
+        }
       })
       .catch(console.error)
       .finally(() => setLoading(false));
-  }, [servers]);
+  }, [servers, copsOnline, SERVER, setLoading, setMarketItems]);
 
   return (
     <Grid container spacing={3}>
@@ -128,17 +131,23 @@ export const Market = () => {
                 ))}
               </List>
             ) : (
-              <Paper sx={{ p: 2 }}>
-                <Typography textAlign="center">Keine Treffer</Typography>
-              </Paper>
+              <NoItems
+                message={
+                  keyword.length > 0 ? `Keine Treffer für '${keyword}'` : 'Keine Items gefunden'
+                }
+              />
             )}
           </Paper>
         )}
       </Grid>
       <Grid container item xs={12} md={6} spacing={2}>
         {/* TODO: Make this sticky to top */}
-        <Grid item xs={12} lg={6}>
-          {loading ? <Progress /> : <MarketItemRefreshCountdown {...refreshInterval} />}
+        <Grid item display={refreshInterval.interval > 0 ? 'flex' : 'none'} xs={12} lg={6}>
+          {loading ? (
+            <Progress />
+          ) : (
+            refreshInterval.interval > 0 && <MarketItemRefreshCountdown {...refreshInterval} />
+          )}
         </Grid>
 
         <Grid item xs={12} lg={6}>

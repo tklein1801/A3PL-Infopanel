@@ -1,9 +1,10 @@
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
-import { Progress } from '../components/progress.component';
+import { NoItems } from '../components/core/no-items.component';
+import { Progress } from '../components/core/progress.component';
 import { TraderWrapper } from '../components/trader.component';
 import { StoreContext } from '../context/store.context';
-import { ReallifeService } from '../services/reallife.service';
+import { PanthorService } from '../services/panthor.service';
 import { ShopCategory, ShopType } from '../types/shop';
 
 export const Trader = () => {
@@ -19,8 +20,8 @@ export const Trader = () => {
     setLoading(true);
     Promise.allSettled(
       [
-        { category: 'items' as ShopCategory, promise: ReallifeService.getShopTypes('items') },
-        { category: 'vehicles' as ShopCategory, promise: ReallifeService.getShopTypes('vehicles') },
+        { category: 'items' as ShopCategory, promise: PanthorService.getShopTypes('items') },
+        { category: 'vehicles' as ShopCategory, promise: PanthorService.getShopTypes('vehicles') },
       ]
         .filter((promise) => traders[promise.category].length < 1)
         .map((promise) => promise.promise)
@@ -34,17 +35,29 @@ export const Trader = () => {
     <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
         <Typography variant="subtitle1" mb={1}>
-          Gegenstände ({traders.items.length})
+          Gegenstände {traders.items.length > 0 && `(${traders.items.length})`}
         </Typography>
 
-        {loading ? <Progress /> : <TraderWrapper category="items" shops={traders.items} />}
+        {loading ? (
+          <Progress />
+        ) : traders.items.length > 0 ? (
+          <TraderWrapper category="items" shops={traders.items} />
+        ) : (
+          <NoItems message="Keine Anbieter gefunden" />
+        )}
       </Grid>
       <Grid item xs={12} md={6}>
         <Typography variant="subtitle1" mb={1}>
-          Fahrzeuge ({traders.vehicles.length})
+          Fahrzeuge {traders.vehicles.length > 0 && `(${traders.vehicles.length})`}
         </Typography>
 
-        {loading ? <Progress /> : <TraderWrapper category="vehicles" shops={traders.vehicles} />}
+        {loading ? (
+          <Progress />
+        ) : traders.vehicles.length > 0 ? (
+          <TraderWrapper category="vehicles" shops={traders.vehicles} />
+        ) : (
+          <NoItems message="Keine Anbieter gefunden" />
+        )}
       </Grid>
     </Grid>
   );

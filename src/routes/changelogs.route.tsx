@@ -7,9 +7,10 @@ import { Accordion, AccordionDetails, Chip, Grid, Typography } from '@mui/materi
 import { format } from 'date-fns';
 import React from 'react';
 import { AccordionSummary } from '../components/base/accordion-summary.component';
-import { Progress } from '../components/progress.component';
+import { NoItems } from '../components/core/no-items.component';
+import { Progress } from '../components/core/progress.component';
 import { StoreContext } from '../context/store.context';
-import { ReallifeService } from '../services/reallife.service';
+import { PanthorService } from '../services/panthor.service';
 
 export const Changelogs = () => {
   const id = React.useId();
@@ -24,12 +25,12 @@ export const Changelogs = () => {
   React.useEffect(() => {
     if (changelogs.length < 1) {
       setLoading(true);
-      ReallifeService.getChangelogs()
+      PanthorService.getChangelogs()
         .then(setChangelogs)
         .catch(console.error)
         .finally(() => setLoading(false));
     }
-  }, []);
+  }, [changelogs, setChangelogs, setLoading]);
 
   return (
     <React.Fragment>
@@ -37,7 +38,7 @@ export const Changelogs = () => {
         <Grid item xs={12} md={8} xl={9}>
           {loading ? (
             <Progress />
-          ) : (
+          ) : changelogs.length > 0 ? (
             changelogs.slice(0, 30).map((changelog) => (
               <Accordion
                 key={`${id}-changelog-${changelog.id}`}
@@ -98,6 +99,8 @@ export const Changelogs = () => {
                 </AccordionDetails>
               </Accordion>
             ))
+          ) : (
+            <NoItems message="Keine Changelogs vorhanden" />
           )}
         </Grid>
       </Grid>

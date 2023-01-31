@@ -22,7 +22,8 @@ import { Profile } from '../types/profile';
 import { AccordionSummary } from './base/accordion-summary.component';
 import { SearchInput, onSearchHandler } from './base/search.component';
 import { Signature } from './base/signature.component';
-import { LabelValue } from './label-value.component';
+import { LabelValue } from './core/label-value.component';
+import { NoItems } from './core/no-items.component';
 
 export interface PhonebookProps {
   phonebook: PhonebookModel;
@@ -35,7 +36,7 @@ export const Phonebook: React.FC<PhonebookProps> = ({ phonebook }) => {
     return phonebook.phonebook.filter((pb) =>
       pb.name.toLowerCase().includes(keyword.toLowerCase())
     );
-  }, [keyword]);
+  }, [keyword, phonebook.phonebook]);
 
   const handleOnSearch: onSearchHandler = (event) => {
     setKeyword(event.target.value);
@@ -135,24 +136,28 @@ export const PhonebookWrapper: React.FC<PhonebookWrapperProps> = ({ phonebooks }
 
   return (
     <React.Fragment>
-      {phonebooks.map((phonebook) => (
-        <Accordion
-          key={`${phonebook.identity.id}-phonebook`}
-          expanded={phonebook.identity.id === shown}
-          onChange={handleChange(phonebook.identity.id)}
-        >
-          <AccordionSummary
+      {phonebooks.length > 0 ? (
+        phonebooks.map((phonebook) => (
+          <Accordion
+            key={`${phonebook.identity.id}-phonebook`}
             expanded={phonebook.identity.id === shown}
-            expandIcon={<ExpandMoreIcon />}
-            id={`panel${phonebook.identity.id}a-header`}
+            onChange={handleChange(phonebook.identity.id)}
           >
-            <Typography>{phonebook.identity.name}</Typography>
-          </AccordionSummary>
-          <AccordionDetails sx={{ p: 0, pt: 2 }}>
-            <Phonebook phonebook={phonebook} />
-          </AccordionDetails>
-        </Accordion>
-      ))}
+            <AccordionSummary
+              expanded={phonebook.identity.id === shown}
+              expandIcon={<ExpandMoreIcon />}
+              id={`panel${phonebook.identity.id}a-header`}
+            >
+              <Typography>{phonebook.identity.name}</Typography>
+            </AccordionSummary>
+            <AccordionDetails sx={{ p: 0, pt: 2 }}>
+              <Phonebook phonebook={phonebook} />
+            </AccordionDetails>
+          </Accordion>
+        ))
+      ) : (
+        <NoItems message="Keine Kontakte gefunden" />
+      )}
     </React.Fragment>
   );
 };

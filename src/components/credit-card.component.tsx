@@ -50,7 +50,7 @@ export const CreditCard: React.FC<CreditCardProps> = ({
       onClick={() => {
         if (window !== null) {
           // @ts-ignore
-          window.open('https://info.realliferpg.de/banking/' + iban, '_blank').focus();
+          window.open('https://info.panthor.de/banking/' + iban, '_blank').focus();
         }
       }}
     >

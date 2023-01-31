@@ -3,10 +3,11 @@ import { Accordion, AccordionDetails, Box, Chip, Grid, Typography, useTheme } fr
 import React from 'react';
 import { AccordionSummary } from '../components/base/accordion-summary.component';
 import { Image } from '../components/base/image.component';
+import { NoItems } from '../components/core/no-items.component';
+import { Progress } from '../components/core/progress.component';
 import { LevelProgress } from '../components/level-progress.component';
-import { Progress } from '../components/progress.component';
 import { StoreContext } from '../context/store.context';
-import { ReallifeService } from '../services/reallife.service';
+import { PanthorService } from '../services/panthor.service';
 
 export const Garage = () => {
   const id = React.useId();
@@ -35,12 +36,12 @@ export const Garage = () => {
     if (!apiKey) return;
     if (vehicles.length < 1) {
       setLoading(true);
-      ReallifeService.getVehicles(apiKey)
+      PanthorService.getVehicles(apiKey)
         .then(setVehicles)
         .catch(console.error)
         .finally(() => setLoading(false));
     }
-  }, [apiKey]);
+  }, [apiKey, setLoading, setVehicles, vehicles]);
 
   return (
     <React.Fragment>
@@ -50,83 +51,89 @@ export const Garage = () => {
         <React.Fragment>
           <Box>
             <Typography variant="subtitle1" mb={1}>
-              Fahrzeuge ({aliveVehicles.length})
+              Fahrzeuge {aliveVehicles.length > 0 && `(${aliveVehicles.length})`}
             </Typography>
-            {aliveVehicles.map((vehicle) => (
-              <Accordion
-                key={`${id}-house-${vehicle.id}`}
-                expanded={open === vehicle.id}
-                onChange={handleChange(vehicle.id)}
-              >
-                <AccordionSummary
+            {aliveVehicles.length > 0 ? (
+              aliveVehicles.map((vehicle) => (
+                <Accordion
+                  key={`${id}-house-${vehicle.id}`}
                   expanded={open === vehicle.id}
-                  expandIcon={<ExpandMoreIcon />}
-                  id={`panel${vehicle.id}a-header`}
+                  onChange={handleChange(vehicle.id)}
                 >
-                  <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>
-                    {vehicle.vehicle_data.name}
-                  </Typography>
-                  {vehicle.active ? (
-                    <Chip label="Ausgeparkt" size="small" sx={{ ml: { xs: 0, md: 1 } }} />
-                  ) : null}
-                  <Chip
-                    label={vehicle.getVehicleTypeLabel()}
-                    size="small"
-                    sx={{ ml: { xs: vehicle.active ? 1 : 0, md: 1 } }}
-                  />
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Grid container spacing={1}>
-                    <Grid item xs={6} md={3}>
-                      <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Fraktion
-                      </Typography>
-                      <Chip label={vehicle.side.getLabel()} />
+                  <AccordionSummary
+                    expanded={open === vehicle.id}
+                    expandIcon={<ExpandMoreIcon />}
+                    id={`panel${vehicle.id}a-header`}
+                  >
+                    <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>
+                      {vehicle.vehicle_data.name}
+                    </Typography>
+                    {vehicle.active ? (
+                      <Chip label="Ausgeparkt" size="small" sx={{ ml: { xs: 0, md: 1 } }} />
+                    ) : null}
+                    <Chip
+                      label={vehicle.getVehicleTypeLabel()}
+                      size="small"
+                      sx={{ ml: { xs: vehicle.active ? 1 : 0, md: 1 } }}
+                    />
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Grid container spacing={1}>
+                      <Grid item xs={6} md={3}>
+                        <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
+                          Fraktion
+                        </Typography>
+                        <Chip label={vehicle.side.getLabel()} />
+                      </Grid>
+                      <Grid item xs={6} md={3}>
+                        <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
+                          Kennzeichen
+                        </Typography>
+                        <Chip label={vehicle.plate} />
+                      </Grid>
+                      <Grid item xs={6} md={3}>
+                        <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
+                          Kilometerstand
+                        </Typography>
+                        <Typography>{vehicle.kilometer_total} Km.</Typography>
+                      </Grid>
+                      <Grid item xs={6} md={3}>
+                        <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
+                          Garage
+                        </Typography>
+                        <Typography>
+                          {vehicle.active ? 'Ausgeparkt' : vehicle.lastgarage}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
+                          Tank
+                        </Typography>
+                        <LevelProgress currentLevel={0} progress={vehicle.fuel * 100} />
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
+                          Bild
+                        </Typography>
+                        <Image
+                          src={vehicle.getImage()}
+                          alt={vehicle.classname}
+                          style={{
+                            width: '100%',
+                            height: 'auto',
+                            aspectRatio: '16/9',
+                            borderRadius: `${globalTheme.shape.borderRadius}px`,
+                          }}
+                          loading="eager"
+                        />
+                      </Grid>
                     </Grid>
-                    <Grid item xs={6} md={3}>
-                      <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Kennzeichen
-                      </Typography>
-                      <Chip label={vehicle.plate} />
-                    </Grid>
-                    <Grid item xs={6} md={3}>
-                      <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Kilometerstand
-                      </Typography>
-                      <Typography>{vehicle.kilometer_total} Km.</Typography>
-                    </Grid>
-                    <Grid item xs={6} md={3}>
-                      <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Garage
-                      </Typography>
-                      <Typography>{vehicle.active ? 'Ausgeparkt' : vehicle.lastgarage}</Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Tank
-                      </Typography>
-                      <LevelProgress currentLevel={0} progress={vehicle.fuel * 100} />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                      <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Bild
-                      </Typography>
-                      <Image
-                        src={vehicle.getImage()}
-                        alt={vehicle.classname}
-                        style={{
-                          width: '100%',
-                          height: 'auto',
-                          aspectRatio: '16/9',
-                          borderRadius: `${globalTheme.shape.borderRadius}px`,
-                        }}
-                        loading="eager"
-                      />
-                    </Grid>
-                  </Grid>
-                </AccordionDetails>
-              </Accordion>
-            ))}
+                  </AccordionDetails>
+                </Accordion>
+              ))
+            ) : (
+              <NoItems message="Keine Fahrzeuge vorhanden" />
+            )}
           </Box>
         </React.Fragment>
       )}

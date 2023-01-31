@@ -6,12 +6,12 @@ import { Avatar, Button, Grid, Link, Paper, PaperProps } from '@mui/material';
 import { format } from 'date-fns';
 import React from 'react';
 import { LevelProgress } from '../components/level-progress.component';
-import { StoreContext } from '../context/store.context';
+import { IStoreContext } from '../context/store.context';
 import { parseCurrency } from '../utils/parseCurrency.util';
-import { LabelValue } from './label-value.component';
+import { LabelValue } from './core/label-value.component';
 
 export interface ProfileProps extends PaperProps {
-  profile: StoreContext['profile'];
+  profile: IStoreContext['profile'];
 }
 
 export const Profile: React.FC<ProfileProps> = ({ sx, profile }) => {

@@ -18,9 +18,7 @@ export class ShopType {
 
   async getOffers(): Promise<ShopItem[] | ShopCar[]> {
     try {
-      const response = await fetch(
-        `https://api.realliferpg.de/v1/info/${this.category}/${this.type}`
-      );
+      const response = await fetch(`https://api.panthor.de/v1/info/${this.category}/${this.type}`);
       const json = await response.json();
       return this.category === 'items'
         ? json.data.map((item: ShopItemResponse) => new ShopItem(item))

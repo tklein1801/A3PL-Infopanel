@@ -1,25 +1,25 @@
 {
-  "short_name": "RLRPG Infoapp",
-  "name": "ReallifeRPG Infoapp",
+  "short_name": "A3PL Infopanel",
+  "name": "Panthor Life Infopanel",
   "icons": [
     {
-      "src": "dag.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "dag-logo.png",
+      "sizes": "875x875",
+      "type": "image/png"
     },
     {
-      "src": "dag-192.png",
+      "src": "dag-logo.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "875x875"
     },
     {
-      "src": "dag-512.png",
+      "src": "dag-logo.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "875x875"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#5865f2",
+  "theme_color": "#001E3C",
   "background_color": "#f8f9fa"
 }

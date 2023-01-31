@@ -143,6 +143,16 @@ export const theme = createTheme({
     borderRadius: 12,
   },
   unstable_strictMode: true,
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          border: '1px solid rgba(255,255,255,.1)',
+        },
+      },
+    },
+  },
   typography: {
     fontFamily:
       '"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',

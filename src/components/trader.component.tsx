@@ -6,23 +6,17 @@ import {
   Chip,
   CircularProgress,
   Divider,
-  Grid,
   List,
   ListItem,
   ListItemText,
   Paper,
   Typography,
-  alpha,
-  lighten,
 } from '@mui/material';
 import type { AccordionProps } from '@mui/material';
 import React from 'react';
 import { AccordionSummary } from '../components/base/accordion-summary.component';
-import { Progress } from '../components/progress.component';
 import { StoreContext } from '../context/store.context';
-import { ReallifeService } from '../services/reallife.service';
-import { theme } from '../theme/default.theme';
-import type { ShopCarResponse, ShopCategory } from '../types/shop';
+import type { ShopCategory } from '../types/shop';
 import { ShopCar, ShopItem, ShopType } from '../types/shop';
 import { parseCurrency } from '../utils/parseCurrency.util';
 
@@ -56,7 +50,6 @@ export const Trader: React.FC<TraderProps> = ({
       (expanded && !isCached) ||
       (expanded && isCached && (!cachedOffers || cachedOffers.length < 1))
     ) {
-      console.log('requesting data');
       setLoading(true);
       trader
         .getOffers()
@@ -64,7 +57,7 @@ export const Trader: React.FC<TraderProps> = ({
         .catch(console.error)
         .finally(() => setLoading(false));
     } else setOffers(cachedOffers || []);
-  }, [expanded, isCached]);
+  }, [expanded, isCached, cachedOffers, trader]);
 
   return (
     <Accordion

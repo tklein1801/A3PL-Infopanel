@@ -12,7 +12,8 @@ import {
 import { format } from 'date-fns';
 import React from 'react';
 import { AccordionSummary } from '../components/base/accordion-summary.component';
-import { Progress } from '../components/progress.component';
+import { NoItems } from '../components/core/no-items.component';
+import { Progress } from '../components/core/progress.component';
 import { StoreContext } from '../context/store.context';
 
 export const Properties = () => {
@@ -47,12 +48,12 @@ export const Properties = () => {
         <Progress />
       ) : (
         <React.Fragment>
-          {properties.houses.length > 0 ? (
-            <Box>
-              <Typography variant="subtitle1" mb={1}>
-                Gebäude ({properties.houses.length})
-              </Typography>
-              {properties.houses.map((house) => (
+          <Box>
+            <Typography variant="subtitle1" mb={1}>
+              Gebäude {properties.houses.length > 0 && `(${properties.houses.length})`}
+            </Typography>
+            {properties.houses.length > 0 ? (
+              properties.houses.map((house) => (
                 <Accordion
                   key={`${id}-house-${house.id}`}
                   expanded={open === house.id}
@@ -98,7 +99,7 @@ export const Properties = () => {
                         </Typography>
                         <Typography>{format(house.active_until, 'dd.MM.yy, HH:mm')} Uhr</Typography>
                       </Grid>
-                      {house.players.length > 0 ? (
+                      {house.players.length > 0 && (
                         <Grid item xs={12} md={6}>
                           <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
                             Zweitschlüssel
@@ -107,20 +108,22 @@ export const Properties = () => {
                             <Chip key={player} label={player} sx={{ mr: 1, mb: 1 }} />
                           ))}
                         </Grid>
-                      ) : null}
+                      )}
                     </Grid>
                   </AccordionDetails>
                 </Accordion>
-              ))}
-            </Box>
-          ) : null}
+              ))
+            ) : (
+              <NoItems message="Keine Häuser gefunden" />
+            )}
+          </Box>
 
-          {properties.buildings.length > 0 ? (
-            <Box sx={{ mt: 1 }}>
-              <Typography variant="subtitle1" mb={1}>
-                Baustellen ({properties.buildings.length})
-              </Typography>
-              {properties.buildings.map((building) => (
+          <Box sx={{ mt: 1 }}>
+            <Typography variant="subtitle1" mb={1}>
+              Baustellen {properties.buildings.length > 0 && `(${properties.buildings.length})`}
+            </Typography>
+            {properties.buildings.length > 0 ? (
+              properties.buildings.map((building) => (
                 <Accordion
                   key={`${id}-building-${building.id}`}
                   expanded={open === building.id}
@@ -168,7 +171,7 @@ export const Properties = () => {
                           {building.stage}, {building.classname}
                         </Typography>
                       </Grid>
-                      {building.players.length > 0 ? (
+                      {building.players.length > 0 && (
                         <Grid item xs={6}>
                           <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
                             Zweitschlüssel
@@ -177,13 +180,15 @@ export const Properties = () => {
                             <Chip key={player} label={player} sx={{ mr: 1, mb: 1 }} />
                           ))}
                         </Grid>
-                      ) : null}
+                      )}
                     </Grid>
                   </AccordionDetails>
                 </Accordion>
-              ))}
-            </Box>
-          ) : null}
+              ))
+            ) : (
+              <NoItems message="Keine Baustellen gefunden" />
+            )}
+          </Box>
         </React.Fragment>
       )}
     </React.Fragment>

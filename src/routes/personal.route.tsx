@@ -13,10 +13,11 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
+import { NoItems } from '../components/core/no-items.component';
+import { Progress } from '../components/core/progress.component';
 import { CreditCard } from '../components/credit-card.component';
 import { Phone } from '../components/phone.component';
-import { Phonebook, PhonebookWrapper } from '../components/phonebook.component';
-import { Progress } from '../components/progress.component';
+import { PhonebookWrapper } from '../components/phonebook.component';
 import { StoreContext } from '../context/store.context';
 import { BankAccount } from '../types/bank-account';
 import { parseCurrency } from '../utils/parseCurrency.util';
@@ -42,25 +43,31 @@ export const Personal = () => {
             Online Banking
           </Typography>
           <Grid container spacing={3}>
-            {profile && profile.isOnline(servers) ? (
+            {profile && profile.isOnline(servers) && bankAccounts.length > 0 && (
               <Grid item xs={12} md={12}>
                 <Alert severity="warning">
                   <AlertTitle>Achtung</AlertTitle>
                   Solange du auf dem Server bist kannst du nicht auf das Online Banking zugreifen.
                 </Alert>
               </Grid>
-            ) : null}
+            )}
 
-            {bankAccounts.map((account) => (
-              <Grid key={account.id} item xs={12} md={6} xl={4}>
-                <CreditCard
-                  owner={account.owner}
-                  iban={account.iban}
-                  balance={account.balance}
-                  defaultAccount={account.default_account}
-                />
+            {bankAccounts.length > 0 ? (
+              bankAccounts.map((account) => (
+                <Grid key={account.id} item xs={12} md={6} xl={4}>
+                  <CreditCard
+                    owner={account.owner}
+                    iban={account.iban}
+                    balance={account.balance}
+                    defaultAccount={account.default_account}
+                  />
+                </Grid>
+              ))
+            ) : (
+              <Grid item xs={12}>
+                <NoItems message="Keine Konten gefunden" />
               </Grid>
-            ))}
+            )}
           </Grid>
 
           <Typography variant="subtitle1" mt={2} mb={1}>
@@ -71,7 +78,7 @@ export const Personal = () => {
               <Grid item xs={6} md={4} xl={3}>
                 <Progress />
               </Grid>
-            ) : (
+            ) : profile && profile.phones.length > 0 ? (
               profile?.phones
                 .sort((a, b) => Number(a.disabled) - Number(b.disabled))
                 .map((phone) => (
@@ -79,6 +86,11 @@ export const Personal = () => {
                     <Phone phone={phone} />
                   </Grid>
                 ))
+            ) : (
+              <Grid item xs={12}>
+                {' '}
+                <NoItems message="Keine Handys gefunden" />
+              </Grid>
             )}
           </Grid>
 
@@ -94,33 +106,40 @@ export const Personal = () => {
               <Typography variant="subtitle1" mb={1}>
                 Lizenzen
               </Typography>
-              <Paper>
-                <List dense>
-                  {profile?.licenses.map((license, index) => (
-                    <React.Fragment key={license.export_licence.id}>
-                      {index !== 0 ? <Divider /> : null}
-                      <ListItem>
-                        <ListItemText
-                          primary={license.export_licence.name}
-                          secondary={
-                            <Box>
-                              <Chip label={license.export_licence.side.getLabel()} sx={{ mr: 1 }} />
-                              <Chip
-                                icon={
-                                  license.export_licence.illegal ? <CheckIcon /> : <CloseIcon />
-                                }
-                                label="Illegal"
-                                sx={{ mr: 1 }}
-                              />
-                              <Chip label={parseCurrency(license.export_licence.price)} />
-                            </Box>
-                          }
-                        />
-                      </ListItem>
-                    </React.Fragment>
-                  ))}
-                </List>
-              </Paper>
+              {profile && profile.licenses.length > 0 ? (
+                <Paper>
+                  <List dense>
+                    {profile?.licenses.map((license, index) => (
+                      <React.Fragment key={license.export_licence.id}>
+                        {index !== 0 ? <Divider /> : null}
+                        <ListItem>
+                          <ListItemText
+                            primary={license.export_licence.name}
+                            secondary={
+                              <Box>
+                                <Chip
+                                  label={license.export_licence.side.getLabel()}
+                                  sx={{ mr: 1 }}
+                                />
+                                <Chip
+                                  icon={
+                                    license.export_licence.illegal ? <CheckIcon /> : <CloseIcon />
+                                  }
+                                  label="Illegal"
+                                  sx={{ mr: 1 }}
+                                />
+                                <Chip label={parseCurrency(license.export_licence.price)} />
+                              </Box>
+                            }
+                          />
+                        </ListItem>
+                      </React.Fragment>
+                    ))}
+                  </List>
+                </Paper>
+              ) : (
+                <NoItems message="Keine Lizenen gefunden" />
+              )}
             </Grid>
           </Grid>
         </React.Fragment>

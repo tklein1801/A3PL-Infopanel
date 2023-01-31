@@ -1,5 +1,3 @@
-import { ApiResponse } from './api_response';
-
 export type ChangelogResponse = {
   id: number;
   version: string;

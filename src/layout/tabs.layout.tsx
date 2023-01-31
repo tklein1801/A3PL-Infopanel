@@ -75,7 +75,7 @@ export interface TabWrapperProps extends React.PropsWithChildren {}
 export const TabWrapper: React.FC<TabWrapperProps> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { apiKey } = React.useContext(StoreContext);
+  const { apiKey, profile } = React.useContext(StoreContext);
   return (
     <React.Fragment>
       <TabContext value={location.pathname}>
@@ -92,13 +92,12 @@ export const TabWrapper: React.FC<TabWrapperProps> = ({ children }) => {
             variant="scrollable"
             allowScrollButtonsMobile
             scrollButtons
-            centered
           >
-            {Tabs.filter((tab) => apiKey || (!apiKey && !tab.requiresAuth)).map(
-              ({ path, label }) => (
-                <Tab key={path} value={path} label={label} onClick={() => navigate(path)} />
-              )
-            )}
+            {Tabs.filter(
+              (tab) => (apiKey && profile) || !apiKey || (!profile && !tab.requiresAuth)
+            ).map(({ path, label }) => (
+              <Tab key={path} value={path} label={label} onClick={() => navigate(path)} />
+            ))}
           </MuiTabs>
         </Paper>
 

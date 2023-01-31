@@ -35,7 +35,7 @@ export const MarketItemRefreshCountdown: React.FC<MarketItemRefreshCountdownProp
     return () => {
       clearInterval(checking);
     };
-  }, [props.refresh, recalcDate]);
+  }, [props, recalcDate]);
 
   if (!recalcDate) return null;
   return (

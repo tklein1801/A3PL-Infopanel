@@ -2,9 +2,9 @@ import { Button, Grid, Link, Paper, TextField, Typography, useTheme } from '@mui
 import React from 'react';
 import PCK from '../../package.json';
 import { Image } from '../components/base/image.component';
-import { LabelValue } from '../components/label-value.component';
+import { LabelValue } from '../components/core/label-value.component';
 import { StoreContext } from '../context/store.context';
-import { ReallifeService } from '../services/reallife.service';
+import { PanthorService } from '../services/panthor.service';
 
 export const Settings = () => {
   const { apiKey, setApiKey } = React.useContext(StoreContext);
@@ -14,7 +14,7 @@ export const Settings = () => {
   const handleKeyChange = () => {
     const value = apiKeyInputRef.current?.value;
     if (!value) return;
-    ReallifeService.validateSecret(value)
+    PanthorService.validateSecret(value)
       .then((status) => {
         if (status) {
           localStorage.setItem('infopanel.apikey', value);
@@ -64,7 +64,7 @@ export const Settings = () => {
 
       <Grid item xs={12} md={4}>
         <Paper sx={{ p: 1 }}>
-          <Link href="https://realliferpg.de" target="_blank">
+          <Link href="https://panthor.de" target="_blank">
             <Image
               src="https://hrzfbjovxgyhsrevsuev.supabase.co/storage/v1/object/public/638716e6-652f-479b-b470-a7634cd75e37/ShareX/realliferpg_logo.png?t=2023-01-14T23%3A32%3A52.700Z"
               alt="GitHub Repo Preview"
@@ -72,7 +72,7 @@ export const Settings = () => {
               loading="eager"
             />
           </Link>
-          <LabelValue label="ReallifeRPG Discord" value={'https://discord.gg/Hf3XeAyn4h'} />
+          <LabelValue label="Panthor Life Discord" value={'https://discord.gg/Hf3XeAyn4h'} />
         </Paper>
       </Grid>
     </Grid>

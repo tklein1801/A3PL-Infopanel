@@ -1,20 +1,11 @@
 import { useScreenSize } from '@dulliag/components';
-import {
-  Box,
-  Chip,
-  Divider,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  Typography,
-} from '@mui/material';
+import { Box, Chip, Grid, Paper, Typography } from '@mui/material';
 import React from 'react';
-import { Progress } from '../components/progress.component';
+import { NoItems } from '../components/core/no-items.component';
+import { Progress } from '../components/core/progress.component';
 import { Server, ServerProps } from '../components/server.component';
 import { StoreContext } from '../context/store.context';
-import { ReallifeService } from '../services/reallife.service';
+import { PanthorService } from '../services/panthor.service';
 
 export const Home = () => {
   const id = React.useId();
@@ -29,7 +20,7 @@ export const Home = () => {
   React.useEffect(() => {
     if (servers.length < 1) {
       setLoading(true);
-      ReallifeService.getServers()
+      PanthorService.getServers()
         .then((serverList) => {
           setServers(serverList);
           setSelectedServer(serverList.length >= 1 ? serverList[0] : null);
@@ -37,7 +28,7 @@ export const Home = () => {
         .catch(console.error)
         .finally(() => setLoading(false));
     }
-  }, []);
+  }, [servers, setServers, setSelectedServer, setLoading]);
 
   return (
     <React.Fragment>
@@ -47,48 +38,52 @@ export const Home = () => {
         </Typography>
         {loading ? (
           <Progress />
-        ) : screenSize === 'small' ? (
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              overflowX: 'scroll',
-              scrollSnapType: 'x mandatory',
-              columnGap: '20px',
-            }}
-          >
-            {servers.map((server) => (
-              <Box
-                key={`${id}-server-modile-${server.id}`}
-                sx={{
-                  minWidth: '100%',
-                  scrollSnapAlign: 'start',
-                }}
-              >
-                <Server
-                  data={server}
-                  onClick={handleServerClick}
-                  active={selectedServer?.id === server.id}
-                />
-              </Box>
-            ))}
-          </Box>
+        ) : servers.length > 0 ? (
+          screenSize === 'small' ? (
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                overflowX: 'scroll',
+                scrollSnapType: 'x mandatory',
+                columnGap: '20px',
+              }}
+            >
+              {servers.map((server) => (
+                <Box
+                  key={`${id}-server-modile-${server.id}`}
+                  sx={{
+                    minWidth: '100%',
+                    scrollSnapAlign: 'start',
+                  }}
+                >
+                  <Server
+                    data={server}
+                    onClick={handleServerClick}
+                    active={selectedServer?.id === server.id}
+                  />
+                </Box>
+              ))}
+            </Box>
+          ) : (
+            <Grid container spacing={3}>
+              {servers.map((server) => (
+                <Grid key={`${id}-server-desktop-${server.id}`} item xs={12} md={4}>
+                  <Server
+                    data={server}
+                    onClick={handleServerClick}
+                    active={selectedServer?.id === server.id}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          )
         ) : (
-          <Grid container spacing={3}>
-            {servers.map((server) => (
-              <Grid key={`${id}-server-desktop-${server.id}`} item xs={12} md={4}>
-                <Server
-                  data={server}
-                  onClick={handleServerClick}
-                  active={selectedServer?.id === server.id}
-                />
-              </Grid>
-            ))}
-          </Grid>
+          <NoItems message="Kein Server online" />
         )}
       </Box>
 
-      {selectedServer ? (
+      {selectedServer && (
         <Box mt={2}>
           <Typography variant="subtitle1" mb={1}>
             Spielerliste
@@ -96,9 +91,9 @@ export const Home = () => {
 
           <Grid container spacing={3}>
             <Grid item xs={12} md={4}>
-              <Paper sx={{ p: 2 }}>
-                {selectedServer.players.length > 0 ? (
-                  selectedServer.players.map((player, index) => (
+              {selectedServer.players.length > 0 ? (
+                <Paper sx={{ p: 2 }}>
+                  {selectedServer.players.map((player, index) => (
                     <Chip
                       key={player + '-' + index}
                       label={player}
@@ -106,45 +101,15 @@ export const Home = () => {
                       disabled={player.includes('(Lobby)')}
                       sx={{ mr: 0.5 }}
                     />
-                  ))
-                ) : (
-                  <Typography textAlign="center">Keine Spieler online</Typography>
-                )}
-              </Paper>
+                  ))}
+                </Paper>
+              ) : (
+                <NoItems message="Keine Spieler gefunden" />
+              )}
             </Grid>
           </Grid>
         </Box>
-      ) : null}
-
-      {/* {selectedServer ? (
-        <Box mt={2}>
-          <Typography variant="subtitle1" mb={1}>
-            Spielerliste
-          </Typography>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={4}>
-              <Paper>
-                <List dense>
-                  {selectedServer.players.length > 0 ? (
-                    selectedServer.players.sort().map((player, index) => (
-                      <React.Fragment>
-                        {index !== 0 ? <Divider /> : null}
-                        <ListItem>
-                          <ListItemText primary={player} />
-                        </ListItem>
-                      </React.Fragment>
-                    ))
-                  ) : (
-                    <ListItem>
-                      <ListItemText primary="Keine Spieler online" />
-                    </ListItem>
-                  )}
-                </List>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Box>
-      ) : null} */}
+      )}
     </React.Fragment>
   );
 };

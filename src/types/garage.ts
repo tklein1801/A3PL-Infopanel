@@ -165,7 +165,7 @@ export class Vehicle {
   }
 
   getImage(): string {
-    return `https://static.realliferpg.de/arma/previews/${
+    return `https://static.panthor.de/arma/previews/${
       this.classname.includes('_ct_') ? this.classname.split('_ct_')[0] : this.classname
     }.jpg`;
   }
