@@ -28,7 +28,7 @@ export const Home = () => {
         .catch(console.error)
         .finally(() => setLoading(false));
     }
-  }, [servers, setServers, setSelectedServer, setLoading]);
+  }, []);
 
   return (
     <React.Fragment>

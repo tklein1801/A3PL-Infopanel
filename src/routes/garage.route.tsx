@@ -41,7 +41,7 @@ export const Garage = () => {
         .catch(console.error)
         .finally(() => setLoading(false));
     }
-  }, [apiKey, setLoading, setVehicles, vehicles]);
+  }, [apiKey]);
 
   return (
     <React.Fragment>

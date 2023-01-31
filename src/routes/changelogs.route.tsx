@@ -30,7 +30,7 @@ export const Changelogs = () => {
         .catch(console.error)
         .finally(() => setLoading(false));
     }
-  }, [changelogs, setChangelogs, setLoading]);
+  }, []);
 
   return (
     <React.Fragment>
