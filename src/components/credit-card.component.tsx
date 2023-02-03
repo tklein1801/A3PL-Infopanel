@@ -1,7 +1,8 @@
 import { Box, Grid, SxProps, Theme, Typography, useTheme } from '@mui/material';
 import React from 'react';
-import { parseCurrency } from '../utils/parseCurrency.util';
-import { Image } from './base/image.component';
+import PANTHOR_LOGO from '../ressources/panthor/panthor_logo.png';
+import { parseCurrency } from '../utils';
+import { Image } from './base';
 
 export interface CreditCardProps {
   iban: string;
@@ -57,11 +58,7 @@ export const CreditCard: React.FC<CreditCardProps> = ({
       <Typography variant="h4" fontWeight="bolder">
         NH-Bank
       </Typography>
-      <Image
-        src="https://raw.githubusercontent.com/DulliAG/A3RLRPG-Infopanel/main/src/img/rlrpg-logo.png"
-        alt="NH Bank Logo"
-        style={style.icon as React.CSSProperties}
-      />
+      <Image src={PANTHOR_LOGO} alt="NH Bank Logo" style={style.icon as React.CSSProperties} />
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <Typography variant="caption" sx={style.label}>
