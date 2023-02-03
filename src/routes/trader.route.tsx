@@ -1,11 +1,9 @@
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
-import { NoItems } from '../components/core/no-items.component';
-import { Progress } from '../components/core/progress.component';
-import { TraderWrapper } from '../components/trader.component';
-import { StoreContext } from '../context/store.context';
-import { PanthorService } from '../services/panthor.service';
-import { ShopCategory, ShopType } from '../types/shop';
+import { NoItems, Progress, TraderWrapper } from '../components';
+import { StoreContext } from '../context';
+import { PanthorService } from '../services';
+import { ShopCategory, ShopType } from '../types';
 
 export const Trader = () => {
   const { loading, setLoading, traders, setTraders } = React.useContext(StoreContext);

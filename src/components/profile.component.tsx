@@ -61,7 +61,7 @@ export const Profile: React.FC<ProfileProps> = ({ sx, profile }) => {
         <Grid item xs={6} md={6}>
           <Button
             LinkComponent={Link}
-            href={'https://spenden.realliferpg.de'}
+            href={'https://spenden.panthor.de'}
             target="_blank"
             fullWidth
           >

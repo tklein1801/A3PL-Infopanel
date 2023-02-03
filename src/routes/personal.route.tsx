@@ -13,14 +13,10 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-import { NoItems } from '../components/core/no-items.component';
-import { Progress } from '../components/core/progress.component';
-import { CreditCard } from '../components/credit-card.component';
-import { Phone } from '../components/phone.component';
-import { PhonebookWrapper } from '../components/phonebook.component';
-import { StoreContext } from '../context/store.context';
-import { BankAccount } from '../types/bank-account';
-import { parseCurrency } from '../utils/parseCurrency.util';
+import { CreditCard, NoItems, Phone, PhonebookWrapper, Progress } from '../components';
+import { StoreContext } from '../context';
+import { BankAccount } from '../types';
+import { parseCurrency } from '../utils';
 
 export const Personal = () => {
   const { loading, profile, servers } = React.useContext(StoreContext);

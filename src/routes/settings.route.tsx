@@ -1,10 +1,9 @@
 import { Button, Grid, Link, Paper, TextField, Typography, useTheme } from '@mui/material';
 import React from 'react';
 import PCK from '../../package.json';
-import { Image } from '../components/base/image.component';
-import { LabelValue } from '../components/core/label-value.component';
-import { StoreContext } from '../context/store.context';
-import { PanthorService } from '../services/panthor.service';
+import { Image, LabelValue } from '../components';
+import { StoreContext } from '../context';
+import { PanthorService } from '../services';
 
 export const Settings = () => {
   const { apiKey, setApiKey } = React.useContext(StoreContext);
@@ -66,7 +65,7 @@ export const Settings = () => {
         <Paper sx={{ p: 1 }}>
           <Link href="https://panthor.de" target="_blank">
             <Image
-              src="https://hrzfbjovxgyhsrevsuev.supabase.co/storage/v1/object/public/638716e6-652f-479b-b470-a7634cd75e37/ShareX/realliferpg_logo.png?t=2023-01-14T23%3A32%3A52.700Z"
+              src="https://support.panthor.de/uploads/N9J0C8rr.png"
               alt="GitHub Repo Preview"
               style={{ width: '100%', borderRadius: `${theme.shape.borderRadius * 0.75}px` }}
               loading="eager"

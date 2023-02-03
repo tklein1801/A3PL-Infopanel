@@ -112,7 +112,7 @@ export class MarketItem {
   async getPriceBacklog(server: number, backlogCount: number) {
     try {
       const response = await fetch(
-        `https://api.realliferpg.de/v1/market_logs/${server}/${this.item}/${backlogCount}`
+        `https://api.panthor.de/v1/market_logs/${server}/${this.item}/${backlogCount}`
       );
       const backlog: ApiResponse<[ItemBacklogResponse]> = await response.json();
       return backlog.data[0].map((item) => new ItemBacklog(item));

@@ -6,11 +6,9 @@ import {
 import { Accordion, AccordionDetails, Chip, Grid, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import React from 'react';
-import { AccordionSummary } from '../components/base/accordion-summary.component';
-import { NoItems } from '../components/core/no-items.component';
-import { Progress } from '../components/core/progress.component';
-import { StoreContext } from '../context/store.context';
-import { PanthorService } from '../services/panthor.service';
+import { AccordionSummary, NoItems, Progress } from '../components';
+import { StoreContext } from '../context';
+import { PanthorService } from '../services';
 
 export const Changelogs = () => {
   const id = React.useId();
