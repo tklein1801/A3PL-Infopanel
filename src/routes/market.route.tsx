@@ -143,7 +143,7 @@ export const Market = () => {
       </Grid>
       <Grid container item xs={12} md={6} spacing={2}>
         {/* TODO: Make this sticky to top */}
-        <Grid item display={refreshInterval.interval > 0 ? 'flex' : 'none'} xs={12} lg={6}>
+        <Grid item display={refreshInterval.interval > 0 ? 'unset' : 'none'} xs={12} lg={6}>
           {loading ? (
             <Progress />
           ) : (
