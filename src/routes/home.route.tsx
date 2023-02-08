@@ -1,9 +1,9 @@
 import { useScreenSize } from '@dulliag/components';
 import { Box, Chip, Grid, Paper, Typography } from '@mui/material';
 import React from 'react';
-import { NoItems, Progress, Server, ServerProps } from '../components';
-import { StoreContext } from '../context';
-import { PanthorService } from '../services';
+import { PanthorService } from 'services/';
+import { StoreContext } from 'context/';
+import { NoItems, Progress, Server, ServerProps } from 'components/';
 
 export const Home = () => {
   const id = React.useId();

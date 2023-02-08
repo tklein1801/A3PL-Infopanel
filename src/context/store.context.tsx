@@ -1,11 +1,17 @@
 import React from 'react';
-import { PanthorService } from '../services/panthor.service';
-import { Changelog } from '../types/changelog';
-import { Vehicle } from '../types/garage';
-import { MarketItem } from '../types/market';
-import { Profile } from '../types/profile';
-import { RpgServer, Server } from '../types/server';
-import { ShopCar, ShopCategory, ShopItem, ShopType } from '../types/shop';
+import { PanthorService } from 'services/';
+import {
+  Changelog,
+  MarketItem,
+  Profile,
+  RpgServer,
+  Server,
+  ShopCar,
+  ShopCategory,
+  ShopItem,
+  ShopType,
+  Vehicle,
+} from 'types/';
 
 export interface IStoreContext {
   loading: boolean;

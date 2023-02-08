@@ -1,7 +1,7 @@
 import { NoSim as NoSimIcon, SimCard as SimCardIcon } from '@mui/icons-material';
 import { Box, Chip, Paper, Typography } from '@mui/material';
 import React from 'react';
-import { Phone as PhoneModel } from '../types/phone';
+import { Phone as PhoneModel } from 'types/';
 import { Icon } from './base/icon.component';
 
 export interface PhoneProps {

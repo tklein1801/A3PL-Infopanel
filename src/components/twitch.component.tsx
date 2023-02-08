@@ -1,6 +1,6 @@
 import { Paper, Typography, useTheme } from '@mui/material';
 import React from 'react';
-import { Image } from './base/image.component';
+import { Image } from './base/';
 
 export interface TwitchProps {}
 

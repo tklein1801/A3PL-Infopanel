@@ -5,10 +5,9 @@ import {
 import { Avatar, Button, Grid, Link, Paper, PaperProps } from '@mui/material';
 import { format } from 'date-fns';
 import React from 'react';
-import { LevelProgress } from '../components/level-progress.component';
-import { IStoreContext } from '../context/store.context';
-import { parseCurrency } from '../utils/parseCurrency.util';
-import { LabelValue } from './core/label-value.component';
+import { parseCurrency } from 'utils/';
+import { IStoreContext } from 'context/';
+import { LabelValue, LevelProgress } from 'components/';
 
 export interface ProfileProps extends PaperProps {
   profile: IStoreContext['profile'];

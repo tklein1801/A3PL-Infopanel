@@ -11,8 +11,8 @@ import {
 } from '@mui/material';
 import { format } from 'date-fns';
 import React from 'react';
-import { AccordionSummary, NoItems, Progress } from '../components';
-import { StoreContext } from '../context';
+import { StoreContext } from 'context/';
+import { AccordionSummary, NoItems, Progress } from 'components/';
 
 export const Properties = () => {
   const id = React.useId();

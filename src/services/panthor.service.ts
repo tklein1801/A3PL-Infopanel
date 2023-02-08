@@ -1,16 +1,17 @@
-import type { ApiResponse, ErrorResponse, ValidSecretResponse } from '../types/api_response';
-import type { ChangelogResponse } from '../types/changelog';
-import { Changelog } from '../types/changelog';
-import type { VehicleResponse } from '../types/garage';
-import { Vehicle } from '../types/garage';
-import type { MarketItemResponse } from '../types/market';
-import { MarketItem } from '../types/market';
-import type { ProfileResponse } from '../types/profile';
-import { Profile } from '../types/profile';
-import type { RpgServerResponse, ServerResponse } from '../types/server';
-import { RpgServer, Server } from '../types/server';
-import type { ShopCategory, ShopTypeResponse } from '../types/shop';
-import { ShopType } from '../types/shop';
+import type {
+  ApiResponse,
+  ChangelogResponse,
+  ErrorResponse,
+  MarketItemResponse,
+  ProfileResponse,
+  RpgServerResponse,
+  ServerResponse,
+  ShopCategory,
+  ShopTypeResponse,
+  ValidSecretResponse,
+  VehicleResponse,
+} from 'types/';
+import { Changelog, MarketItem, Profile, RpgServer, Server, ShopType, Vehicle } from 'types/';
 
 export class PanthorService {
   static async validateSecret(apiKey: string): Promise<Boolean> {

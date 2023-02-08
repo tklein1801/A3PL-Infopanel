@@ -17,13 +17,9 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-import { Phonebook as PhonebookModel } from '../types/phonebook';
-import { Profile } from '../types/profile';
-import { AccordionSummary } from './base/accordion-summary.component';
-import { SearchInput, onSearchHandler } from './base/search.component';
-import { Signature } from './base/signature.component';
-import { LabelValue } from './core/label-value.component';
-import { NoItems } from './core/no-items.component';
+import { Phonebook as PhonebookModel, Profile } from 'types/';
+import { AccordionSummary, SearchInput, Signature, onSearchHandler } from './base/';
+import { LabelValue, NoItems } from './core/';
 
 export interface PhonebookProps {
   phonebook: PhonebookModel;

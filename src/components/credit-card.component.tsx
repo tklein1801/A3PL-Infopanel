@@ -1,7 +1,7 @@
 import { Box, Grid, SxProps, Theme, Typography, useTheme } from '@mui/material';
 import React from 'react';
+import { parseCurrency } from 'utils/';
 import PANTHOR_LOGO from '../ressources/panthor/panthor_logo.png';
-import { parseCurrency } from '../utils';
 import { Image } from './base';
 
 export interface CreditCardProps {

@@ -14,11 +14,11 @@ import {
 } from '@mui/material';
 import type { AccordionProps } from '@mui/material';
 import React from 'react';
-import { AccordionSummary } from '../components/base/accordion-summary.component';
-import { StoreContext } from '../context/store.context';
-import type { ShopCategory } from '../types/shop';
-import { ShopCar, ShopItem, ShopType } from '../types/shop';
-import { parseCurrency } from '../utils/parseCurrency.util';
+import type { ShopCategory } from 'types/';
+import { ShopCar, ShopItem, ShopType } from 'types/';
+import { parseCurrency } from 'utils/';
+import { StoreContext } from 'context/';
+import { AccordionSummary } from 'components/';
 
 export interface TraderProps {
   expanded?: AccordionProps['expanded'];

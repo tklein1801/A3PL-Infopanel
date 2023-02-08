@@ -1,9 +1,9 @@
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import { Accordion, AccordionDetails, Box, Chip, Grid, Typography, useTheme } from '@mui/material';
 import React from 'react';
-import { AccordionSummary, Image, LevelProgress, NoItems, Progress } from '../components';
-import { StoreContext } from '../context';
-import { PanthorService } from '../services';
+import { PanthorService } from 'services/';
+import { StoreContext } from 'context/';
+import { AccordionSummary, Image, LevelProgress, NoItems, Progress } from 'components/';
 
 export const Garage = () => {
   const id = React.useId();

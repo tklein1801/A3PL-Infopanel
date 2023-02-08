@@ -1,6 +1,6 @@
 import { Grid, Paper, Typography } from '@mui/material';
 import React from 'react';
-import { RpgServer, Server as ServerModel } from '../types/server';
+import { RpgServer, Server as ServerModel } from 'types/';
 
 export interface ServerProps {
   data: RpgServer | ServerModel;

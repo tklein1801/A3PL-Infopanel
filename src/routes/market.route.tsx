@@ -12,6 +12,10 @@ import {
 } from '@mui/material';
 import { differenceInSeconds } from 'date-fns';
 import React from 'react';
+import { PanthorService } from 'services/';
+import { CopBonus, RpgServer } from 'types/';
+import { parseCurrency } from 'utils/';
+import { StoreContext } from 'context/';
 import {
   CopBonus as CopBonusComponent,
   Image,
@@ -20,11 +24,7 @@ import {
   NoItems,
   Progress,
   SearchInput,
-} from '../components';
-import { StoreContext } from '../context';
-import { PanthorService } from '../services';
-import { CopBonus, RpgServer } from '../types';
-import { parseCurrency } from '../utils';
+} from 'components/';
 
 export const Market = () => {
   const { loading, setLoading, servers, marketItems, setMarketItems } =

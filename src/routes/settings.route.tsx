@@ -1,9 +1,9 @@
 import { Button, Grid, Link, Paper, TextField, Typography, useTheme } from '@mui/material';
 import React from 'react';
+import { PanthorService } from 'services/';
+import { StoreContext } from 'context/';
+import { Image, LabelValue } from 'components/';
 import PCK from '../../package.json';
-import { Image, LabelValue } from '../components';
-import { StoreContext } from '../context';
-import { PanthorService } from '../services';
 
 export const Settings = () => {
   const { apiKey, setApiKey } = React.useContext(StoreContext);
