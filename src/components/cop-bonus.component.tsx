@@ -24,7 +24,7 @@ export const CopBonus: React.FC<CopBonusProps> = ({ copsOnline }) => {
           </Tooltip>
           <Typography variant="subtitle1">Polizei-Bonus</Typography>
           <Typography variant="subtitle2">
-            {copsOnline} {copsOnline > 1 ? 'Polizisten' : 'Polizist'} online
+            {copsOnline} {copsOnline > 1 || copsOnline === 0 ? 'Polizisten' : 'Polizist'} online
           </Typography>
         </Box>
       </Box>
