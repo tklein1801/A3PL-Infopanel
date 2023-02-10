@@ -1,8 +1,8 @@
 import { Box, Grid, SxProps, Theme, Typography, useTheme } from '@mui/material';
 import React from 'react';
+import PANTHOR_LOGO from 'ressources/panthor/panthor_logo.png';
 import { parseCurrency } from 'utils/';
-import PANTHOR_LOGO from '../ressources/panthor/panthor_logo.png';
-import { Image } from './base';
+import { Image } from 'components/base';
 
 export interface CreditCardProps {
   iban: string;
@@ -62,19 +62,19 @@ export const CreditCard: React.FC<CreditCardProps> = ({
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <Typography variant="caption" sx={style.label}>
-            IBAN
+            Inhaber
           </Typography>
           <Box sx={style.container}>
-            <Typography>{iban}</Typography>
+            <Typography>{owner}</Typography>
           </Box>
         </Grid>
 
         <Grid item xs={7}>
           <Typography variant="caption" sx={style.label}>
-            Inhaber
+            IBAN
           </Typography>
           <Box sx={style.container}>
-            <Typography>{owner}</Typography>
+            <Typography>{iban}</Typography>
           </Box>
         </Grid>
 
