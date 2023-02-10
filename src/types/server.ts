@@ -52,7 +52,7 @@ export class Server {
     this.slots = data.Slots;
     this.updateMods = data.Update_Mods;
     this.playercount = data.Playercount;
-    this.players = data.Players;
+    this.players = data.Players.sort();
     this.updatedAt = new Timezone(data.updated_at);
   }
 }
@@ -98,11 +98,11 @@ export class RpgServer extends Server {
     this.justice = onlineDojPlayers.length;
     this.cops = onlinePolicePlayers.length;
     this.side = {
-      civs: data.Side.Civs,
-      medics: data.Side.Medics,
-      rac: data.Side.RAC,
-      justice: onlineDojPlayers,
-      cops: onlinePolicePlayers,
+      civs: data.Side.Civs.sort(),
+      medics: data.Side.Medics.sort(),
+      rac: data.Side.RAC.sort(),
+      justice: onlineDojPlayers.sort(),
+      cops: onlinePolicePlayers.sort(),
     };
   }
 }
