@@ -13,7 +13,7 @@ export type LicenseResponse = {
     illegal: number;
     side: Sides;
     level: number;
-  };
+  } | null;
 };
 
 export class License {
@@ -28,16 +28,18 @@ export class License {
     illegal: boolean;
     side: Side;
     level: number;
-  };
+  } | null;
 
   constructor(data: LicenseResponse) {
     this.pid = data.pid;
     this.license = data.license;
     this.created_at = new Date(data.created_at);
-    this.export_licence = {
-      ...data.export_licence,
-      side: new Side(data.export_licence.side),
-      illegal: data.export_licence.illegal === 1,
-    };
+    this.export_licence = data.export_licence
+      ? {
+          ...data.export_licence,
+          side: new Side(data.export_licence.side),
+          illegal: data.export_licence.illegal === 1,
+        }
+      : null;
   }
 }

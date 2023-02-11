@@ -106,26 +106,32 @@ export const Personal = () => {
                 <Paper>
                   <List dense>
                     {profile?.licenses.map((license, index) => (
-                      <React.Fragment key={license.export_licence.id}>
+                      <React.Fragment
+                        key={license.license + '-' + (Math.random() * 100).toFixed(0)}
+                      >
                         {index !== 0 ? <Divider /> : null}
                         <ListItem>
                           <ListItemText
-                            primary={license.export_licence.name}
+                            primary={
+                              license.export_licence ? license.export_licence.name : license.license
+                            }
                             secondary={
-                              <Box>
-                                <Chip
-                                  label={license.export_licence.side.getLabel()}
-                                  sx={{ mr: 1 }}
-                                />
-                                <Chip
-                                  icon={
-                                    license.export_licence.illegal ? <CheckIcon /> : <CloseIcon />
-                                  }
-                                  label="Illegal"
-                                  sx={{ mr: 1 }}
-                                />
-                                <Chip label={parseCurrency(license.export_licence.price)} />
-                              </Box>
+                              license.export_licence ? (
+                                <Box>
+                                  <Chip
+                                    label={license.export_licence.side.getLabel()}
+                                    sx={{ mr: 1 }}
+                                  />
+                                  <Chip
+                                    icon={
+                                      license.export_licence.illegal ? <CheckIcon /> : <CloseIcon />
+                                    }
+                                    label="Illegal"
+                                    sx={{ mr: 1 }}
+                                  />
+                                  <Chip label={parseCurrency(license.export_licence.price)} />
+                                </Box>
+                              ) : null
                             }
                           />
                         </ListItem>
