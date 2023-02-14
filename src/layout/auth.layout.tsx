@@ -17,7 +17,7 @@ export const AuthLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
         </FabContainer>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} md={4} xl={3} order={{ xs: 1, md: 0 }}>
+          <Grid item xs={12} md={4} lg={3} xl={3} order={{ xs: 1, md: 0 }}>
             <Profile
               profile={profile}
               sx={{
@@ -27,7 +27,7 @@ export const AuthLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
             />
           </Grid>
 
-          <Grid item xs={12} md={8} xl={9} order={{ xs: 0, md: 1 }}>
+          <Grid item xs={12} md={4} lg={9} xl={9} order={{ xs: 0, md: 1 }}>
             <TabWrapper>
               <Outlet />
             </TabWrapper>

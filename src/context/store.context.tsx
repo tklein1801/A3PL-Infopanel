@@ -16,6 +16,7 @@ import {
 export interface IStoreContext {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<IStoreContext['loading']>>;
+  authentificated: boolean;
   apiKey: string | null;
   setApiKey: React.Dispatch<React.SetStateAction<IStoreContext['apiKey']>>;
   profile: Profile | null;
@@ -60,6 +61,10 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
     vehicles: {},
   });
 
+  const authentificated = React.useMemo(() => {
+    return false;
+  }, [apiKey, profile]);
+
   React.useEffect(() => {
     setLoading(true);
     if (!apiKey) {
@@ -85,6 +90,7 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
         () => ({
           loading,
           setLoading,
+          authentificated: authentificated,
           apiKey,
           setApiKey,
           profile,
@@ -106,6 +112,7 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
         }),
         [
           loading,
+          authentificated,
           apiKey,
           profile,
           changelogs,

@@ -6,7 +6,7 @@ import { Changelogs, Garage, Home, Market, Personal, Properties, Settings, Trade
 import { StoreContext } from 'context/';
 
 export interface TabContent {
-  requiresAuth?: boolean;
+  requiresAuth: boolean;
   path: string;
   label: string;
   content: React.ReactNode | JSX.Element;
@@ -68,7 +68,6 @@ export interface TabWrapperProps extends React.PropsWithChildren {}
 export const TabWrapper: React.FC<TabWrapperProps> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { apiKey, profile } = React.useContext(StoreContext);
   return (
     <React.Fragment>
       <TabContext value={location.pathname}>
@@ -86,9 +85,7 @@ export const TabWrapper: React.FC<TabWrapperProps> = ({ children }) => {
             allowScrollButtonsMobile
             scrollButtons
           >
-            {Tabs.filter(
-              (tab) => (apiKey && profile) || !apiKey || (!profile && !tab.requiresAuth)
-            ).map(({ path, label }) => (
+            {Tabs.map(({ path, label }) => (
               <Tab key={path} value={path} label={label} onClick={() => navigate(path)} />
             ))}
           </MuiTabs>
