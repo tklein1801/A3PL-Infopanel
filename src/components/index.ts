@@ -7,6 +7,7 @@ export * from './market-item-refresh-countdown.component';
 export * from './phone.component';
 export * from './phonebook.component';
 export * from './profile.component';
-export * from './server.component';
+export * from './server/server.component';
 export * from './trader.component';
 export * from './twitch.component';
+export * from './server';

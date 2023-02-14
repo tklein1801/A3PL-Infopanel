@@ -1,9 +1,9 @@
 import { useScreenSize } from '@dulliag/components';
-import { Box, Chip, Grid, Paper, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { PanthorService } from 'services/';
 import { StoreContext } from 'context/';
-import { NoItems, Progress, Server, ServerProps } from 'components/';
+import { NoItems, Playerlist, Progress, Server, ServerProps } from 'components/';
 
 export const Home = () => {
   const id = React.useId();
@@ -81,33 +81,7 @@ export const Home = () => {
         )}
       </Box>
 
-      {selectedServer && (
-        <Box mt={2}>
-          <Typography variant="subtitle1" mb={1}>
-            Spielerliste
-          </Typography>
-
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={4}>
-              {selectedServer.players.length > 0 ? (
-                <Paper sx={{ p: 2 }}>
-                  {selectedServer.players.map((player, index) => (
-                    <Chip
-                      key={player + '-' + index}
-                      label={player}
-                      size="small"
-                      disabled={player.includes('(Lobby)')}
-                      sx={{ mr: 0.5 }}
-                    />
-                  ))}
-                </Paper>
-              ) : (
-                <NoItems message="Keine Spieler gefunden" />
-              )}
-            </Grid>
-          </Grid>
-        </Box>
-      )}
+      {selectedServer && <Playerlist server={selectedServer} />}
     </React.Fragment>
   );
 };
