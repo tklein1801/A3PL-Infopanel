@@ -62,7 +62,7 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
   });
 
   const authentificated = React.useMemo(() => {
-    return false;
+    return apiKey !== null && apiKey.length > 1;
   }, [apiKey, profile]);
 
   React.useEffect(() => {
