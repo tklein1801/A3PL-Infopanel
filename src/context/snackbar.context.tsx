@@ -1,4 +1,4 @@
-import { Snackbar, darken } from '@mui/material';
+import { Snackbar } from '@mui/material';
 import React from 'react';
 
 export interface ShowSnackbarProps {
@@ -56,7 +56,7 @@ export const SnackbarProvider: React.FC<React.PropsWithChildren> = ({ children }
         sx={{
           bottom: (theme) => ({ xs: theme.spacing(10), md: theme.spacing(2) }),
           '& .MuiSnackbarContent-root': {
-            backgroundColor: (theme) => darken(theme.palette.background.default, 0.4),
+            backgroundColor: (theme) => theme.palette.background.default,
             color: 'white',
           },
         }}

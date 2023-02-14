@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Link, Paper, TextField, Typography, useTheme } from '@mui/material';
 import React from 'react';
 import { PanthorService } from 'services/';
-import { StoreContext } from 'context/';
+import { SnackbarContext, StoreContext } from 'context/';
 import { Image, LabelValue } from 'components/';
 import PCK from '../../package.json';
 
@@ -12,6 +12,7 @@ const Panthor = {
 };
 
 export const Settings = () => {
+  const { showSnackbar } = React.useContext(SnackbarContext);
   const { apiKey, setApiKey } = React.useContext(StoreContext);
   const theme = useTheme();
   const apiKeyInputRef = React.useRef<HTMLInputElement | null>(null);
@@ -20,6 +21,9 @@ export const Settings = () => {
     onKeyDelete: () => {
       localStorage.removeItem('infopanel.apikey');
       setApiKey(null);
+      showSnackbar({
+        message: 'API-Key gelöscht',
+      });
     },
     onKeySave: () => {
       const value = apiKeyInputRef.current?.value;
@@ -29,11 +33,24 @@ export const Settings = () => {
           if (status) {
             localStorage.setItem('infopanel.apikey', value);
             setApiKey(value);
+            showSnackbar({
+              message: 'API-Key gespeichert',
+              action: <Button onClick={handler.onKeyDelete}>Löschen</Button>,
+            });
           } else {
-            // TODO: Handle error
+            showSnackbar({
+              message: 'API-Key ungültig',
+              action: <Button onClick={handler.onKeySave}>Wiederholen</Button>,
+            });
           }
         })
-        .catch(console.error);
+        .catch((error) => {
+          console.error(error);
+          showSnackbar({
+            message: 'API-Key konnte nicht validiert werden',
+            action: <Button onClick={handler.onKeySave}>Wiederholen</Button>,
+          });
+        });
     },
   };
 
