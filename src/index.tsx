@@ -2,7 +2,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import { StoreProvider } from './context/store.context';
+import { SnackbarProvider, StoreProvider } from './context/';
 import { theme } from './theme/default.theme';
 import './theme/style/master.css';
 
@@ -12,7 +12,9 @@ root.render(
     <BrowserRouter>
       <CssBaseline />
       <StoreProvider>
-        <App />
+        <SnackbarProvider>
+          <App />
+        </SnackbarProvider>
       </StoreProvider>
     </BrowserRouter>
   </ThemeProvider>
