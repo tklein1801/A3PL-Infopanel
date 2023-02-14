@@ -21,9 +21,9 @@ export const Settings = () => {
       localStorage.removeItem('infopanel.apikey');
       setApiKey(null);
     },
-    onKeyChange: () => {
+    onKeySave: () => {
       const value = apiKeyInputRef.current?.value;
-      if (!value) return;
+      if (!value || value === apiKey) return;
       PanthorService.validateSecret(value)
         .then((status) => {
           if (status) {
@@ -79,7 +79,7 @@ export const Settings = () => {
             <Button onClick={handler.onKeyDelete} size="small">
               Löschen
             </Button>
-            <Button onClick={handler.onKeyDelete} variant="contained" size="small" sx={{ ml: 1 }}>
+            <Button onClick={handler.onKeySave} variant="contained" size="small" sx={{ ml: 1 }}>
               Speichern
             </Button>
           </Box>
