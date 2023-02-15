@@ -18,8 +18,8 @@ export const CopBonus: React.FC<CopBonusProps> = ({ copsOnline }) => {
         <Box sx={{ ml: { xs: 1, md: 2 } }}>
           <Tooltip title={`${copsOnline} Polizisten online`} placement="bottom">
             <Typography variant="h6">
-              {multiplicator > 1 ? '+' : '-'}{' '}
-              {Math.round(multiplicator > 1 ? multiplicator * 100 - 100 : multiplicator * 100)}%
+              {multiplicator > 1 && '+ '}
+              {Math.round(multiplicator * 100 - 100)}%
             </Typography>
           </Tooltip>
           <Typography variant="subtitle1">Polizei-Bonus</Typography>
