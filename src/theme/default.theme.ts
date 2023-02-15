@@ -35,8 +35,8 @@ export const theme = createTheme({
     },
     divider: 'rgba(194, 224, 255, 0.08)',
     background: {
-      default: '#001E3C',
-      paper: '#001E3C',
+      default: '#0f2537',
+      paper: '#0f2537',
     },
     common: {
       black: '#1D1D1D',
