@@ -1,15 +1,10 @@
 import { Box, Button, Grid, Link, Paper, TextField, Typography, useTheme } from '@mui/material';
+import { Panthor } from 'constants/';
 import React from 'react';
 import { PanthorService } from 'services/';
 import { SnackbarContext, StoreContext } from 'context/';
 import { Image, LabelValue } from 'components/';
 import PCK from '../../package.json';
-
-const Panthor = {
-  website: 'https://dulliag.de',
-  discordInvite: 'https://discord.gg/Hf3XeAyn4h',
-  modPreview: 'https://support.panthor.de/uploads/N9J0C8rr.png',
-};
 
 export const Settings = () => {
   const { showSnackbar } = React.useContext(SnackbarContext);

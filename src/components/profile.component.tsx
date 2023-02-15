@@ -3,6 +3,7 @@ import {
   PersonPinCircle as PersonPinCircleIcon,
 } from '@mui/icons-material';
 import { Avatar, Button, Grid, Link, Paper, PaperProps } from '@mui/material';
+import { Panthor } from 'constants/';
 import { format } from 'date-fns';
 import React from 'react';
 import { parseCurrency } from 'utils/';
@@ -58,12 +59,7 @@ export const Profile: React.FC<ProfileProps> = ({ sx, profile }) => {
           </Button>
         </Grid>
         <Grid item xs={6} md={6}>
-          <Button
-            LinkComponent={Link}
-            href={'https://spenden.panthor.de'}
-            target="_blank"
-            fullWidth
-          >
+          <Button LinkComponent={Link} href={Panthor.shop} target="_blank" fullWidth>
             <PaymentsIcon />
           </Button>
         </Grid>

@@ -1,4 +1,5 @@
-import { ApiResponse } from './api_response';
+import { Panthor } from 'constants/';
+import type { ApiResponse } from './api_response';
 
 const ILLEGAL_ITEMS = [
   'cocaine_r',
@@ -112,7 +113,7 @@ export class MarketItem {
   async getPriceBacklog(server: number, backlogCount: number) {
     try {
       const response = await fetch(
-        `https://api.panthor.de/v1/market_logs/${server}/${this.item}/${backlogCount}`
+        `${Panthor.apiBaseUrl}/v1/market_logs/${server}/${this.item}/${backlogCount}`
       );
       const backlog: ApiResponse<[ItemBacklogResponse]> = await response.json();
       return backlog.data[0].map((item) => new ItemBacklog(item));

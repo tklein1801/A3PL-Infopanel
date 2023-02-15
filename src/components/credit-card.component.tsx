@@ -1,4 +1,5 @@
 import { Box, Grid, SxProps, Theme, Typography, useTheme } from '@mui/material';
+import { Panthor } from 'constants/';
 import React from 'react';
 import PANTHOR_LOGO from 'ressources/panthor/panthor_logo.png';
 import { parseCurrency } from 'utils/';
@@ -51,7 +52,7 @@ export const CreditCard: React.FC<CreditCardProps> = ({
       onClick={() => {
         if (window !== null) {
           // @ts-ignore
-          window.open('https://info.panthor.de/banking/' + iban, '_blank').focus();
+          window.open(Panthor.onlineBanking + '/' + iban, '_blank').focus();
         }
       }}
     >
