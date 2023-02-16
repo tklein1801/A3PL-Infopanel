@@ -38,7 +38,23 @@ export const Market = () => {
     refresh: new Date(),
     interval: 0,
   });
+
+  const handler: {
+    onPriceRecalculation: MarketItemRefreshCountdownProps['onPriceRecalculation'];
+    onSearch: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  } = {
+    onPriceRecalculation() {
+      PanthorService.getMarket(SERVER ? SERVER.id : FALLBACK_SERVER_ID)
+        .then(setMarketItems)
+        .catch(console.error);
+    },
+    onSearch(event) {
+      setKeyword(event.target.value);
+    },
+  };
+
   const copsOnline = React.useMemo(() => (SERVER ? SERVER.cops : 0), [SERVER]);
+
   const copBonus = React.useMemo(() => new CopBonus(copsOnline), [copsOnline]);
 
   const shownItems = React.useMemo(() => {
@@ -89,10 +105,7 @@ export const Market = () => {
             >
               <Typography variant="subtitle1">Marktpreise</Typography>
               <Box sx={{ ml: 2 }}>
-                <SearchInput
-                  placeholder="Suchen"
-                  onChange={(event) => setKeyword(event.target.value)}
-                />
+                <SearchInput placeholder="Suchen" onChange={handler.onSearch} />
               </Box>
             </Box>
 
@@ -141,13 +154,19 @@ export const Market = () => {
           </Paper>
         )}
       </Grid>
+
       <Grid container item xs={12} md={6} spacing={2}>
         {/* TODO: Make this sticky to top */}
         <Grid item display={refreshInterval.interval > 0 ? 'unset' : 'none'} xs={12} lg={6}>
           {loading ? (
             <Progress />
           ) : (
-            refreshInterval.interval > 0 && <MarketItemRefreshCountdown {...refreshInterval} />
+            refreshInterval.interval > 0 && (
+              <MarketItemRefreshCountdown
+                {...refreshInterval}
+                onPriceRecalculation={handler.onPriceRecalculation}
+              />
+            )
           )}
         </Grid>
 

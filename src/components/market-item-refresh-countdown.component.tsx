@@ -8,6 +8,8 @@ export interface MarketItemRefreshCountdownProps extends PaperProps {
   refresh: Date;
   /** Interval in seconds */
   interval: number;
+  /** Callback to execute when prices have updated */
+  onPriceRecalculation?: () => void;
 }
 
 export const MarketItemRefreshCountdown: React.FC<MarketItemRefreshCountdownProps> = (props) => {
@@ -16,12 +18,14 @@ export const MarketItemRefreshCountdown: React.FC<MarketItemRefreshCountdownProp
   React.useEffect(() => {
     const { refresh, interval } = props;
 
-    if (!recalcDate || (recalcDate && recalcDate <= new Date()))
+    if (!recalcDate || (recalcDate && recalcDate <= new Date())) {
       setRecalcDate(addSeconds(refresh, interval));
+    }
 
     const checking = setInterval(() => {
       if (!recalcDate || recalcDate <= new Date()) {
         setRecalcDate(addSeconds(recalcDate ?? new Date(), interval));
+        if (props.onPriceRecalculation) props.onPriceRecalculation();
       }
       // if (recalcDate && recalcDate >= new Date()) {
       //   console.log('all tine');
