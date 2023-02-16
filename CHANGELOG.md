@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/DulliAG/A3RLRPG-Infopanel/compare/v4.0.0...v4.1.0) (2023-02-16)
+
+
+### Features
+
+* Make shops sortable ([bcfa47f](https://github.com/DulliAG/A3RLRPG-Infopanel/commit/bcfa47f565666cd693380a40913c9eae2b392d9c))
+* Re-fetch prices after price-recalculation ([f16a68e](https://github.com/DulliAG/A3RLRPG-Infopanel/commit/f16a68e6f9fbbb75d4524470b5fb6bd10c26a205))
+
 ## [4.0.0](https://github.com/DulliAG/A3RLRPG-Infopanel/compare/v2.1.4...v4.0.0) (2023-02-15)
 
 
