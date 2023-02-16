@@ -112,9 +112,10 @@ export const Trader: React.FC<TraderProps> = ({
 export interface TraderWrapperProps {
   category: ShopCategory;
   shops: ShopType[];
+  sort?: boolean;
 }
 
-export const TraderWrapper: React.FC<TraderWrapperProps> = ({ category, shops }) => {
+export const TraderWrapper: React.FC<TraderWrapperProps> = ({ category, shops, sort = false }) => {
   const { cachedTraderOffers, setCachedTraderOffers } = React.useContext(StoreContext);
   const [shown, setShown] = React.useState<ShopType['type']>('');
 
@@ -146,10 +147,16 @@ export const TraderWrapper: React.FC<TraderWrapperProps> = ({ category, shops })
     }));
   };
 
+  const sortedShops = React.useMemo(() => {
+    return sort
+      ? shops.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
+      : shops;
+  }, [shops, sort]);
+
   return (
     <React.Fragment>
       {shops.length > 0 ? (
-        shops.map((shop) => (
+        sortedShops.map((shop) => (
           <Trader
             key={shop.type}
             expanded={shown === shop.type}

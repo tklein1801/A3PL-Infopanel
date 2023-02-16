@@ -39,7 +39,7 @@ export const Trader = () => {
         {loading ? (
           <Progress />
         ) : traders.items.length > 0 ? (
-          <TraderWrapper category="items" shops={traders.items} />
+          <TraderWrapper category="items" shops={traders.items} sort />
         ) : (
           <NoItems message="Keine Anbieter gefunden" />
         )}
@@ -52,7 +52,7 @@ export const Trader = () => {
         {loading ? (
           <Progress />
         ) : traders.vehicles.length > 0 ? (
-          <TraderWrapper category="vehicles" shops={traders.vehicles} />
+          <TraderWrapper category="vehicles" shops={traders.vehicles} sort />
         ) : (
           <NoItems message="Keine Anbieter gefunden" />
         )}
