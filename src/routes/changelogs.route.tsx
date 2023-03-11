@@ -1,8 +1,4 @@
-import {
-  Check as CheckIcon,
-  Close as CloseIcon,
-  ExpandMore as ExpandMoreIcon,
-} from '@mui/icons-material';
+import { Check as CheckIcon, Close as CloseIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import { Accordion, AccordionDetails, Chip, Grid, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import React from 'react';
@@ -15,10 +11,9 @@ export const Changelogs = () => {
   const { loading, setLoading, changelogs, setChangelogs } = React.useContext(StoreContext);
   const [currentChangelog, setCurrentChangelog] = React.useState<string>('');
 
-  const handleChange =
-    (version: typeof currentChangelog) => (event: React.SyntheticEvent, isClosed: boolean) => {
-      setCurrentChangelog(isClosed ? version : '');
-    };
+  const handleChange = (version: typeof currentChangelog) => (event: React.SyntheticEvent, isClosed: boolean) => {
+    setCurrentChangelog(isClosed ? version : '');
+  };
 
   React.useEffect(() => {
     if (changelogs.length < 1) {
@@ -51,9 +46,7 @@ export const Changelogs = () => {
                   <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>
                     Changelog {changelog.version} - {format(changelog.releaseAt, 'dd.MM.yy')}
                   </Typography>
-                  {changelog.size ? (
-                    <Chip label={changelog.size} size="small" sx={{ ml: { xs: 0, md: 1 } }} />
-                  ) : null}
+                  {changelog.size ? <Chip label={changelog.size} size="small" sx={{ ml: { xs: 0, md: 1 } }} /> : null}
                   <Chip
                     icon={changelog.hasModChange() ? <CheckIcon /> : <CloseIcon />}
                     label="Mod änderungen"

@@ -5,13 +5,7 @@ export const Footer: React.FC<BoxProps> = (props) => {
   return (
     <Box {...props}>
       <div>
-        <svg
-          aria-hidden="true"
-          width="100%"
-          height="8"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg aria-hidden="true" width="100%" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
           <pattern id="a" width="30" height="8" patternUnits="userSpaceOnUse">
             <g clipPath="url(#clip0_2426_11367)">
               <path

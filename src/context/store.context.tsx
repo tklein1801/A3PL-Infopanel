@@ -41,9 +41,7 @@ export const StoreContext = React.createContext({} as IStoreContext);
 
 export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [loading, setLoading] = React.useState<IStoreContext['loading']>(false);
-  const [apiKey, setApiKey] = React.useState<IStoreContext['apiKey']>(
-    localStorage.getItem('infopanel.apikey')
-  );
+  const [apiKey, setApiKey] = React.useState<IStoreContext['apiKey']>(localStorage.getItem('infopanel.apikey'));
   const [profile, setProfile] = React.useState<IStoreContext['profile']>(null);
   const [changelogs, setChangelogs] = React.useState<IStoreContext['changelogs']>([]);
   const [vehicles, setVehicles] = React.useState<IStoreContext['vehicles']>([]);

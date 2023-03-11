@@ -46,10 +46,7 @@ export const Trader: React.FC<TraderProps> = ({
   };
 
   React.useEffect(() => {
-    if (
-      (expanded && !isCached) ||
-      (expanded && isCached && (!cachedOffers || cachedOffers.length < 1))
-    ) {
+    if ((expanded && !isCached) || (expanded && isCached && (!cachedOffers || cachedOffers.length < 1))) {
       setLoading(true);
       trader
         .getOffers()
@@ -75,9 +72,7 @@ export const Trader: React.FC<TraderProps> = ({
           position: 'sticky',
           top: (theme) => ({ xs: theme.spacing(6), md: theme.spacing(8) }),
           backgroundColor: (theme) => (expanded ? theme.palette.background.paper : 'unset'),
-          backgroundImage: expanded
-            ? 'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))'
-            : 'none',
+          backgroundImage: expanded ? 'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))' : 'none',
           borderRadius: 'inherit',
         }}
       >
@@ -94,10 +89,7 @@ export const Trader: React.FC<TraderProps> = ({
             {offers.map((offer, index) => (
               <React.Fragment key={offer.id}>
                 {index !== 0 ? <Divider /> : null}
-                <ListItem
-                  key={offer.id}
-                  secondaryAction={<Typography>{parseCurrency(offer.price)}</Typography>}
-                >
+                <ListItem key={offer.id} secondaryAction={<Typography>{parseCurrency(offer.price)}</Typography>}>
                   <ListItemText primary={offer.name} secondary={`Level ${offer.level}`} />
                 </ListItem>
               </React.Fragment>
@@ -119,11 +111,7 @@ export const TraderWrapper: React.FC<TraderWrapperProps> = ({ category, shops, s
   const { cachedTraderOffers, setCachedTraderOffers } = React.useContext(StoreContext);
   const [shown, setShown] = React.useState<ShopType['type']>('');
 
-  const handleChange = (
-    event: React.SyntheticEvent,
-    isClosed: boolean,
-    object: ShopType['type']
-  ) => {
+  const handleChange = (event: React.SyntheticEvent, isClosed: boolean, object: ShopType['type']) => {
     setShown(isClosed ? object : '');
   };
 
@@ -133,11 +121,7 @@ export const TraderWrapper: React.FC<TraderWrapperProps> = ({ category, shops, s
     return cachedTraderOffers[category][shopType];
   };
 
-  const handleUpdateCache = (
-    category: ShopCategory,
-    shop: ShopType['type'],
-    offers: ShopItem[] | ShopCar[]
-  ) => {
+  const handleUpdateCache = (category: ShopCategory, shop: ShopType['type'], offers: ShopItem[] | ShopCar[]) => {
     setCachedTraderOffers((prev) => ({
       ...prev,
       [category]: {
@@ -148,9 +132,7 @@ export const TraderWrapper: React.FC<TraderWrapperProps> = ({ category, shops, s
   };
 
   const sortedShops = React.useMemo(() => {
-    return sort
-      ? shops.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
-      : shops;
+    return sort ? shops.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase())) : shops;
   }, [shops, sort]);
 
   return (

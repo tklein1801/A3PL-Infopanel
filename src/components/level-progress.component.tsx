@@ -7,11 +7,7 @@ export interface LevelProgressProps {
   withLabel?: boolean;
 }
 
-export const LevelProgress: React.FC<LevelProgressProps> = ({
-  currentLevel,
-  progress,
-  withLabel = false,
-}) => {
+export const LevelProgress: React.FC<LevelProgressProps> = ({ currentLevel, progress, withLabel = false }) => {
   return (
     <React.Fragment>
       {withLabel ? (

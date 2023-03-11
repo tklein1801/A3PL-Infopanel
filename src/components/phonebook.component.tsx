@@ -1,7 +1,4 @@
-import {
-  AccountCircle as AccountCircleIcon,
-  ExpandMore as ExpandMoreIcon,
-} from '@mui/icons-material';
+import { AccountCircle as AccountCircleIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import {
   Accordion,
   AccordionDetails,
@@ -29,9 +26,7 @@ export const Phonebook: React.FC<PhonebookProps> = ({ phonebook }) => {
   const [keyword, setKeyword] = React.useState('');
   const shownContacts = React.useMemo(() => {
     if (keyword.length < 1) return phonebook.phonebook;
-    return phonebook.phonebook.filter((pb) =>
-      pb.name.toLowerCase().includes(keyword.toLowerCase())
-    );
+    return phonebook.phonebook.filter((pb) => pb.name.toLowerCase().includes(keyword.toLowerCase()));
   }, [keyword, phonebook.phonebook]);
 
   const handleOnSearch: onSearchHandler = (event) => {
@@ -55,21 +50,13 @@ export const Phonebook: React.FC<PhonebookProps> = ({ phonebook }) => {
 
           <Grid item xs={5}>
             <LabelValue label="Geburts" value={phonebook.identity.id_birthday.toString()} />
-            <LabelValue
-              label="Fraktion"
-              value={<Chip label={phonebook.identity.side.getLabel()} />}
-            />
+            <LabelValue label="Fraktion" value={<Chip label={phonebook.identity.side.getLabel()} />} />
           </Grid>
 
           <Grid item xs={2}></Grid>
           <Grid item xs={10}>
-            <LabelValue
-              label="Signatur"
-              value={phonebook.identity.pid + '-' + phonebook.identity.id}
-            />
-            <Signature sx={{ fontSize: '1.4rem', mt: '-1rem', mb: '1rem' }}>
-              {phonebook.identity.name}
-            </Signature>
+            <LabelValue label="Signatur" value={phonebook.identity.pid + '-' + phonebook.identity.id} />
+            <Signature sx={{ fontSize: '1.4rem', mt: '-1rem', mb: '1rem' }}>{phonebook.identity.name}</Signature>
           </Grid>
         </Grid>
       </Box>
@@ -125,10 +112,9 @@ export interface PhonebookWrapperProps {
 export const PhonebookWrapper: React.FC<PhonebookWrapperProps> = ({ phonebooks }) => {
   const [shown, setShown] = React.useState(-1);
 
-  const handleChange =
-    (version: typeof shown) => (event: React.SyntheticEvent, isClosed: boolean) => {
-      setShown(isClosed ? version : -1);
-    };
+  const handleChange = (version: typeof shown) => (event: React.SyntheticEvent, isClosed: boolean) => {
+    setShown(isClosed ? version : -1);
+  };
 
   return (
     <React.Fragment>

@@ -1,7 +1,4 @@
-import {
-  Payments as PaymentsIcon,
-  PersonPinCircle as PersonPinCircleIcon,
-} from '@mui/icons-material';
+import { Payments as PaymentsIcon, PersonPinCircle as PersonPinCircleIcon } from '@mui/icons-material';
 import { Avatar, Button, Grid, Link, Paper, PaperProps } from '@mui/material';
 import { Panthor } from 'constants/';
 import { format } from 'date-fns';
@@ -32,11 +29,7 @@ export const Profile: React.FC<ProfileProps> = ({ sx, profile }) => {
       <LabelValue label="Name" value={profile.name} />
       <LabelValue label="PlayerId" value={profile.pid} withDivider />
       <LabelValue label="Bargeld" value={parseCurrency(profile.cash)} withDivider />
-      <LabelValue
-        label="Kontostand (Hauptkonto)"
-        value={parseCurrency(profile.bankacc)}
-        withDivider
-      />
+      <LabelValue label="Kontostand (Hauptkonto)" value={parseCurrency(profile.bankacc)} withDivider />
       <LabelValue label="XP" value={profile.exp.toLocaleString() + ' XP.'} withDivider />
       <LabelValue label="Skillpunkte" value={profile.skillpoint + ' Punkte'} withDivider />
       <LabelValue label="Spielzeit" value={active.toFixed(0) + ' Stunden'} withDivider />
@@ -46,11 +39,7 @@ export const Profile: React.FC<ProfileProps> = ({ sx, profile }) => {
         value={format(profile.last_seen.date, 'dd.MM.yy, HH:mm') + ' Uhr'}
         withDivider
       />
-      <LabelValue
-        label="Beigetreten"
-        value={format(profile.joined_at, 'dd.MM.yy, HH:mm') + ' Uhr'}
-        withDivider
-      />
+      <LabelValue label="Beigetreten" value={format(profile.joined_at, 'dd.MM.yy, HH:mm') + ' Uhr'} withDivider />
 
       <Grid container spacing={1}>
         <Grid item xs={6} md={6}>

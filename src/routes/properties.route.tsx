@@ -1,14 +1,5 @@
 import { ExpandMore as ExpandMoreIcon, Room as RoomIcon } from '@mui/icons-material';
-import {
-  Accordion,
-  AccordionDetails,
-  Box,
-  Button,
-  Chip,
-  Grid,
-  Link,
-  Typography,
-} from '@mui/material';
+import { Accordion, AccordionDetails, Box, Button, Chip, Grid, Link, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import React from 'react';
 import { StoreContext } from 'context/';
@@ -19,10 +10,9 @@ export const Properties = () => {
   const { loading, profile } = React.useContext(StoreContext);
   const [open, setOpen] = React.useState<number | null>(null);
 
-  const handleChange =
-    (accordion: typeof open) => (event: React.SyntheticEvent, isClosed: boolean) => {
-      setOpen(isClosed ? accordion : null);
-    };
+  const handleChange = (accordion: typeof open) => (event: React.SyntheticEvent, isClosed: boolean) => {
+    setOpen(isClosed ? accordion : null);
+  };
 
   const properties = React.useMemo(() => {
     if (!profile) {
@@ -62,17 +52,11 @@ export const Properties = () => {
                     expandIcon={<ExpandMoreIcon />}
                     id={`panel${house.id}a-header`}
                   >
-                    <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>
-                      Haus {house.id}
-                    </Typography>
+                    <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>Haus {house.id}</Typography>
                     {house.disabled ? (
                       <Chip label="Inaktiv" size="small" sx={{ ml: { xs: 0, md: 1 } }} />
                     ) : (
-                      <Chip
-                        label={`${house.payed_for / 24} Tage`}
-                        size="small"
-                        sx={{ ml: { xs: 0, md: 1 } }}
-                      />
+                      <Chip label={`${house.payed_for / 24} Tage`} size="small" sx={{ ml: { xs: 0, md: 1 } }} />
                     )}
                   </AccordionSummary>
                   <AccordionDetails>
@@ -132,17 +116,11 @@ export const Properties = () => {
                     expandIcon={<ExpandMoreIcon />}
                     id={`panel${building.id}a-header`}
                   >
-                    <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>
-                      Baustelle {building.id}
-                    </Typography>
+                    <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>Baustelle {building.id}</Typography>
                     {building.disabled ? (
                       <Chip label="Inaktiv" size="small" sx={{ ml: { xs: 0, md: 1 } }} />
                     ) : (
-                      <Chip
-                        label={`Baustufe ${building.stage}`}
-                        size="small"
-                        sx={{ ml: { xs: 0, md: 1 } }}
-                      />
+                      <Chip label={`Baustufe ${building.stage}`} size="small" sx={{ ml: { xs: 0, md: 1 } }} />
                     )}
                   </AccordionSummary>
                   <AccordionDetails>

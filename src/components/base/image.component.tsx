@@ -10,14 +10,7 @@ export interface ImageProps {
   loading?: React.ImgHTMLAttributes<HTMLImageElement>['loading'];
 }
 
-export const Image: React.FC<ImageProps> = ({
-  src,
-  alt,
-  fallback,
-  style,
-  onClick,
-  loading = 'lazy',
-}) => {
+export const Image: React.FC<ImageProps> = ({ src, alt, fallback, style, onClick, loading = 'lazy' }) => {
   const [source, setSource] = React.useState(src);
   const [error, setError] = React.useState(false);
 
@@ -29,14 +22,5 @@ export const Image: React.FC<ImageProps> = ({
   if (!fallback && error) {
     return <Skeleton variant="rectangular" sx={style} />;
   }
-  return (
-    <img
-      src={source}
-      onError={handleError}
-      alt={alt}
-      style={style}
-      onClick={onClick}
-      loading={loading}
-    />
-  );
+  return <img src={source} onError={handleError} alt={alt} style={style} onClick={onClick} loading={loading} />;
 };

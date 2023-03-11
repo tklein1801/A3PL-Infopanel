@@ -79,15 +79,7 @@ export class MarketItem {
     icon: string;
   };
 
-  constructor({
-    item,
-    price,
-    server,
-    updated_at,
-    created_at,
-    localized,
-    export_virt_item,
-  }: MarketItemResponse) {
+  constructor({ item, price, server, updated_at, created_at, localized, export_virt_item }: MarketItemResponse) {
     this.item = item;
     this.price = price;
     this.server = server;
@@ -112,9 +104,7 @@ export class MarketItem {
 
   async getPriceBacklog(server: number, backlogCount: number) {
     try {
-      const response = await fetch(
-        `${Panthor.apiBaseUrl}/v1/market_logs/${server}/${this.item}/${backlogCount}`
-      );
+      const response = await fetch(`${Panthor.apiBaseUrl}/v1/market_logs/${server}/${this.item}/${backlogCount}`);
       const backlog: ApiResponse<[ItemBacklogResponse]> = await response.json();
       return backlog.data[0].map((item) => new ItemBacklog(item));
     } catch (error) {

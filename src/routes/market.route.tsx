@@ -27,12 +27,9 @@ import {
 } from 'components/';
 
 export const Market = () => {
-  const { loading, setLoading, servers, marketItems, setMarketItems } =
-    React.useContext(StoreContext);
+  const { loading, setLoading, servers, marketItems, setMarketItems } = React.useContext(StoreContext);
   const FALLBACK_SERVER_ID = 1;
-  const SERVER = servers.find((server) => server.id === FALLBACK_SERVER_ID) as
-    | RpgServer
-    | undefined;
+  const SERVER = servers.find((server) => server.id === FALLBACK_SERVER_ID) as RpgServer | undefined;
   const [keyword, setKeyword] = React.useState('');
   const [refreshInterval, setRefreshInterval] = React.useState<MarketItemRefreshCountdownProps>({
     refresh: new Date(),
@@ -59,9 +56,7 @@ export const Market = () => {
 
   const shownItems = React.useMemo(() => {
     if (keyword.length < 1) return marketItems;
-    return marketItems.filter((item) =>
-      item.localized.toLowerCase().includes(keyword.toLowerCase())
-    );
+    return marketItems.filter((item) => item.localized.toLowerCase().includes(keyword.toLowerCase()));
   }, [marketItems, keyword]);
 
   React.useEffect(() => {
@@ -133,11 +128,7 @@ export const Market = () => {
                             <Typography>{parseCurrency(item.price)}</Typography>
                           </Tooltip>
                         }
-                        secondary={
-                          item.isIllegal()
-                            ? parseCurrency(copBonus.calculatePrice(item.price))
-                            : undefined
-                        }
+                        secondary={item.isIllegal() ? parseCurrency(copBonus.calculatePrice(item.price)) : undefined}
                         sx={{ textAlign: 'right' }}
                       />
                     </ListItem>
@@ -145,11 +136,7 @@ export const Market = () => {
                 ))}
               </List>
             ) : (
-              <NoItems
-                message={
-                  keyword.length > 0 ? `Keine Treffer für '${keyword}'` : 'Keine Items gefunden'
-                }
-              />
+              <NoItems message={keyword.length > 0 ? `Keine Treffer für '${keyword}'` : 'Keine Items gefunden'} />
             )}
           </Paper>
         )}
@@ -162,10 +149,7 @@ export const Market = () => {
             <Progress />
           ) : (
             refreshInterval.interval > 0 && (
-              <MarketItemRefreshCountdown
-                {...refreshInterval}
-                onPriceRecalculation={handler.onPriceRecalculation}
-              />
+              <MarketItemRefreshCountdown {...refreshInterval} onPriceRecalculation={handler.onPriceRecalculation} />
             )
           )}
         </Grid>

@@ -1,9 +1,10 @@
-import { Box, Grid, SxProps, Theme, Typography, useTheme } from '@mui/material';
-import { Panthor } from 'constants/';
+import { Box, Grid, SxProps, Theme, Tooltip, Typography, useTheme } from '@mui/material';
 import React from 'react';
 import PANTHOR_LOGO from 'ressources/panthor/panthor_logo.png';
 import { parseCurrency } from 'utils/';
 import { Image } from 'components/base';
+import { Panthor } from '../constants';
+import { SnackbarContext } from '../context';
 
 export interface CreditCardProps {
   iban: string;
@@ -12,13 +13,9 @@ export interface CreditCardProps {
   defaultAccount?: boolean;
 }
 
-export const CreditCard: React.FC<CreditCardProps> = ({
-  iban,
-  owner,
-  balance,
-  defaultAccount = false,
-}) => {
+export const CreditCard: React.FC<CreditCardProps> = ({ iban, owner, balance, defaultAccount = false }) => {
   const theme = useTheme();
+  const { showSnackbar } = React.useContext(SnackbarContext);
   const style: Record<string, SxProps<Theme>> = {
     card: {
       transition: 'cursor 200ms',
@@ -26,9 +23,9 @@ export const CreditCard: React.FC<CreditCardProps> = ({
       p: 2,
       borderRadius: `${theme.shape.borderRadius}px`,
       backgroundColor: defaultAccount ? theme.palette.primary.dark : theme.palette.primary.main,
-      ':hover': {
-        cursor: 'pointer',
-      },
+      // ':hover': {
+      //   cursor: 'pointer',
+      // },
     },
     label: { letterSpacing: '.5px' },
     container: {
@@ -71,12 +68,22 @@ export const CreditCard: React.FC<CreditCardProps> = ({
         </Grid>
 
         <Grid item xs={7}>
-          <Typography variant="caption" sx={style.label}>
-            IBAN
-          </Typography>
-          <Box sx={style.container}>
-            <Typography>{iban}</Typography>
-          </Box>
+          <Tooltip title="IBAN kopieren" placement="bottom">
+            <Box
+              onClick={(event) => {
+                event.stopPropagation();
+                navigator.clipboard.writeText(iban);
+                showSnackbar({ message: 'IBAN in Zwischenablage gespeichert' });
+              }}
+            >
+              <Typography variant="caption" sx={style.label}>
+                IBAN
+              </Typography>
+              <Box sx={style.container}>
+                <Typography>{iban}</Typography>
+              </Box>
+            </Box>
+          </Tooltip>
         </Grid>
 
         <Grid item xs={5}>

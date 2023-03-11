@@ -1,4 +1,17 @@
-import { Box, Button, Grid, Link, Paper, TextField, Typography, useTheme } from '@mui/material';
+import {
+  Box,
+  Button,
+  Divider,
+  FormControlLabel,
+  Grid,
+  Link,
+  Paper,
+  Switch,
+  TextField,
+  Typography,
+  useTheme,
+} from '@mui/material';
+import axios, { AxiosRequestConfig } from 'axios';
 import { Panthor } from 'constants/';
 import React from 'react';
 import { PanthorService } from 'services/';
@@ -69,32 +82,32 @@ export const Settings = () => {
 
       <Grid item xs={12} md={4}>
         <Paper sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
-          <Typography variant="h6" sx={{ mb: 1 }}>
-            Einstellungen
-          </Typography>
-          <TextField
-            inputRef={apiKeyInputRef}
-            label="API-Key"
-            defaultValue={apiKey}
-            size="small"
-            sx={{ width: '100%' }}
-          />
+          <Typography variant="h6">Einstellungen</Typography>
 
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
-              mt: 1,
-            }}
-          >
-            <Button onClick={handler.onKeyDelete} size="small">
-              Löschen
-            </Button>
-            <Button onClick={handler.onKeySave} variant="contained" size="small" sx={{ ml: 1 }}>
-              Speichern
-            </Button>
-          </Box>
+          {/* API-Key */}
+          <React.Fragment>
+            <Typography variant="subtitle2" sx={{ mb: 1 }}>
+              App
+            </Typography>
+
+            <TextField label="API-Key" defaultValue={apiKey} inputRef={apiKeyInputRef} sx={{ width: '100%' }} />
+
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'flex-end',
+                mt: 1,
+              }}
+            >
+              <Button onClick={handler.onKeyDelete} size="small">
+                Löschen
+              </Button>
+              <Button onClick={handler.onKeySave} variant="contained" size="small" sx={{ ml: 1 }}>
+                Speichern
+              </Button>
+            </Box>
+          </React.Fragment>
         </Paper>
       </Grid>
 

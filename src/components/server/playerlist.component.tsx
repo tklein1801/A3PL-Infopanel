@@ -21,18 +21,10 @@ export const Playerlist: React.FC<PlayerlistProps> = ({ server }) => {
               {'side' in server ? (
                 <React.Fragment>
                   <PlayerlistSection side="civs" heading="Zivilisten" players={server.side.civs} />
-                  <PlayerlistSection
-                    side="medics"
-                    heading="Abramier"
-                    players={server.side.medics}
-                  />
+                  <PlayerlistSection side="medics" heading="Abramier" players={server.side.medics} />
                   <PlayerlistSection side="rac" heading="RAC'ler" players={server.side.rac} />
                   <PlayerlistSection side="cops" heading="Polizisten" players={server.side.cops} />
-                  <PlayerlistSection
-                    side="justice"
-                    heading="Justiz'ler"
-                    players={server.side.justice}
-                  />
+                  <PlayerlistSection side="justice" heading="Justiz'ler" players={server.side.justice} />
                 </React.Fragment>
               ) : (
                 server.players.map((player, index) => (

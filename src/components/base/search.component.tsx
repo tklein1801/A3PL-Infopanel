@@ -45,9 +45,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export type onSearchHandler = (
-  event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-) => void;
+export type onSearchHandler = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
 
 export interface SearchInputProps extends InputBaseProps {}
 

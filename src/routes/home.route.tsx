@@ -55,11 +55,7 @@ export const Home = () => {
                     scrollSnapAlign: 'start',
                   }}
                 >
-                  <Server
-                    data={server}
-                    onClick={handleServerClick}
-                    active={selectedServer?.id === server.id}
-                  />
+                  <Server data={server} onClick={handleServerClick} active={selectedServer?.id === server.id} />
                 </Box>
               ))}
             </Box>
@@ -67,11 +63,7 @@ export const Home = () => {
             <Grid container spacing={3}>
               {servers.map((server) => (
                 <Grid key={`${id}-server-desktop-${server.id}`} item xs={12} md={4}>
-                  <Server
-                    data={server}
-                    onClick={handleServerClick}
-                    active={selectedServer?.id === server.id}
-                  />
+                  <Server data={server} onClick={handleServerClick} active={selectedServer?.id === server.id} />
                 </Grid>
               ))}
             </Grid>
