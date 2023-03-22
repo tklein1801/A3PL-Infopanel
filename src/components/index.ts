@@ -11,3 +11,4 @@ export * from './server/server.component';
 export * from './trader.component';
 export * from './twitch.component';
 export * from './server';
+export * from './maintenance-warning.component';
