@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/DulliAG/A3RLRPG-Infopanel/compare/v4.1.1...v4.2.0) (2023-03-22)
+
+
+### Features
+
+* Display appartments ([90fffbc](https://github.com/DulliAG/A3RLRPG-Infopanel/commit/90fffbc8cadc0be64b55f16cd64eac81ea4db4ce))
+* Show alert when maintenance is due ([afe33af](https://github.com/DulliAG/A3RLRPG-Infopanel/commit/afe33af0d39a57f3a5abdc74289da2e8dff7d2a3))
+
 ### [4.1.1](https://github.com/DulliAG/A3RLRPG-Infopanel/compare/v4.1.0...v4.1.1) (2023-03-11)
 
 ## [4.1.0](https://github.com/DulliAG/A3RLRPG-Infopanel/compare/v4.0.0...v4.1.0) (2023-02-16)
