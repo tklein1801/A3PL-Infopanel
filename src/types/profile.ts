@@ -181,7 +181,7 @@ export class Profile {
     this.play_time = data.play_time;
     this.garage = data.garage;
     this.houses = data.houses.map((props) => new House(props));
-    this.rentals = data.rentals.map(() => new Rental());
+    this.rentals = data.rentals.map((props) => new Rental(props));
     this.buildings = data.buildings.map((props) => new Building(props));
     this.phones = data.phones.map((props) => new Phone(props));
     this.company_owned = data.company_owned.map((props) => new Company(props));

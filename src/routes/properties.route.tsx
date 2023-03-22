@@ -102,6 +102,46 @@ export const Properties = () => {
 
           <Box sx={{ mt: 1 }}>
             <Typography variant="subtitle1" mb={1}>
+              Appartments {properties.rentals.length > 0 && `(${properties.rentals.length})`}
+            </Typography>
+            {properties.rentals.length > 0 ? (
+              properties.rentals.map((rental) => (
+                <Accordion
+                  key={`${id}-rental-${rental.id}`}
+                  expanded={open === rental.id}
+                  onChange={handleChange(rental.id)}
+                >
+                  <AccordionSummary
+                    expanded={open === rental.id}
+                    expandIcon={<ExpandMoreIcon />}
+                    id={`panel${rental.id}a-header`}
+                  >
+                    <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>Appartment {rental.id}</Typography>
+                    {rental.disabled ? (
+                      <Chip label="Inaktiv" size="small" sx={{ ml: { xs: 0, md: 1 } }} />
+                    ) : (
+                      <Chip label={`${rental.payed_for / 24} Tage`} size="small" sx={{ ml: { xs: 0, md: 1 } }} />
+                    )}
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
+                          Gemietet bis zum
+                        </Typography>
+                        <Typography>{format(rental.active_until, 'dd.MM.yy, HH:mm')} Uhr</Typography>
+                      </Grid>
+                    </Grid>
+                  </AccordionDetails>
+                </Accordion>
+              ))
+            ) : (
+              <NoItems message="Keine Appartments gefunden" />
+            )}
+          </Box>
+
+          <Box sx={{ mt: 1 }}>
+            <Typography variant="subtitle1" mb={1}>
               Baustellen {properties.buildings.length > 0 && `(${properties.buildings.length})`}
             </Typography>
             {properties.buildings.length > 0 ? (
