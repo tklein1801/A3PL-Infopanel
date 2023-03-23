@@ -1,3 +1,4 @@
+import { DATA_REFRESH_INTERVAL } from 'constants/';
 import React from 'react';
 import { PanthorService } from 'services/';
 import {
@@ -63,12 +64,8 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
     return apiKey !== null && apiKey.length > 1;
   }, [apiKey, profile]);
 
-  React.useEffect(() => {
-    setLoading(true);
-    if (!apiKey) {
-      setProfile(null);
-      return setLoading(false);
-    }
+  const fetchProfileData = () => {
+    if (!apiKey) return;
     PanthorService.getProfile(apiKey)
       .then((data) => {
         if (!data) throw new Error('No profile returned');
@@ -80,6 +77,21 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
         setProfile(null);
       })
       .finally(() => setLoading(false));
+  };
+
+  React.useEffect(() => {
+    setLoading(true);
+    if (!apiKey) {
+      setProfile(null);
+      return setLoading(false);
+    }
+
+    fetchProfileData();
+    const interval = setInterval(() => {
+      fetchProfileData();
+    }, DATA_REFRESH_INTERVAL);
+
+    return () => clearInterval(interval);
   }, [apiKey]);
 
   return (

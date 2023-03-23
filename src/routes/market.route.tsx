@@ -10,6 +10,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
+import { DATA_REFRESH_INTERVAL } from 'constants/';
 import { differenceInSeconds } from 'date-fns';
 import React from 'react';
 import { PanthorService } from 'services/';
@@ -59,8 +60,7 @@ export const Market = () => {
     return marketItems.filter((item) => item.localized.toLowerCase().includes(keyword.toLowerCase()));
   }, [marketItems, keyword]);
 
-  React.useEffect(() => {
-    setLoading(true);
+  const fetchMarketData = () => {
     PanthorService.getMarket(SERVER ? SERVER.id : FALLBACK_SERVER_ID)
       .then(async (items) => {
         setMarketItems(items);
@@ -74,6 +74,15 @@ export const Market = () => {
       })
       .catch(console.error)
       .finally(() => setLoading(false));
+  };
+
+  React.useEffect(() => {
+    setLoading(true);
+    fetchMarketData();
+    const interval = setInterval(() => {
+      fetchMarketData();
+    }, DATA_REFRESH_INTERVAL);
+    return () => clearInterval(interval);
   }, [servers, copsOnline, SERVER, setLoading, setMarketItems]);
 
   return (

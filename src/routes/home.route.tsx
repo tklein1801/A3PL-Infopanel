@@ -1,5 +1,6 @@
 import { useScreenSize } from '@dulliag/components';
 import { Box, Grid, Typography } from '@mui/material';
+import { DATA_REFRESH_INTERVAL } from 'constants/';
 import React from 'react';
 import { PanthorService } from 'services/';
 import { StoreContext } from 'context/';
@@ -15,17 +16,25 @@ export const Home = () => {
     setSelectedServer(server);
   };
 
+  const fetchServerData = () => {
+    PanthorService.getServers()
+      .then((serverList) => {
+        setServers(serverList);
+        setSelectedServer(serverList.length >= 1 ? serverList[0] : null);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  };
+
   React.useEffect(() => {
     if (servers.length < 1) {
       setLoading(true);
-      PanthorService.getServers()
-        .then((serverList) => {
-          setServers(serverList);
-          setSelectedServer(serverList.length >= 1 ? serverList[0] : null);
-        })
-        .catch(console.error)
-        .finally(() => setLoading(false));
+      fetchServerData();
     }
+    const interval = setInterval(() => {
+      fetchServerData();
+    }, DATA_REFRESH_INTERVAL);
+    return () => clearInterval(interval);
   }, []);
 
   return (
