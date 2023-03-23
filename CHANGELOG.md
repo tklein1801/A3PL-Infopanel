@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.3.0](https://github.com/DulliAG/A3RLRPG-Infopanel/compare/v4.2.0...v4.3.0) (2023-03-23)
+
+
+### Features
+
+* Refetch data every X-minutes ([4f6e8c6](https://github.com/DulliAG/A3RLRPG-Infopanel/commit/4f6e8c65a1c105e1062d0601d0d7028d1c27c36a))
+
 ## [4.2.0](https://github.com/DulliAG/A3RLRPG-Infopanel/compare/v4.1.1...v4.2.0) (2023-03-22)
 
 
