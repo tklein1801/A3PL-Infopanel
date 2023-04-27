@@ -2,18 +2,40 @@ import { Check as CheckIcon, Close as CloseIcon, ExpandMore as ExpandMoreIcon } 
 import { Accordion, AccordionDetails, Chip, Grid, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { PanthorService } from 'services/';
 import { StoreContext } from 'context/';
 import { AccordionSummary, NoItems, Progress } from 'components/';
 
 export const Changelogs = () => {
   const id = React.useId();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { loading, setLoading, changelogs, setChangelogs } = React.useContext(StoreContext);
   const [currentChangelog, setCurrentChangelog] = React.useState<string>('');
 
+  const searchParams = React.useMemo(() => {
+    return new URLSearchParams(location.search);
+  }, [location]);
+
+  const queryGivenChangelog = React.useMemo(() => {
+    return searchParams.get('changelog');
+  }, [location]);
+
   const handleChange = (version: typeof currentChangelog) => (event: React.SyntheticEvent, isClosed: boolean) => {
     setCurrentChangelog(isClosed ? version : '');
+    if (isClosed) {
+      searchParams.set('changelog', version);
+    } else searchParams.delete('changelog');
+    navigate({ search: searchParams.toString() });
   };
+
+  React.useEffect(() => {
+    if (queryGivenChangelog) setCurrentChangelog(queryGivenChangelog);
+    return () => {
+      setCurrentChangelog('');
+    };
+  }, [queryGivenChangelog]);
 
   React.useEffect(() => {
     if (changelogs.length < 1) {
