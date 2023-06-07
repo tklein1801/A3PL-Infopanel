@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { MainStyle } from 'theme/style/main.style';
 import { StoreContext } from 'context/';
 import { FabContainer, Footer, MaintenanceWarning, Profile, ScrollTopFab } from 'components/';
+import AppConfig from '../config';
 import { TabWrapper } from './tabs.layout';
 
 export const AuthLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
@@ -16,9 +17,10 @@ export const AuthLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
         rentals: [],
       };
     }
+    const maintenanceConfig = AppConfig.maintenance;
     return {
-      houses: profile.houses.filter((house) => house.payed_for <= 72),
-      rentals: profile.rentals.filter((rental) => rental.payed_for <= 72),
+      houses: profile.houses.filter((house) => house.payed_for <= maintenanceConfig.house.days * 24),
+      rentals: profile.rentals.filter((rental) => rental.payed_for <= maintenanceConfig.rental.days * 24),
     };
   }, [profile]);
 

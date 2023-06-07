@@ -16,7 +16,7 @@ export const MaintenanceWarning: React.FC<MaintenanceWarningProps> = ({ target }
       {isHouse ? (
         <Box>
           <Tooltip placement="bottom" title={target.payed_for + ' Stunden'}>
-            <Typography>Dein Haus muss bis zum {format(target.active_until, 'dd.MM')} gewartet werden!</Typography>
+            <Typography>Dein Haus muss bis zum {format(target.active_until, 'dd.MM.yy')} gewartet werden!</Typography>
           </Tooltip>
           <Button
             size="small"
@@ -31,7 +31,7 @@ export const MaintenanceWarning: React.FC<MaintenanceWarningProps> = ({ target }
       ) : (
         <Tooltip placement="bottom" title={target.payed_for + ' Stunden'}>
           <Typography>
-            Dein Mietvertrag muss bis zum {format(target.active_until, 'dd.MM')} verlängert werden!
+            Dein Mietvertrag muss bis zum {format(target.active_until, 'dd.MM.yy')} verlängert werden!
           </Typography>
         </Tooltip>
       )}
