@@ -1,6 +1,7 @@
 import { PriceChange as PriceChangeIcon } from '@mui/icons-material';
 import { Box, Paper, Tooltip, Typography } from '@mui/material';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CopBonus as CopBonusModel } from 'types/';
 import { Icon } from './base/icon.component';
 
@@ -9,6 +10,7 @@ export interface CopBonusProps {
 }
 
 export const CopBonus: React.FC<CopBonusProps> = ({ copsOnline }) => {
+  const { t } = useTranslation();
   const copBonus = new CopBonusModel(copsOnline);
   const multiplicator = copBonus.determineMultiplicator();
   return (
@@ -22,9 +24,13 @@ export const CopBonus: React.FC<CopBonusProps> = ({ copsOnline }) => {
               {Math.round(multiplicator * 100 - 100)}%
             </Typography>
           </Tooltip>
-          <Typography variant="subtitle1">Polizei-Bonus</Typography>
+          <Typography variant="subtitle1">{t('market.cop_bonus.title')}</Typography>
           <Typography variant="subtitle2">
-            {copsOnline} {copsOnline > 1 || copsOnline === 0 ? 'Polizisten' : 'Polizist'} online
+            {copsOnline}{' '}
+            {copsOnline > 1 || copsOnline === 0
+              ? t('market.cop_bonus.police_plural')
+              : t('market.cop_bonus.police_singular')}{' '}
+            {t('market.cop_bonus.online')}
           </Typography>
         </Box>
       </Box>

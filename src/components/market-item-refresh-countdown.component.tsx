@@ -2,6 +2,7 @@ import { AvTimer as AvTimerIcon } from '@mui/icons-material';
 import { Box, Paper, PaperProps, Typography } from '@mui/material';
 import { addSeconds, format } from 'date-fns';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Icon } from './base/icon.component';
 
 export interface MarketItemRefreshCountdownProps extends PaperProps {
@@ -13,6 +14,7 @@ export interface MarketItemRefreshCountdownProps extends PaperProps {
 }
 
 export const MarketItemRefreshCountdown: React.FC<MarketItemRefreshCountdownProps> = (props) => {
+  const { t } = useTranslation();
   const [recalcDate, setRecalcDate] = React.useState<Date | null>(null);
 
   React.useEffect(() => {
@@ -47,9 +49,11 @@ export const MarketItemRefreshCountdown: React.FC<MarketItemRefreshCountdownProp
       <Box display="flex" flexDirection="row">
         <Icon icon={<AvTimerIcon />} sx={{ width: '2.4rem', height: '2.4rem' }} />
         <Box sx={{ ml: { xs: 1, md: 2 } }}>
-          <Typography variant="h6">{format(recalcDate as Date, 'HH:mm:ss')} Uhr</Typography>
-          <Typography variant="subtitle1">Preisberechnung</Typography>
-          <Typography variant="subtitle2">Wird neu berechnet</Typography>
+          <Typography variant="h6">
+            {format(recalcDate as Date, 'HH:mm:ss')} {t('market.price_calculation.clock')}
+          </Typography>
+          <Typography variant="subtitle1">{t('market.price_calculation.title')}</Typography>
+          <Typography variant="subtitle2">{t('market.price_calculation.subtitle')}</Typography>
         </Box>
       </Box>
     </Paper>

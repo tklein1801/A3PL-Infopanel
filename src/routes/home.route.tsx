@@ -2,6 +2,7 @@ import { useScreenSize } from '@dulliag/components';
 import { Box, Grid, Typography } from '@mui/material';
 import { DATA_REFRESH_INTERVAL } from 'constants/';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { PanthorService } from 'services/';
 import { StoreContext } from 'context/';
 import { NoItems, Playerlist, Progress, Server, ServerProps } from 'components/';
@@ -9,6 +10,7 @@ import { NoItems, Playerlist, Progress, Server, ServerProps } from 'components/'
 export const Home = () => {
   const id = React.useId();
   const screenSize = useScreenSize();
+  const { t } = useTranslation();
   const { loading, setLoading, servers, setServers, selectedServer, setSelectedServer } =
     React.useContext(StoreContext);
 
@@ -41,7 +43,7 @@ export const Home = () => {
     <React.Fragment>
       <Box>
         <Typography variant="subtitle1" mb={1}>
-          Serverliste
+          {t('route_home.serverlist')}
         </Typography>
         {loading ? (
           <Progress />
@@ -78,7 +80,7 @@ export const Home = () => {
             </Grid>
           )
         ) : (
-          <NoItems message="Kein Server online" />
+          <NoItems message={t('route_home.no_servers_online') ?? ''} />
         )}
       </Box>
 

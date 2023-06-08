@@ -1,0 +1,37 @@
+{
+  "route_home": {
+    "serverlist": "Servers",
+    "no_servers_online": "No servers online"
+  },
+  "profile": {
+    "name": "Name",
+    "playerId": "PlayerId",
+    "cash": "Cash",
+    "bank_acc": "Bank account (Main)",
+    "xp": "XP",
+    "skillpoints": "Skillpoints",
+    "skillpoints_points": "points",
+    "playtime": "Playtime",
+    "playtime_total": "Total playtime",
+    "hours": "hours",
+    "last_seen": "Last seen",
+    "clock": "o' Clock"
+  },
+  "market": {
+    "prices_card_title": "Prices",
+    "prices_search_placeholder": "Search",
+    "no_items": "No items found",
+    "no_items_for": "No matches for '{{keyword}}'",
+    "price_calculation": {
+      "title": "Price calculation",
+      "subtitle": "Recalculating",
+      "clock": "o' Clock"
+    },
+    "cop_bonus": {
+      "title": "Cop-Bonus",
+      "police_singular": "Officers ",
+      "police_plural": "Officer ",
+      "online": "online"
+    }
+  }
+}

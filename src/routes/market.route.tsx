@@ -13,6 +13,7 @@ import {
 import { DATA_REFRESH_INTERVAL } from 'constants/';
 import { differenceInSeconds } from 'date-fns';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { PanthorService } from 'services/';
 import { CopBonus, RpgServer } from 'types/';
 import { parseCurrency } from 'utils/';
@@ -28,6 +29,7 @@ import {
 } from 'components/';
 
 export const Market = () => {
+  const { t } = useTranslation();
   const { loading, setLoading, servers, marketItems, setMarketItems } = React.useContext(StoreContext);
   const FALLBACK_SERVER_ID = 1;
   const SERVER = servers.find((server) => server.id === FALLBACK_SERVER_ID) as RpgServer | undefined;
@@ -107,9 +109,9 @@ export const Market = () => {
                 backgroundImage: 'inherit',
               }}
             >
-              <Typography variant="subtitle1">Marktpreise</Typography>
+              <Typography variant="subtitle1">{t('market.prices_card_title')}</Typography>
               <Box sx={{ ml: 2 }}>
-                <SearchInput placeholder="Suchen" onChange={handler.onSearch} />
+                <SearchInput placeholder={t('market.prices_search_placeholder') ?? ''} onChange={handler.onSearch} />
               </Box>
             </Box>
 
@@ -145,7 +147,11 @@ export const Market = () => {
                 ))}
               </List>
             ) : (
-              <NoItems message={keyword.length > 0 ? `Keine Treffer für '${keyword}'` : 'Keine Items gefunden'} />
+              <NoItems
+                message={
+                  (keyword.length > 0 ? t('market.no_items_for', { keyword: keyword }) : t('market.no_items')) || ''
+                }
+              />
             )}
           </Paper>
         )}

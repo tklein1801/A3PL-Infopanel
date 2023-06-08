@@ -1,0 +1,37 @@
+{
+  "route_home": {
+    "serverlist": "Serverliste",
+    "no_servers_online": "Keine Server online"
+  },
+  "profile": {
+    "name": "Name",
+    "playerId": "PlayerId",
+    "cash": "Bargeld",
+    "bank_acc": "Kontostand (Hauptkonto)",
+    "xp": "XP",
+    "skillpoints": "Skillpunkte",
+    "skillpoints_points": "Punkte",
+    "playtime": "Spielzeit",
+    "playtime_total": "Volle Spielzeit",
+    "hours": "Stunden",
+    "last_seen": "Zuletzt gesehen",
+    "clock": "Uhr"
+  },
+  "market": {
+    "prices_card_title": "Marktpreise",
+    "prices_search_placeholder": "Suchen",
+    "no_items": "Keine Items gefunden",
+    "no_items_for": "Keine Treffer für '{{keyword}}'",
+    "price_calculation": {
+      "title": "Preisberechnung",
+      "subtitle": "Wird neu berechnet",
+      "clock": "Uhr"
+    },
+    "cop_bonus": {
+      "title": "Polizei-Bonus",
+      "police_singular": "Polizist ",
+      "police_plural": "Polizisten ",
+      "online": "online"
+    }
+  }
+}
