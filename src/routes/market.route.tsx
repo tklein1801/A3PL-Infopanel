@@ -1,33 +1,16 @@
 import { ExpandMore as ExpandMoreIcon, Storefront as StorefrontIcon } from '@mui/icons-material';
-import {
-  Accordion,
-  AccordionDetails,
-  Badge,
-  Box,
-  Chip,
-  Divider,
-  Grid,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemIcon,
-  ListItemText,
-  Paper,
-  Tooltip,
-  Typography,
-} from '@mui/material';
+import { Accordion, AccordionDetails, Badge, Box, Grid, Paper, Typography } from '@mui/material';
 import { DATA_REFRESH_INTERVAL } from 'constants/';
-import { differenceInSeconds, format } from 'date-fns';
+import { differenceInSeconds } from 'date-fns';
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { PanthorService } from 'services/';
 import { CopBonus, MarketItem, RpgServer } from 'types/';
-import { parseCurrency } from 'utils/';
 import { StoreContext } from 'context/';
 import {
   AccordionSummary,
   CopBonus as CopBonusComponent,
   Icon,
-  Image,
   MarketItemRefreshCountdown,
   MarketItemRefreshCountdownProps,
   NoItems,
@@ -37,17 +20,19 @@ import {
 import { MarketItemList } from 'components/MarketItem.component';
 
 export const Market = () => {
+  const FALLBACK_SERVER_ID = 1;
   const id = React.useId();
+  const location = useLocation();
+  const navigate = useNavigate();
   const { loading, setLoading, servers, marketItems, setMarketItems, companyShops, setCompanyShops } =
     React.useContext(StoreContext);
-  const [currentCompanyShop, setCurrentCompanyShop] = React.useState<string>('');
-  const FALLBACK_SERVER_ID = 1;
   const SERVER = servers.find((server) => server.id === FALLBACK_SERVER_ID) as RpgServer | undefined;
   const [keyword, setKeyword] = React.useState('');
   const [refreshInterval, setRefreshInterval] = React.useState<MarketItemRefreshCountdownProps>({
     refresh: new Date(),
     interval: 0,
   });
+  const [currentCompanyShop, setCurrentCompanyShop] = React.useState<string>('');
 
   const handler: {
     onPriceRecalculation: MarketItemRefreshCountdownProps['onPriceRecalculation'];
@@ -72,13 +57,21 @@ export const Market = () => {
     return marketItems.filter((item) => item.localized.toLowerCase().includes(keyword.toLowerCase()));
   }, [marketItems, keyword]);
 
+  const searchParams = React.useMemo(() => {
+    return new URLSearchParams(location.search);
+  }, [location]);
+
+  const queryGivenChangelog = React.useMemo(() => {
+    return searchParams.get('company');
+  }, [location]);
+
   const handleCompanyShopToggle =
-    (version: typeof currentCompanyShop) => (event: React.SyntheticEvent, isClosed: boolean) => {
-      setCurrentCompanyShop(isClosed ? version : '');
-      // if (isClosed) {
-      //   searchParams.set('changelog', version);
-      // } else searchParams.delete('changelog');
-      // navigate({ search: searchParams.toString() });
+    (industrialAreaId: typeof currentCompanyShop) => (event: React.SyntheticEvent, isClosed: boolean) => {
+      setCurrentCompanyShop(isClosed ? industrialAreaId : '');
+      if (isClosed) {
+        searchParams.set('company', industrialAreaId);
+      } else searchParams.delete('company');
+      navigate({ search: searchParams.toString() });
     };
 
   const fetchMarketData = () => {
@@ -97,6 +90,13 @@ export const Market = () => {
       .catch(console.error)
       .finally(() => setLoading(false));
   };
+
+  React.useEffect(() => {
+    if (queryGivenChangelog) setCurrentCompanyShop(queryGivenChangelog);
+    return () => {
+      setCurrentCompanyShop('');
+    };
+  }, [queryGivenChangelog]);
 
   React.useEffect(() => {
     setLoading(true);
