@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.4.0](https://github.com/DulliAG/A3RLRPG-Infopanel/compare/v4.3.0...v4.4.0) (2023-06-14)
+
+
+### Features
+
+* Add company shops ([47a5cef](https://github.com/DulliAG/A3RLRPG-Infopanel/commit/47a5cefae4ce6fc7b51a2f0b0f8c5c08b1d1bf88))
+* Save open changelog as query-param ([2267e36](https://github.com/DulliAG/A3RLRPG-Infopanel/commit/2267e366ba193b004ab0ad488e4d77e9692ec3c4))
+* Save state as query-param ([95f3008](https://github.com/DulliAG/A3RLRPG-Infopanel/commit/95f30085c7425a5a1bd7274fc28b7d588f1b2a4b))
+
 ## [4.3.0](https://github.com/DulliAG/A3RLRPG-Infopanel/compare/v4.2.0...v4.3.0) (2023-03-23)
 
 
