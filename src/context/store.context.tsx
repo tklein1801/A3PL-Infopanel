@@ -13,6 +13,7 @@ import {
   ShopType,
   Vehicle,
 } from 'types/';
+import { CompanyShop } from 'types/company_shop';
 
 export interface IStoreContext {
   loading: boolean;
@@ -36,6 +37,8 @@ export interface IStoreContext {
   setTraders: React.Dispatch<React.SetStateAction<IStoreContext['traders']>>;
   cachedTraderOffers: Record<ShopCategory, Record<ShopType['type'], ShopItem[] | ShopCar[]>>;
   setCachedTraderOffers: React.Dispatch<React.SetStateAction<IStoreContext['cachedTraderOffers']>>;
+  companyShops: CompanyShop[];
+  setCompanyShops: React.Dispatch<React.SetStateAction<IStoreContext['companyShops']>>;
 }
 
 export const StoreContext = React.createContext({} as IStoreContext);
@@ -49,6 +52,7 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
   const [servers, setServers] = React.useState<IStoreContext['servers']>([]);
   const [selectedServer, setSelectedServer] = React.useState<IStoreContext['selectedServer']>(null);
   const [marketItems, setMarketItems] = React.useState<IStoreContext['marketItems']>([]);
+  const [companyShops, setCompanyShops] = React.useState<IStoreContext['companyShops']>([]);
   const [traders, setTraders] = React.useState<IStoreContext['traders']>({
     items: [],
     vehicles: [],
@@ -119,6 +123,8 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
           setTraders,
           cachedTraderOffers,
           setCachedTraderOffers,
+          companyShops,
+          setCompanyShops,
         }),
         [
           loading,
@@ -132,6 +138,7 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
           marketItems,
           traders,
           cachedTraderOffers,
+          companyShops,
         ]
       )}
     >

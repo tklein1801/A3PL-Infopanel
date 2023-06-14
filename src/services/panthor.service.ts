@@ -14,6 +14,7 @@ import type {
   VehicleResponse,
 } from 'types/';
 import { Changelog, MarketItem, Profile, RpgServer, Server, ShopType, Vehicle } from 'types/';
+import { CompanyShop, CompanyShopResponse } from 'types/company_shop';
 
 export class PanthorService {
   static async validateSecret(apiKey: string): Promise<Boolean> {
@@ -92,6 +93,17 @@ export class PanthorService {
       const response = await axios.get(Panthor.apiBaseUrl + `/v1/info/${category}_shoptypes`);
       const json: ApiResponse<ShopTypeResponse> = await response.data;
       return json.data.map((shop) => new ShopType(category, shop));
+    } catch (message) {
+      console.error(message);
+      return [];
+    }
+  }
+
+  static async getCompanyShops(): Promise<CompanyShop[]> {
+    try {
+      const response = await axios.get(Panthor.apiBaseUrl + `/v1/company_shops`);
+      const json: ApiResponse<CompanyShopResponse> = await response.data;
+      return json.data.map((shop) => new CompanyShop(shop));
     } catch (message) {
       console.error(message);
       return [];
