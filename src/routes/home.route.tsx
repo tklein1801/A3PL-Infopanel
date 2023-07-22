@@ -1,4 +1,4 @@
-import { useScreenSize } from '@dulliag/components';
+import { useScreenSize } from '@kleithor/components';
 import { Box, Grid, Typography } from '@mui/material';
 import { DATA_REFRESH_INTERVAL } from 'constants/';
 import React from 'react';
