@@ -1,14 +1,15 @@
-import { BankAccountDTO, BankAccountDTOResponse } from './BankAccountDTO';
-import { Building, BuildingResponse, House, HouseResponse, Rental, RentalResponse } from './House';
-import { HouseDTO, HouseDTOResponse } from './HouseDTO';
-import { Timezone, TimezoneResponse } from './api_response';
-import { BankAccount, BankAccountResponse } from './bank-account';
-import { Company, CompanyResponse } from './company';
-import { Donation, DonationResponse } from './donation';
-import { License, LicenseResponse } from './license';
-import { Phone, PhoneResponse } from './phone';
-import { Phonebook, PhonebookResponse } from './phonebook';
-import { Position, PositionResponse } from './position';
+import { BankAccountDTO, type BankAccountDTOResponse } from './BankAccountDTO';
+import { Building, type BuildingResponse, House, type HouseResponse } from './House';
+import { HouseDTO, type HouseDTOResponse } from './HouseDTO';
+import { Rental, type RentalResponse } from './Rental';
+import { Timezone, type TimezoneResponse } from './api_response';
+import { BankAccount, type BankAccountResponse } from './bank-account';
+import { Company, type CompanyResponse } from './company';
+import { Donation, type DonationResponse } from './donation';
+import { License, type LicenseResponse } from './license';
+import { Phone, type PhoneResponse } from './phone';
+import { Phonebook, type PhonebookResponse } from './phonebook';
+import { Position, type PositionResponse } from './position';
 import { RpgServer, Server } from './server';
 
 export type ProfileResponse = {

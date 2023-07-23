@@ -15,3 +15,6 @@ export * from './profile';
 export * from './server';
 export * from './shop';
 export * from './side';
+export * from './HouseDTO';
+export * from './BankAccountDTO';
+export * from './Rental';
