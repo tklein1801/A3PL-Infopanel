@@ -13,21 +13,12 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-import { BankAccount } from 'types/';
 import { parseCurrency } from 'utils/';
 import { StoreContext } from 'context/';
 import { CreditCard, NoItems, Phone, PhonebookWrapper, Progress } from 'components/';
 
 export const Personal = () => {
   const { loading, profile, servers } = React.useContext(StoreContext);
-
-  const bankAccounts = React.useMemo(() => {
-    if (!profile) return [] as BankAccount[];
-    // There is no need to check if the property bank_details is given, because all active companies will have them
-    const activeCompanies = profile.getActiveCompanies();
-    const companyBankAccounts = activeCompanies.flatMap((company) => company.getBankAccounts());
-    return [...profile.bank_main, ...companyBankAccounts];
-  }, [profile]);
 
   return (
     <React.Fragment>

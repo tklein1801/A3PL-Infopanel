@@ -236,7 +236,7 @@ export class Profile {
 
     this.banks.forEach((acc) => {
       // @ts-expect-error
-      if (!list.some((le) => le.iban == acc.iban)) list.push(acc);
+      if (!list.some((le) => le.iban === acc.iban)) list.push(acc);
     });
     return list;
   }
@@ -246,7 +246,7 @@ export class Profile {
 
     this.houses_keyed.forEach((house) => {
       // @ts-expect-error
-      if (!list.some((li) => li.id == house.id)) list.push(house);
+      if (!list.some((li) => li.id === house.id)) list.push(house);
     });
 
     return list;
@@ -257,7 +257,7 @@ export class Profile {
 
     this.buildings_keyed.forEach((building) => {
       // @ts-expect-error
-      if (!list.some((li) => li.id == building.id)) list.push(building);
+      if (!list.some((li) => li.id === building.id)) list.push(building);
     });
 
     return list;

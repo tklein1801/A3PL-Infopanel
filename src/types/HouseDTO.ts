@@ -20,7 +20,7 @@ export class HouseDTO {
     this.id = data.id;
     this.payed_for = data.payed_for;
     this.active_until = addHours(new Date(), data.payed_for);
-    this.disabled = data.disabled == 1;
+    this.disabled = data.disabled === 1;
     this.location = data.location;
   }
 

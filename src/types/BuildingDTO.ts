@@ -20,7 +20,7 @@ export class BuildingDTO {
     this.classname = data.classname;
     this.stage = data.stage;
     this.location = data.location;
-    this.disabled = data.disabled == 1;
+    this.disabled = data.disabled === 1;
   }
 
   public getPosition(): Position {
