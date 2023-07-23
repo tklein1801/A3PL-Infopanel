@@ -22,7 +22,7 @@ export const MaintenanceWarning: React.FC<MaintenanceWarningProps> = ({ target }
             size="small"
             startIcon={<RoomIcon />}
             LinkComponent={Link}
-            href={target.location.getMapUrl()}
+            href={target.getPosition().getMapUrl()}
             target="_blank"
           >
             Karte aufrufen

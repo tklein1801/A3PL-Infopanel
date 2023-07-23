@@ -75,7 +75,7 @@ export const Personal = () => {
                 <Progress />
               </Grid>
             ) : profile && profile.phones.length > 0 ? (
-              profile?.phones
+              profile.phones
                 .sort((a, b) => Number(a.disabled) - Number(b.disabled))
                 .map((phone) => (
                   <Grid key={phone.phone} item xs={6} md={4} xl={3}>
@@ -84,7 +84,6 @@ export const Personal = () => {
                 ))
             ) : (
               <Grid item xs={12}>
-                {' '}
                 <NoItems message="Keine Handys gefunden" />
               </Grid>
             )}
@@ -105,29 +104,30 @@ export const Personal = () => {
               {profile && profile.licenses.length > 0 ? (
                 <Paper>
                   <List dense>
-                    {profile?.licenses.map((license, index) => (
-                      <React.Fragment key={license.license + '-' + (Math.random() * 100).toFixed(0)}>
-                        {index !== 0 ? <Divider /> : null}
-                        <ListItem>
-                          <ListItemText
-                            primary={license.export_licence ? license.export_licence.name : license.license}
-                            secondary={
-                              license.export_licence ? (
-                                <Box>
-                                  <Chip label={license.export_licence.side.getLabel()} sx={{ mr: 1 }} />
-                                  <Chip
-                                    icon={license.export_licence.illegal ? <CheckIcon /> : <CloseIcon />}
-                                    label="Illegal"
-                                    sx={{ mr: 1 }}
-                                  />
-                                  <Chip label={parseCurrency(license.export_licence.price)} />
-                                </Box>
-                              ) : null
-                            }
-                          />
-                        </ListItem>
-                      </React.Fragment>
-                    ))}
+                    {profile &&
+                      profile.licenses.map((license, index) => (
+                        <React.Fragment key={license.license + '-' + (Math.random() * 100).toFixed(0)}>
+                          {index !== 0 ? <Divider /> : null}
+                          <ListItem>
+                            <ListItemText
+                              primary={license.export_licence ? license.export_licence.name : license.license}
+                              secondary={
+                                license.export_licence ? (
+                                  <Box>
+                                    <Chip label={license.export_licence.side.getLabel()} sx={{ mr: 1 }} />
+                                    <Chip
+                                      icon={license.export_licence.illegal ? <CheckIcon /> : <CloseIcon />}
+                                      label="Illegal"
+                                      sx={{ mr: 1 }}
+                                    />
+                                    <Chip label={parseCurrency(license.export_licence.price)} />
+                                  </Box>
+                                ) : null
+                              }
+                            />
+                          </ListItem>
+                        </React.Fragment>
+                      ))}
                   </List>
                 </Paper>
               ) : (

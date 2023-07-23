@@ -1,9 +1,10 @@
 import { BankAccountDTO, BankAccountDTOResponse } from './BankAccountDTO';
+import { Building, BuildingResponse, House, HouseResponse, Rental, RentalResponse } from './House';
+import { HouseDTO, HouseDTOResponse } from './HouseDTO';
 import { Timezone, TimezoneResponse } from './api_response';
 import { BankAccount, BankAccountResponse } from './bank-account';
 import { Company, CompanyResponse } from './company';
 import { Donation, DonationResponse } from './donation';
-import { Building, BuildingResponse, House, HouseResponse, Rental, RentalResponse } from './house';
 import { License, LicenseResponse } from './license';
 import { Phone, PhoneResponse } from './phone';
 import { Phonebook, PhonebookResponse } from './phonebook';
@@ -64,6 +65,7 @@ export type ProfileResponse = {
     count: number;
   };
   houses: HouseResponse[];
+  houses_keyed: HouseDTOResponse[];
   rentals: RentalResponse[];
   buildings: BuildingResponse[];
   phones: PhoneResponse[];
@@ -128,6 +130,7 @@ export class Profile {
     count: number;
   };
   houses: House[];
+  houses_keyed: HouseDTO[];
   rentals: Rental[];
   buildings: Building[];
   phones: Phone[];
@@ -184,6 +187,7 @@ export class Profile {
     this.play_time = data.play_time;
     this.garage = data.garage;
     this.houses = data.houses.map((props) => new House(props));
+    this.houses_keyed = data.houses_keyed.map((props) => new HouseDTO(props));
     this.rentals = data.rentals.map((props) => new Rental(props));
     this.buildings = data.buildings.map((props) => new Building(props));
     this.phones = data.phones.map((props) => new Phone(props));
@@ -228,6 +232,17 @@ export class Profile {
       // @ts-expect-error
       if (!list.some((le) => le.iban == acc.iban)) list.push(acc);
     });
+    return list;
+  }
+
+  public getHouses(): House[] | HouseDTO[] {
+    const list: House[] | HouseDTO[] = [...this.houses];
+
+    this.houses_keyed.forEach((house) => {
+      // @ts-expect-error
+      if (!list.some((li) => li.id == house.id)) list.push(house);
+    });
+
     return list;
   }
 }

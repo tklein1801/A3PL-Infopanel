@@ -2,6 +2,7 @@ import { ExpandMore as ExpandMoreIcon, Room as RoomIcon } from '@mui/icons-mater
 import { Accordion, AccordionDetails, Box, Button, Chip, Grid, Link, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import React from 'react';
+import { House } from 'types';
 import { StoreContext } from 'context/';
 import { AccordionSummary, NoItems, Progress } from 'components/';
 
@@ -24,7 +25,7 @@ export const Properties = () => {
     }
 
     return {
-      houses: profile.houses,
+      houses: profile.getHouses(),
       rentals: profile.rentals,
       buildings: profile.buildings,
     };
@@ -53,10 +54,16 @@ export const Properties = () => {
                     id={`panel${house.id}a-header`}
                   >
                     <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>Haus {house.id}</Typography>
+                    <Chip
+                      label={house instanceof House ? 'Inhaber' : 'Bewohner'}
+                      size="small"
+                      sx={{ ml: { xs: 0, md: 1 } }}
+                    />
+
                     {house.disabled ? (
-                      <Chip label="Inaktiv" size="small" sx={{ ml: { xs: 0, md: 1 } }} />
+                      <Chip label="Inaktiv" size="small" sx={{ ml: 1 }} />
                     ) : (
-                      <Chip label={`${house.payed_for / 24} Tage`} size="small" sx={{ ml: { xs: 0, md: 1 } }} />
+                      <Chip label={`${house.payed_for / 24} Tage`} size="small" sx={{ ml: 1 }} />
                     )}
                   </AccordionSummary>
                   <AccordionDetails>
@@ -69,7 +76,7 @@ export const Properties = () => {
                           size="small"
                           startIcon={<RoomIcon />}
                           LinkComponent={Link}
-                          href={house.location.getMapUrl()}
+                          href={house.getPosition().getMapUrl()}
                           target="_blank"
                         >
                           Karte aufrufen
@@ -81,7 +88,7 @@ export const Properties = () => {
                         </Typography>
                         <Typography>{format(house.active_until, 'dd.MM.yy, HH:mm')} Uhr</Typography>
                       </Grid>
-                      {house.players.length > 0 && (
+                      {house instanceof House && house.players.length > 0 && (
                         <Grid item xs={12} md={6}>
                           <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
                             Zweitschlüssel

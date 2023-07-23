@@ -5,7 +5,7 @@ export * from './company';
 export * from './cop-bonus';
 export * from './donation';
 export * from './garage';
-export * from './house';
+export * from './House';
 export * from './license';
 export * from './market';
 export * from './phone';

@@ -1,4 +1,5 @@
 import { addHours } from 'date-fns';
+import { HouseDTO, HouseDTOResponse } from './HouseDTO';
 import type { PositionResponse } from './position';
 import { Position } from './position';
 
@@ -23,23 +24,16 @@ export class ServerHouse {
   }
 }
 
-export type HouseResponse = ServerHouseResponse & {
-  /** `payed_for` in hours */
-  payed_for: number;
-  disabled: number;
+export type HouseResponse = HouseDTOResponse & {
+  players: string[];
 };
 
-export class House extends ServerHouse {
-  /** `payed_for` in hours */
-  payed_for: number;
-  active_until: Date;
-  disabled: boolean;
+export class House extends HouseDTO {
+  players: string[];
 
   constructor(data: HouseResponse) {
     super({ ...data });
-    this.payed_for = data.payed_for;
-    this.active_until = addHours(new Date(), data.payed_for);
-    this.disabled = data.disabled === 1;
+    this.players = data.players;
   }
 }
 
