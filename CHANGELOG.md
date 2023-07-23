@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.5.0](https://github.com/tklein1801/A3PL-Infopanel/compare/v4.4.0...v4.5.0) (2023-07-23)
+
+
+### Features
+
+* Display buildings which the user has access to ([1d53898](https://github.com/tklein1801/A3PL-Infopanel/commit/1d538983b4dafab68f341fcee4aceb166c363c4e))
+* Display houses which the user has access to ([4a860d7](https://github.com/tklein1801/A3PL-Infopanel/commit/4a860d7af850d12a81ff1c2d16f9345a5d49f732))
+* Show all bank-accounts(with access) ([53e2f28](https://github.com/tklein1801/A3PL-Infopanel/commit/53e2f28e5ee3b2406aa950f7fe2db08dd3764249))
+
 ## [4.4.0](https://github.com/DulliAG/A3RLRPG-Infopanel/compare/v4.3.0...v4.4.0) (2023-06-14)
 
 
