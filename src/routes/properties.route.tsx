@@ -3,6 +3,7 @@ import { Accordion, AccordionDetails, Box, Button, Chip, Grid, Link, Typography 
 import { format } from 'date-fns';
 import React from 'react';
 import { House } from 'types';
+import { Building } from 'types/Building';
 import { StoreContext } from 'context/';
 import { AccordionSummary, NoItems, Progress } from 'components/';
 
@@ -27,7 +28,7 @@ export const Properties = () => {
     return {
       houses: profile.getHouses(),
       rentals: profile.rentals,
-      buildings: profile.buildings,
+      buildings: profile.getBuildings(),
     };
   }, [profile]);
 
@@ -164,10 +165,15 @@ export const Properties = () => {
                     id={`panel${building.id}a-header`}
                   >
                     <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>Baustelle {building.id}</Typography>
+                    <Chip
+                      label={building instanceof Building ? 'Inhaber' : 'Bauhelfer'}
+                      size="small"
+                      sx={{ ml: { xs: 0, md: 1 } }}
+                    />
                     {building.disabled ? (
-                      <Chip label="Inaktiv" size="small" sx={{ ml: { xs: 0, md: 1 } }} />
+                      <Chip label="Inaktiv" size="small" sx={{ ml: 1 }} />
                     ) : (
-                      <Chip label={`Baustufe ${building.stage}`} size="small" sx={{ ml: { xs: 0, md: 1 } }} />
+                      <Chip label={`Baustufe ${building.stage}`} size="small" sx={{ ml: 1 }} />
                     )}
                   </AccordionSummary>
                   <AccordionDetails>
@@ -180,7 +186,7 @@ export const Properties = () => {
                           size="small"
                           startIcon={<RoomIcon />}
                           LinkComponent={Link}
-                          href={building.location.getMapUrl()}
+                          href={building.getPosition().getMapUrl()}
                           target="_blank"
                         >
                           Karte aufrufen
@@ -194,7 +200,7 @@ export const Properties = () => {
                           {building.stage}, {building.classname}
                         </Typography>
                       </Grid>
-                      {building.players.length > 0 && (
+                      {building instanceof Building && building.players.length > 0 && (
                         <Grid item xs={6}>
                           <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
                             Zweitschlüssel

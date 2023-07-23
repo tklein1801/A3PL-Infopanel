@@ -1,5 +1,7 @@
 import { BankAccountDTO, type BankAccountDTOResponse } from './BankAccountDTO';
-import { Building, type BuildingResponse, House, type HouseResponse } from './House';
+import { Building, type BuildingResponse } from './Building';
+import { BuildingDTO, type BuildingDTOResponse } from './BuildingDTO';
+import { House, type HouseResponse } from './House';
 import { HouseDTO, type HouseDTOResponse } from './HouseDTO';
 import { Rental, type RentalResponse } from './Rental';
 import { Timezone, type TimezoneResponse } from './api_response';
@@ -69,6 +71,7 @@ export type ProfileResponse = {
   houses_keyed: HouseDTOResponse[];
   rentals: RentalResponse[];
   buildings: BuildingResponse[];
+  buildings_keyed: BuildingDTOResponse[];
   phones: PhoneResponse[];
   company_owned: CompanyResponse[];
   phonebooks: PhonebookResponse[];
@@ -134,6 +137,7 @@ export class Profile {
   houses_keyed: HouseDTO[];
   rentals: Rental[];
   buildings: Building[];
+  buildings_keyed: BuildingDTO[];
   phones: Phone[];
   company_owned: Company[];
   phonebooks: Phonebook[];
@@ -191,6 +195,7 @@ export class Profile {
     this.houses_keyed = data.houses_keyed.map((props) => new HouseDTO(props));
     this.rentals = data.rentals.map((props) => new Rental(props));
     this.buildings = data.buildings.map((props) => new Building(props));
+    this.buildings_keyed = data.buildings_keyed.map((props) => new BuildingDTO(props));
     this.phones = data.phones.map((props) => new Phone(props));
     this.company_owned = data.company_owned.map((props) => new Company(props));
     this.phonebooks = data.phonebooks.map((props) => new Phonebook(props));
@@ -242,6 +247,17 @@ export class Profile {
     this.houses_keyed.forEach((house) => {
       // @ts-expect-error
       if (!list.some((li) => li.id == house.id)) list.push(house);
+    });
+
+    return list;
+  }
+
+  public getBuildings(): Building[] | BuildingDTO[] {
+    const list: Building[] | BuildingDTO[] = [...this.buildings];
+
+    this.buildings_keyed.forEach((building) => {
+      // @ts-expect-error
+      if (!list.some((li) => li.id == building.id)) list.push(building);
     });
 
     return list;
