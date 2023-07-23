@@ -1,3 +1,4 @@
+import { BankAccountDTO, BankAccountDTOResponse } from './BankAccountDTO';
 import { Timezone, TimezoneResponse } from './api_response';
 import { BankAccount, BankAccountResponse } from './bank-account';
 import { Company, CompanyResponse } from './company';
@@ -70,6 +71,7 @@ export type ProfileResponse = {
   phonebooks: PhonebookResponse[];
   licenses: LicenseResponse[];
   bank_main: BankAccountResponse[];
+  banks: BankAccountDTOResponse[];
 };
 
 export class Profile {
@@ -133,6 +135,7 @@ export class Profile {
   phonebooks: Phonebook[];
   licenses: License[];
   bank_main: BankAccount[];
+  banks: BankAccountDTO[];
 
   constructor(data: ProfileResponse) {
     this.id = data.id;
@@ -188,9 +191,10 @@ export class Profile {
     this.phonebooks = data.phonebooks.map((props) => new Phonebook(props));
     this.licenses = data.licenses.map((props) => new License(props));
     this.bank_main = data.bank_main.map((props) => new BankAccount(props, data.name));
+    this.banks = data.banks.map((props) => new BankAccountDTO(props));
   }
 
-  transformPlaytime() {
+  public transformPlaytime() {
     const { active, total } = this.play_time;
     return {
       active: active / 60,
@@ -198,14 +202,32 @@ export class Profile {
     };
   }
 
-  getActiveCompanies(): Company[] {
+  public getActiveCompanies(): Company[] {
     return this.company_owned.filter((company) => !company.disabled);
   }
 
   /**
    * If the `name` of the player is in the player-list hes currently online
    */
-  isOnline(servers: RpgServer[] | Server[]): boolean {
+  public isOnline(servers: RpgServer[] | Server[]): boolean {
     return servers.some((server) => server.players.includes(this.name));
+  }
+
+  public getBankAccounts(): BankAccount[] | BankAccountDTO[] {
+    const list: BankAccount[] | BankAccountDTO[] = [
+      ...this.bank_main,
+      ...this.getActiveCompanies()
+        .filter((c) => c.bank_details)
+        .flatMap(({ bank_details }) => {
+          const details = bank_details as Exclude<Company['bank_details'], undefined>;
+          return [details.bank_1, details.bank_2];
+        }),
+    ];
+
+    this.banks.forEach((acc) => {
+      // @ts-expect-error
+      if (!list.some((le) => le.iban == acc.iban)) list.push(acc);
+    });
+    return list;
   }
 }

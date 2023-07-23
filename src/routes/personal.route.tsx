@@ -39,7 +39,7 @@ export const Personal = () => {
             Online Banking
           </Typography>
           <Grid container spacing={3}>
-            {profile && profile.isOnline(servers) && bankAccounts.length > 0 && (
+            {profile && profile.isOnline(servers) && profile.getBankAccounts().length > 0 && (
               <Grid item xs={12} md={12}>
                 <Alert severity="warning">
                   <AlertTitle>Achtung</AlertTitle>
@@ -48,9 +48,9 @@ export const Personal = () => {
               </Grid>
             )}
 
-            {bankAccounts.length > 0 ? (
-              bankAccounts.map((account) => (
-                <Grid key={account.id} item xs={12} md={6} xl={4}>
+            {profile && profile.getBankAccounts().length > 0 ? (
+              profile.getBankAccounts().map((account) => (
+                <Grid key={account.iban} item xs={12} md={6} xl={4}>
                   <CreditCard
                     owner={account.owner}
                     iban={account.iban}
@@ -69,7 +69,7 @@ export const Personal = () => {
           <Typography variant="subtitle1" mt={2} mb={1}>
             Handys
           </Typography>
-          <Grid container spacing={3}>
+          <Grid container spacing={1.5}>
             {loading ? (
               <Grid item xs={6} md={4} xl={3}>
                 <Progress />
