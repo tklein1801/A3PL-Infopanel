@@ -2,8 +2,7 @@ import { TabContext } from '@mui/lab';
 import { Box, Tabs as MuiTabs, Paper, Tab } from '@mui/material';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Changelogs, Garage, Home, Market, Personal, Properties, Settings, Trader } from 'routes/';
-import { StoreContext } from 'context/';
+import { Changelogs, Garage, Home, Market, Personal, Properties, Settings, Trader } from '@/routes';
 
 export interface TabContent {
   requiresAuth: boolean;

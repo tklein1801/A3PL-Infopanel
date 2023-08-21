@@ -3,9 +3,9 @@ import { Accordion, AccordionDetails, Chip, Grid, Typography } from '@mui/materi
 import { format } from 'date-fns';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { PanthorService } from 'services/';
-import { StoreContext } from 'context/';
-import { AccordionSummary, NoItems, Progress } from 'components/';
+import { PanthorService } from '@/services';
+import { StoreContext } from '@/context';
+import { AccordionSummary, NoItems, Progress } from '@/components';
 
 export const Changelogs = () => {
   const id = React.useId();

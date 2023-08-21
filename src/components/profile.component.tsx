@@ -1,11 +1,11 @@
 import { Payments as PaymentsIcon, PersonPinCircle as PersonPinCircleIcon } from '@mui/icons-material';
 import { Avatar, Button, Grid, Link, Paper, PaperProps } from '@mui/material';
-import { Panthor } from 'constants/';
+import { Panthor } from '@/constants';
 import { format } from 'date-fns';
 import React from 'react';
-import { parseCurrency } from 'utils/';
-import { IStoreContext } from 'context/';
-import { LabelValue, LevelProgress } from 'components/';
+import { parseCurrency } from '@/utils';
+import { IStoreContext } from '@/context';
+import { LabelValue, LevelProgress } from '@/components';
 
 export interface ProfileProps extends PaperProps {
   profile: IStoreContext['profile'];

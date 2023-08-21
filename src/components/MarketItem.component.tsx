@@ -1,6 +1,6 @@
 import { Divider, List, ListItem, ListItemAvatar, ListItemText, Tooltip, Typography } from '@mui/material';
 import React from 'react';
-import { parseCurrency } from 'utils';
+import { parseCurrency } from '@/utils';
 import { Image } from './base';
 
 export type MarketItemProps = {

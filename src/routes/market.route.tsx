@@ -1,12 +1,12 @@
 import { ExpandMore as ExpandMoreIcon, Storefront as StorefrontIcon } from '@mui/icons-material';
 import { Accordion, AccordionDetails, Badge, Box, Grid, Paper, Typography } from '@mui/material';
-import { DATA_REFRESH_INTERVAL } from 'constants/';
+import { DATA_REFRESH_INTERVAL } from '@/constants';
 import { differenceInSeconds } from 'date-fns';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { PanthorService } from 'services/';
-import { CopBonus, MarketItem, RpgServer } from 'types/';
-import { StoreContext } from 'context/';
+import { PanthorService } from '@/services';
+import { CopBonus, MarketItem, RpgServer } from '@/types';
+import { StoreContext } from '@/context';
 import {
   AccordionSummary,
   CopBonus as CopBonusComponent,
@@ -16,8 +16,8 @@ import {
   NoItems,
   Progress,
   SearchInput,
-} from 'components/';
-import { MarketItemList } from 'components/MarketItem.component';
+} from '@/components';
+import { MarketItemList } from '@/components/MarketItem.component';
 
 export const Market = () => {
   const FALLBACK_SERVER_ID = 1;

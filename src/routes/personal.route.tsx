@@ -13,9 +13,9 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-import { parseCurrency } from 'utils/';
-import { StoreContext } from 'context/';
-import { CreditCard, NoItems, Phone, PhonebookWrapper, Progress } from 'components/';
+import { parseCurrency } from '@/utils';
+import { StoreContext } from '@/context';
+import { CreditCard, NoItems, Phone, PhonebookWrapper, Progress } from '@/components';
 
 export const Personal = () => {
   const { loading, profile, servers } = React.useContext(StoreContext);

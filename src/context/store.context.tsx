@@ -1,6 +1,6 @@
-import { DATA_REFRESH_INTERVAL } from 'constants/';
+import { DATA_REFRESH_INTERVAL } from '@/constants';
 import React from 'react';
-import { PanthorService } from 'services/';
+import { PanthorService } from '@/services';
 import {
   Changelog,
   MarketItem,
@@ -12,8 +12,8 @@ import {
   ShopItem,
   ShopType,
   Vehicle,
-} from 'types/';
-import { CompanyShop } from 'types/company_shop';
+} from '@/types';
+import { CompanyShop } from '@/types/company_shop';
 
 export interface IStoreContext {
   loading: boolean;

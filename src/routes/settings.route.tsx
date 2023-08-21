@@ -1,22 +1,9 @@
-import {
-  Box,
-  Button,
-  Divider,
-  FormControlLabel,
-  Grid,
-  Link,
-  Paper,
-  Switch,
-  TextField,
-  Typography,
-  useTheme,
-} from '@mui/material';
-import axios, { AxiosRequestConfig } from 'axios';
-import { Panthor } from 'constants/';
+import { Box, Button, Grid, Link, Paper, TextField, Typography, useTheme } from '@mui/material';
+import { Panthor } from '@/constants';
 import React from 'react';
-import { PanthorService } from 'services/';
-import { SnackbarContext, StoreContext } from 'context/';
-import { Image, LabelValue } from 'components/';
+import { PanthorService } from '@/services';
+import { SnackbarContext, StoreContext } from '@/context';
+import { Image, LabelValue } from '@/components';
 import PCK from '../../package.json';
 
 export const Settings = () => {

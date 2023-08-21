@@ -1,10 +1,10 @@
 import { Box, Container, Grid } from '@mui/material';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { MainStyle } from 'theme/style/main.style';
-import { StoreContext } from 'context/';
-import { FabContainer, Footer, MaintenanceWarning, Profile, ScrollTopFab } from 'components/';
-import AppConfig from '../config';
+import { MainStyle } from '@/theme/style/main.style';
+import { StoreContext } from '@/context';
+import { FabContainer, Footer, MaintenanceWarning, Profile, ScrollTopFab } from '@/components';
+import AppConfig from '@/config';
 import { TabWrapper } from './tabs.layout';
 
 export const AuthLayout: React.FC<React.PropsWithChildren> = ({ children }) => {

@@ -1,9 +1,9 @@
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
-import { PanthorService } from 'services/';
-import { ShopCategory, ShopType } from 'types/';
-import { StoreContext } from 'context/';
-import { NoItems, Progress, TraderWrapper } from 'components/';
+import { PanthorService } from '@/services';
+import { ShopCategory, ShopType } from '@/types';
+import { StoreContext } from '@/context';
+import { NoItems, Progress, TraderWrapper } from '@/components';
 
 export const Trader = () => {
   const { loading, setLoading, traders, setTraders } = React.useContext(StoreContext);

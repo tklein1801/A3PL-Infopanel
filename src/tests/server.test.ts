@@ -1,4 +1,4 @@
-import { CopBonus } from '../types/cop-bonus';
+import { CopBonus } from '@/types/cop-bonus';
 
 describe('Verifying cop-bonus calculations', () => {
   const MARKET_PRICE = 100;

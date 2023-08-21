@@ -1,63 +1,27 @@
-# A3RLRPG-Infopanel
+# React + TypeScript + Vite
 
-## Features
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-<details>
- <summary>:busts_in_silhouette: Serverliste</summary>
- Sehe wer gerade auf welchem Server spielt und auf welchem Server sich deine Freunde befinden
-</details>
+Currently, two official plugins are available:
 
-<details>
- <summary>:construction_worker: Profil</summary>
- Zeigt dir Spieler Informationen, Konten, Fahrzeuge, Häuser, Appartments sowie Baustellen an welche auf deinen Spieler registriert sind
-</details>
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-<details>
- <summary>:chart_with_upwards_trend: Markt</summary>
- Zeigt die derzeitigen Marktpreise (inkl. Cop-Bonus(auf ~5% genau))
-</details>
+## Expanding the ESLint configuration
 
-<details>
- <summary>:iphone: Kontaktbuch</summary>
- Anzeigen und durchsuchen der Kontaktbücher des Spielers sowie seiner Identitäten
-</details>
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-<details>
- <summary>:label: Shops</summary>
- Aufwählung aller verfügbaren Shops für Fahrzeuge und Items sowie deren Angebote
-</details>
+- Configure the top-level `parserOptions` property like this:
 
-<details>
- <summary>:memo: Changelogs</summary>
- Changelogs über Mission, Mod und Map des ReallifeRPG Mods
-</details>
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
 
-## :wrench: Installation
-
-1. Dependencies installieren
-
-   ```shell
-   npm install
-   ```
-
-2. GIT-Hooks aufsetzen
-
-   ```shell
-   npm run prepare
-   ```
-
-3. Start app
-
-   ```shell
-   npm start
-   ```
-
-## Ressourcen
-
-| Ressouce    | Website                              |
-| ----------- | ------------------------------------ |
-| ReactJS     | [https://reactjs.org](//reactjs.org) |
-| Material UI | [https://mui.com](//mui.com)         |
-| Panthor API | [https://panthor.de](//panthor.de)   |
-
-_Have a look on all used ressources [here](./package.json#L16)_
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

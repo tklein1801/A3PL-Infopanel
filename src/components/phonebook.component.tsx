@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-import { Phonebook as PhonebookModel, Profile } from 'types/';
+import { Phonebook as PhonebookModel, Profile } from '@/types';
 import { AccordionSummary, SearchInput, Signature, onSearchHandler } from './base/';
 import { LabelValue, NoItems } from './core/';
 

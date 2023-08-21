@@ -1,6 +1,6 @@
 import { Box, Divider, Typography } from '@mui/material';
 import React from 'react';
-import { Linkify } from 'components/base/';
+import { Linkify } from '@/components/base';
 
 export interface LabelValueProps {
   label: string;

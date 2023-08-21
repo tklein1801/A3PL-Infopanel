@@ -1,10 +1,10 @@
 import { Box, Grid, SxProps, Theme, Tooltip, Typography, useTheme } from '@mui/material';
 import React from 'react';
-import PANTHOR_LOGO from 'ressources/panthor/panthor_logo.png';
-import { parseCurrency } from 'utils/';
-import { Image } from 'components/base';
-import { Panthor } from '../constants';
-import { SnackbarContext } from '../context';
+import PANTHOR_LOGO from '@/ressources/panthor/panthor_logo.png';
+import { parseCurrency } from '@/utils';
+import { Image } from '@/components/base';
+import { Panthor } from '@/constants';
+import { SnackbarContext } from '@/context';
 
 export interface CreditCardProps {
   iban: string;

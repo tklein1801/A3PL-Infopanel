@@ -1,7 +1,7 @@
 import { PriceChange as PriceChangeIcon } from '@mui/icons-material';
 import { Box, Paper, Tooltip, Typography } from '@mui/material';
 import React from 'react';
-import { CopBonus as CopBonusModel } from 'types/';
+import { CopBonus as CopBonusModel } from '@/types';
 import { Icon } from './base/icon.component';
 
 export interface CopBonusProps {

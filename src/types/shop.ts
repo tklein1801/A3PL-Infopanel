@@ -1,4 +1,4 @@
-import { Panthor } from 'constants/';
+import { Panthor } from '@/constants/';
 
 export type ShopCategory = 'items' | 'vehicles';
 

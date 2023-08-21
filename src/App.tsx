@@ -1,10 +1,10 @@
 import { Box } from '@mui/material';
-import { NotAuthentificated } from 'components';
+import { NotAuthentificated } from '@/components';
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { StoreContext } from './context/';
-import { AuthLayout, NonAuthLayout, Tabs } from './layout/';
-import { MainStyle } from './theme/style/main.style';
+import { StoreContext } from '@/context';
+import { AuthLayout, NonAuthLayout, Tabs } from '@/layout';
+import { MainStyle } from '@/theme/style/main.style';
 
 export default function App() {
   const { authentificated } = React.useContext(StoreContext);

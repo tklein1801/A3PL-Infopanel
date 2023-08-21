@@ -2,10 +2,9 @@ import { ExpandMore as ExpandMoreIcon, Room as RoomIcon } from '@mui/icons-mater
 import { Accordion, AccordionDetails, Box, Button, Chip, Grid, Link, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import React from 'react';
-import { House } from 'types';
-import { Building } from 'types/Building';
-import { StoreContext } from 'context/';
-import { AccordionSummary, NoItems, Progress } from 'components/';
+import { House, Building } from '@/types';
+import { StoreContext } from '@/context';
+import { AccordionSummary, NoItems, Progress } from '@/components';
 
 export const Properties = () => {
   const id = React.useId();

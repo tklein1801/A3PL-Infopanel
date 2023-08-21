@@ -1,7 +1,7 @@
 import { Box, BoxProps, Chip, Grid, Paper, Typography } from '@mui/material';
 import React from 'react';
-import { RpgServer, Server } from 'types';
-import { NoItems } from 'components/core';
+import { RpgServer, Server } from '@/types';
+import { NoItems } from '@/components/core';
 
 export interface PlayerlistProps {
   server: RpgServer | Server;

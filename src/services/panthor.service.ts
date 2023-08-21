@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Panthor } from 'constants/';
+import { Panthor } from '@/constants';
 import type {
   ApiResponse,
   ChangelogResponse,
@@ -12,9 +12,9 @@ import type {
   ShopTypeResponse,
   ValidSecretResponse,
   VehicleResponse,
-} from 'types/';
-import { Changelog, MarketItem, Profile, RpgServer, Server, ShopType, Vehicle } from 'types/';
-import { CompanyShop, CompanyShopResponse } from 'types/company_shop';
+} from '@/types';
+import { Changelog, MarketItem, Profile, RpgServer, Server, ShopType, Vehicle } from '@/types';
+import { CompanyShop, CompanyShopResponse } from '@/types/company_shop';
 
 export class PanthorService {
   static async validateSecret(apiKey: string): Promise<Boolean> {

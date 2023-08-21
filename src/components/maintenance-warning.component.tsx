@@ -2,7 +2,7 @@ import { Room as RoomIcon } from '@mui/icons-material';
 import { Alert, AlertTitle, Box, Button, Link, Tooltip, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import React from 'react';
-import { House, Rental } from 'types';
+import { House, Rental } from '@/types';
 
 export interface MaintenanceWarningProps {
   target: House | Rental;
