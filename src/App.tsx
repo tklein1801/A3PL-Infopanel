@@ -8,6 +8,7 @@ import { MainStyle } from '@/theme/style/main.style';
 
 export default function App() {
   const { authentificated } = React.useContext(StoreContext);
+
   return (
     <Box sx={MainStyle}>
       <Routes>

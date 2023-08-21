@@ -2,6 +2,7 @@ import { Box, BoxProps, Chip, Grid, Paper, Typography } from '@mui/material';
 import React from 'react';
 import { RpgServer, Server } from '@/types';
 import { NoItems } from '@/components/core';
+import i18next from '@/i18next';
 
 export interface PlayerlistProps {
   server: RpgServer | Server;
@@ -11,7 +12,7 @@ export const Playerlist: React.FC<PlayerlistProps> = ({ server }) => {
   return (
     <Box mt={2}>
       <Typography variant="subtitle1" mb={1}>
-        Spielerliste
+        {i18next.t('server_playerlist_heading')}
       </Typography>
 
       <Grid container spacing={3}>
@@ -20,11 +21,23 @@ export const Playerlist: React.FC<PlayerlistProps> = ({ server }) => {
             <Paper sx={{ p: 2 }}>
               {'side' in server ? (
                 <React.Fragment>
-                  <PlayerlistSection side="civs" heading="Zivilisten" players={server.side.civs} />
-                  <PlayerlistSection side="medics" heading="Abramier" players={server.side.medics} />
-                  <PlayerlistSection side="rac" heading="RAC'ler" players={server.side.rac} />
-                  <PlayerlistSection side="cops" heading="Polizisten" players={server.side.cops} />
-                  <PlayerlistSection side="justice" heading="Justiz'ler" players={server.side.justice} />
+                  <PlayerlistSection side="civs" heading={i18next.t('server_civ_label')} players={server.side.civs} />
+                  <PlayerlistSection
+                    side="medics"
+                    heading={i18next.t('server_medic_label')}
+                    players={server.side.medics}
+                  />
+                  <PlayerlistSection side="rac" heading={i18next.t('server_adac_label')} players={server.side.rac} />
+                  <PlayerlistSection
+                    side="cops"
+                    heading={i18next.t('server_police_label')}
+                    players={server.side.cops}
+                  />
+                  <PlayerlistSection
+                    side="justice"
+                    heading={i18next.t('server_doj_label')}
+                    players={server.side.justice}
+                  />
                 </React.Fragment>
               ) : (
                 server.players.map((player, index) => (
@@ -39,7 +52,7 @@ export const Playerlist: React.FC<PlayerlistProps> = ({ server }) => {
               )}
             </Paper>
           ) : (
-            <NoItems message="Keine Spieler gefunden" />
+            <NoItems message={i18next.t('server_playerlist_no_players')} />
           )}
         </Grid>
       </Grid>

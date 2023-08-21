@@ -17,6 +17,7 @@ import React from 'react';
 import { Phonebook as PhonebookModel, Profile } from '@/types';
 import { AccordionSummary, SearchInput, Signature, onSearchHandler } from './base/';
 import { LabelValue, NoItems } from './core/';
+import i18next from '@/i18next';
 
 export interface PhonebookProps {
   phonebook: PhonebookModel;
@@ -44,34 +45,40 @@ export const Phonebook: React.FC<PhonebookProps> = ({ phonebook }) => {
           </Grid>
 
           <Grid item xs={5}>
-            <LabelValue label="Name" value={phonebook.identity.name} />
-            <LabelValue label="Nationalität" value={phonebook.identity.id_nationality} />
+            <LabelValue label={i18next.t('phonebook_name')} value={phonebook.identity.name} />
+            <LabelValue label={i18next.t('phonebook_nation')} value={phonebook.identity.id_nationality} />
           </Grid>
 
           <Grid item xs={5}>
-            <LabelValue label="Geburts" value={phonebook.identity.id_birthday.toString()} />
-            <LabelValue label="Fraktion" value={<Chip label={phonebook.identity.side.getLabel()} />} />
+            <LabelValue label={i18next.t('phonebook_dob')} value={phonebook.identity.id_birthday.toString()} />
+            <LabelValue
+              label={i18next.t('phonebook_side')}
+              value={<Chip label={phonebook.identity.side.getLabel()} />}
+            />
           </Grid>
 
           <Grid item xs={2}></Grid>
           <Grid item xs={10}>
-            <LabelValue label="Signatur" value={phonebook.identity.pid + '-' + phonebook.identity.id} />
+            <LabelValue
+              label={i18next.t('phonebook_signature')}
+              value={phonebook.identity.pid + '-' + phonebook.identity.id}
+            />
             <Signature sx={{ fontSize: '1.4rem', mt: '-1rem', mb: '1rem' }}>{phonebook.identity.name}</Signature>
           </Grid>
         </Grid>
       </Box>
 
       <Box sx={{ ml: 1, mr: 2 }}>
-        <SearchInput placeholder="Suchen" onChange={handleOnSearch} />
+        <SearchInput placeholder={i18next.t('phonebook_search')} onChange={handleOnSearch} />
       </Box>
 
       <List dense>
         {shownContacts.length < 1 ? (
           <ListItem>
             <ListItemText
-              primary="Keine Kontakte"
+              primary={i18next.t('phonebook_no_contacts')}
               primaryTypographyProps={{ textAlign: 'center' }}
-              secondary={keyword.length > 0 ? `Keine Treffer für '${keyword}'!` : undefined}
+              secondary={keyword.length > 0 ? i18next.t('phonebook_no_matches_for', { keyword: keyword }) : undefined}
               secondaryTypographyProps={{ textAlign: 'center' }}
             />
           </ListItem>
@@ -88,10 +95,10 @@ export const Phonebook: React.FC<PhonebookProps> = ({ phonebook }) => {
                   secondary={
                     <Grid container>
                       <Grid item xs={6}>
-                        <Typography>{contact.number || 'Keine Nummer'}</Typography>
+                        <Typography>{contact.number || i18next.t('phonebook_contact_no_phone')}</Typography>
                       </Grid>
                       <Grid item xs={6}>
-                        <Typography>{contact.iban || 'Keine IBAN'}</Typography>
+                        <Typography>{contact.iban || i18next.t('phonebook_contact_no_iban')}</Typography>
                       </Grid>
                     </Grid>
                   }
@@ -138,7 +145,7 @@ export const PhonebookWrapper: React.FC<PhonebookWrapperProps> = ({ phonebooks }
           </Accordion>
         ))
       ) : (
-        <NoItems message="Keine Kontakte gefunden" />
+        <NoItems message={i18next.t('phonebook_no_contacts')} />
       )}
     </React.Fragment>
   );

@@ -1,5 +1,6 @@
 import { Side } from './side';
 import type { Sides } from './side';
+import i18next from '@/i18next';
 
 export type VehicleType = 'Car' | 'Ship' | 'Air';
 
@@ -100,7 +101,7 @@ export class Vehicle {
     number,
     number,
     number,
-    number
+    number,
   ];
   kilometer: number;
   kilometer_total: number;
@@ -156,11 +157,11 @@ export class Vehicle {
   getVehicleTypeLabel(): string {
     switch (this.type) {
       case 'Air':
-        return 'Luftfahrzeug';
+        return i18next.t('vehicle_type_air');
       case 'Ship':
-        return 'Wasserfahrzeug';
+        return i18next.t('vehicle_type_sea');
       case 'Car':
-        return 'Landfahrzeug';
+        return i18next.t('vehicle_type_land');
     }
   }
 

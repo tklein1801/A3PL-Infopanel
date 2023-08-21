@@ -43,6 +43,14 @@ export interface IStoreContext {
 
 export const StoreContext = React.createContext({} as IStoreContext);
 
+export function useStoreContext() {
+  const ctx = React.useContext(StoreContext);
+  if (!ctx) {
+    throw new Error('useStoreContext must be used inside StoreProvider');
+  }
+  return ctx;
+}
+
 export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [loading, setLoading] = React.useState<IStoreContext['loading']>(false);
   const [apiKey, setApiKey] = React.useState<IStoreContext['apiKey']>(localStorage.getItem('infopanel.apikey'));

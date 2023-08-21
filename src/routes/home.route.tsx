@@ -5,6 +5,7 @@ import React from 'react';
 import { PanthorService } from '@/services';
 import { StoreContext } from '@/context';
 import { NoItems, Playerlist, Progress, Server, ServerProps } from '@/components';
+import i18n from '@/i18next';
 
 export const Home = () => {
   const id = React.useId();
@@ -41,7 +42,7 @@ export const Home = () => {
     <React.Fragment>
       <Box>
         <Typography variant="subtitle1" mb={1}>
-          Serverliste
+          {i18n.t('serverlist')}
         </Typography>
         {loading ? (
           <Progress />
@@ -78,7 +79,7 @@ export const Home = () => {
             </Grid>
           )
         ) : (
-          <NoItems message="Kein Server online" />
+          <NoItems message={i18n.t('no_server_online')} />
         )}
       </Box>
 

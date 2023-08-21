@@ -2,6 +2,7 @@ import { East as EastIcon } from '@mui/icons-material';
 import { Box, Button, Paper, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import i18next from '@/i18next';
 
 export const NotAuthentificated = () => {
   const navigate = useNavigate();
@@ -25,12 +26,12 @@ export const NotAuthentificated = () => {
         }}
       >
         <Typography variant="h5" textAlign="center">
-          API-Key fehlt
+          {i18next.t('not_authentificated_heading')}
         </Typography>
 
         <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
           <Button endIcon={<EastIcon />} onClick={() => navigate('/settings')}>
-            Einstellungen
+            {i18next.t('not_authentificated_goto_settings')}
           </Button>
         </Box>
       </Paper>

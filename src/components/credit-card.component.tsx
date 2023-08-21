@@ -5,6 +5,7 @@ import { parseCurrency } from '@/utils';
 import { Image } from '@/components/base';
 import { Panthor } from '@/constants';
 import { SnackbarContext } from '@/context';
+import i18next from '@/i18next';
 
 export interface CreditCardProps {
   iban: string;
@@ -60,7 +61,7 @@ export const CreditCard: React.FC<CreditCardProps> = ({ iban, owner, balance, de
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <Typography variant="caption" sx={style.label}>
-            Inhaber
+            {i18next.t('credit_card_owner')}
           </Typography>
           <Box sx={style.container}>
             <Typography>{owner}</Typography>
@@ -68,16 +69,16 @@ export const CreditCard: React.FC<CreditCardProps> = ({ iban, owner, balance, de
         </Grid>
 
         <Grid item xs={7}>
-          <Tooltip title="IBAN kopieren" placement="bottom">
+          <Tooltip title={i18next.t('credit_card_copy_adress')} placement="bottom">
             <Box
               onClick={(event) => {
                 event.stopPropagation();
                 navigator.clipboard.writeText(iban);
-                showSnackbar({ message: 'IBAN in Zwischenablage gespeichert' });
+                showSnackbar({ message: i18next.t('credit_card_adress_copied') });
               }}
             >
               <Typography variant="caption" sx={style.label}>
-                IBAN
+                {i18next.t('credit_card_adress')}
               </Typography>
               <Box sx={style.container}>
                 <Typography>{iban}</Typography>
@@ -88,7 +89,7 @@ export const CreditCard: React.FC<CreditCardProps> = ({ iban, owner, balance, de
 
         <Grid item xs={5}>
           <Typography variant="caption" sx={style.label}>
-            Saldo
+            {i18next.t('credit_card_balance')}
           </Typography>
           <Box sx={style.container}>
             <Typography textAlign="right">{parseCurrency(balance)}</Typography>

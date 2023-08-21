@@ -6,6 +6,7 @@ import React from 'react';
 import { parseCurrency } from '@/utils';
 import { IStoreContext } from '@/context';
 import { LabelValue, LevelProgress } from '@/components';
+import i18next from '@/i18next';
 
 export interface ProfileProps extends PaperProps {
   profile: IStoreContext['profile'];
@@ -26,21 +27,40 @@ export const Profile: React.FC<ProfileProps> = ({ sx, profile }) => {
         }}
       />
       <LevelProgress currentLevel={profile.level} progress={profile.level_progress} withLabel />
-      <LabelValue label="Name" value={profile.name} />
-      <LabelValue label="PlayerId" value={profile.pid} withDivider />
-      <LabelValue label="Bargeld" value={parseCurrency(profile.cash)} withDivider />
-      <LabelValue label="Kontostand (Hauptkonto)" value={parseCurrency(profile.bankacc)} withDivider />
-      <LabelValue label="XP" value={profile.exp.toLocaleString() + ' XP.'} withDivider />
-      <LabelValue label="Skillpunkte" value={profile.skillpoint + ' Punkte'} withDivider />
-      <LabelValue label="Spielzeit" value={active.toFixed(0) + ' Stunden'} withDivider />
-      <LabelValue label="Volle Spielzeit" value={total.toFixed(0) + ' Stunden'} withDivider />
+      <LabelValue label={i18next.t('profile_name_label')} value={profile.name} />
+      <LabelValue label={i18next.t('profile_player_id_label')} value={profile.pid} withDivider />
+      <LabelValue label={i18next.t('profile_cash_label')} value={parseCurrency(profile.cash)} withDivider />
       <LabelValue
-        label="Zuletzt gesehen"
-        value={format(profile.last_seen.date, 'dd.MM.yy, HH:mm') + ' Uhr'}
+        label={i18next.t('profile_bank_account_main_label')}
+        value={parseCurrency(profile.bankacc)}
         withDivider
       />
-      <LabelValue label="Beigetreten" value={format(profile.joined_at, 'dd.MM.yy, HH:mm') + ' Uhr'} withDivider />
-
+      <LabelValue
+        label={i18next.t('profile_experience_label')}
+        value={profile.exp.toLocaleString() + ' XP.'}
+        withDivider
+      />
+      <LabelValue label={i18next.t('profile_skillpoints_label')} value={profile.skillpoint + ' Punkte'} withDivider />
+      <LabelValue
+        label={i18next.t('profile_playtime_label')}
+        value={active.toFixed(0) + ' ' + i18next.t('profile_playtime_hours')}
+        withDivider
+      />
+      <LabelValue
+        label={i18next.t('profile_playtime_total_label')}
+        value={total.toFixed(0) + ' ' + i18next.t('profile_playtime_hours')}
+        withDivider
+      />
+      <LabelValue
+        label={i18next.t('profile_last_seen_label')}
+        value={format(profile.last_seen.date, 'dd.MM.yy, HH:mm') + ' ' + i18next.t('profile_o_clock')}
+        withDivider
+      />
+      <LabelValue
+        label={i18next.t('profile_joined_at_label')}
+        value={format(profile.joined_at, 'dd.MM.yy, HH:mm') + ' ' + i18next.t('profile_o_clock')}
+        withDivider
+      />
       <Grid container spacing={1}>
         <Grid item xs={6} md={6}>
           <Button LinkComponent={Link} href={profile.pos.getMapUrl()} target="_blank" fullWidth>

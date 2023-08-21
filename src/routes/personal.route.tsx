@@ -16,6 +16,7 @@ import React from 'react';
 import { parseCurrency } from '@/utils';
 import { StoreContext } from '@/context';
 import { CreditCard, NoItems, Phone, PhonebookWrapper, Progress } from '@/components';
+import i18next from '@/i18next';
 
 export const Personal = () => {
   const { loading, profile, servers } = React.useContext(StoreContext);
@@ -27,14 +28,14 @@ export const Personal = () => {
       ) : (
         <React.Fragment>
           <Typography variant="subtitle1" mb={1}>
-            Online Banking
+            {i18next.t('online_banking_heading')}
           </Typography>
           <Grid container spacing={3}>
             {profile && profile.isOnline(servers) && profile.getBankAccounts().length > 0 && (
               <Grid item xs={12} md={12}>
                 <Alert severity="warning">
-                  <AlertTitle>Achtung</AlertTitle>
-                  Solange du auf dem Server bist kannst du nicht auf das Online Banking zugreifen.
+                  <AlertTitle>{i18next.t('online_banking_disclaimer_heading')}</AlertTitle>
+                  {i18next.t('online_banking_disclaimer_text')}
                 </Alert>
               </Grid>
             )}
@@ -52,13 +53,13 @@ export const Personal = () => {
               ))
             ) : (
               <Grid item xs={12}>
-                <NoItems message="Keine Konten gefunden" />
+                <NoItems message={i18next.t('online_banking_no_accounts')} />
               </Grid>
             )}
           </Grid>
 
           <Typography variant="subtitle1" mt={2} mb={1}>
-            Handys
+            {i18next.t('phones_heading')}
           </Typography>
           <Grid container spacing={1.5}>
             {loading ? (
@@ -75,7 +76,7 @@ export const Personal = () => {
                 ))
             ) : (
               <Grid item xs={12}>
-                <NoItems message="Keine Handys gefunden" />
+                <NoItems message={i18next.t('phones_no_phones')} />
               </Grid>
             )}
           </Grid>
@@ -83,14 +84,14 @@ export const Personal = () => {
           <Grid container mt={2} spacing={3}>
             <Grid item xs={12} md={6}>
               <Typography variant="subtitle1" mb={1}>
-                Telefonbücher
+                {i18next.t('phonebooks_heading')}
               </Typography>
               <PhonebookWrapper phonebooks={profile ? profile.phonebooks : []} />
             </Grid>
 
             <Grid item xs={12} md={6}>
               <Typography variant="subtitle1" mb={1}>
-                Lizenzen
+                {i18next.t('licenses_heading')}
               </Typography>
               {profile && profile.licenses.length > 0 ? (
                 <Paper>
@@ -108,7 +109,7 @@ export const Personal = () => {
                                     <Chip label={license.export_licence.side.getLabel()} sx={{ mr: 1 }} />
                                     <Chip
                                       icon={license.export_licence.illegal ? <CheckIcon /> : <CloseIcon />}
-                                      label="Illegal"
+                                      label={i18next.t('license_illegal')}
                                       sx={{ mr: 1 }}
                                     />
                                     <Chip label={parseCurrency(license.export_licence.price)} />
@@ -122,7 +123,7 @@ export const Personal = () => {
                   </List>
                 </Paper>
               ) : (
-                <NoItems message="Keine Lizenen gefunden" />
+                <NoItems message={i18next.t('licenses_no_licenses')} />
               )}
             </Grid>
           </Grid>

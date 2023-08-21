@@ -1,10 +1,10 @@
-import { ExpandMore as ExpandMoreIcon, Room as RoomIcon } from '@mui/icons-material';
-import { Accordion, AccordionDetails, Box, Button, Chip, Grid, Typography, useTheme } from '@mui/material';
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import { Accordion, AccordionDetails, Box, Chip, Grid, Typography, useTheme } from '@mui/material';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { PanthorService } from '@/services';
 import { StoreContext } from '@/context';
 import { AccordionSummary, Image, LevelProgress, NoItems, Progress } from '@/components';
+import i18next from '@/i18next';
 
 export const Garage = () => {
   const id = React.useId();
@@ -44,7 +44,7 @@ export const Garage = () => {
       <React.Fragment>
         <Box>
           <Typography variant="subtitle1" mb={1}>
-            Fahrzeuge {aliveVehicles.length > 0 && `(${aliveVehicles.length})`}
+            {i18next.t('garage_heading')} {aliveVehicles.length > 0 && `(${aliveVehicles.length})`}
           </Typography>
           {loading ? (
             <Progress />
@@ -61,7 +61,9 @@ export const Garage = () => {
                   id={`panel${vehicle.id}a-header`}
                 >
                   <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>{vehicle.vehicle_data.name}</Typography>
-                  {vehicle.active ? <Chip label="Ausgeparkt" size="small" sx={{ ml: { xs: 0, md: 1 } }} /> : null}
+                  {vehicle.active ? (
+                    <Chip label={i18next.t('garage_vehicle_active')} size="small" sx={{ ml: { xs: 0, md: 1 } }} />
+                  ) : null}
                   <Chip
                     label={vehicle.getVehicleTypeLabel()}
                     size="small"
@@ -72,42 +74,46 @@ export const Garage = () => {
                   <Grid container spacing={1}>
                     <Grid item xs={6} md={3}>
                       <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Fraktion
+                        {i18next.t('garage_vehicle_side')}
                       </Typography>
                       <Chip label={vehicle.side.getLabel()} />
                     </Grid>
                     <Grid item xs={6} md={3}>
                       <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Kennzeichen
+                        {i18next.t('garage_vehicle_plate')}
                       </Typography>
                       <Chip label={vehicle.plate} />
                     </Grid>
                     <Grid item xs={6} md={3}>
                       <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Kilometerstand
+                        {i18next.t('garage_vehicle_mileage')}
                       </Typography>
-                      <Typography>{vehicle.kilometer_total} Km.</Typography>
+                      <Typography>
+                        {vehicle.kilometer_total} {i18next.t('garage_vehiclwe_mileage_short')}
+                      </Typography>
                     </Grid>
                     <Grid item xs={6} md={3}>
                       <Box>
-                        <Button size="small" startIcon={<RoomIcon />} LinkComponent={Link} href={''} target="_blank">
+                        {/* <Button size="small" startIcon={<RoomIcon />} LinkComponent={Link} href={''} target="_blank">
                           Karte aufrufen
-                        </Button>
+                        </Button> */}
                         <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                          Garage
+                          {i18next.t('garage_vehicle_garage')}
                         </Typography>
-                        <Typography>{vehicle.active ? 'Ausgeparkt' : vehicle.lastgarage}</Typography>
+                        <Typography>
+                          {vehicle.active ? i18next.t('garage_vehicle_active') : vehicle.lastgarage}
+                        </Typography>
                       </Box>
                     </Grid>
                     <Grid item xs={6}>
                       <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Tank
+                        {i18next.t('garage_vehicle_fuel')}
                       </Typography>
                       <LevelProgress currentLevel={0} progress={vehicle.fuel * 100} />
                     </Grid>
                     <Grid item xs={12} md={6}>
                       <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
-                        Bild
+                        {i18next.t('garage_vehicle_preview')}
                       </Typography>
                       <Image
                         src={vehicle.getImage()}
@@ -126,7 +132,7 @@ export const Garage = () => {
               </Accordion>
             ))
           ) : (
-            <NoItems message="Keine Fahrzeuge vorhanden" />
+            <NoItems message={i18next.t('garage_no_vehicles')} />
           )}
         </Box>
       </React.Fragment>

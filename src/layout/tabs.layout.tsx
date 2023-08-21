@@ -3,6 +3,7 @@ import { Box, Tabs as MuiTabs, Paper, Tab } from '@mui/material';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Changelogs, Garage, Home, Market, Personal, Properties, Settings, Trader } from '@/routes';
+import i18next from '@/i18next';
 
 export interface TabContent {
   requiresAuth: boolean;
@@ -15,49 +16,49 @@ export const Tabs: TabContent[] = [
   {
     requiresAuth: false,
     path: '/home',
-    label: 'Allgemeines',
+    label: i18next.t('tab_home'),
     content: <Home />,
   },
   {
     requiresAuth: true,
     path: '/personal',
-    label: 'Persönliches',
+    label: i18next.t('tab_personal'),
     content: <Personal />,
   },
   {
     requiresAuth: true,
     path: '/garage',
-    label: 'Garage',
+    label: i18next.t('tab_garage'),
     content: <Garage />,
   },
   {
     requiresAuth: true,
     path: '/properties',
-    label: 'Immobilien',
+    label: i18next.t('tab_properties'),
     content: <Properties />,
   },
   {
     requiresAuth: false,
     path: '/market',
-    label: 'Markt',
+    label: i18next.t('tab_market'),
     content: <Market />,
   },
   {
     requiresAuth: false,
     path: '/trader',
-    label: 'Händler',
+    label: i18next.t('tab_traders'),
     content: <Trader />,
   },
   {
     requiresAuth: false,
     path: '/changelogs',
-    label: 'Changelogs',
+    label: i18next.t('tab_changelogs'),
     content: <Changelogs />,
   },
   {
     requiresAuth: false,
     path: '/settings',
-    label: 'Einstellungen',
+    label: i18next.t('tab_settings'),
     content: <Settings />,
   },
 ];

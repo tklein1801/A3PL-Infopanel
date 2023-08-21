@@ -4,6 +4,7 @@ import { PanthorService } from '@/services';
 import { ShopCategory, ShopType } from '@/types';
 import { StoreContext } from '@/context';
 import { NoItems, Progress, TraderWrapper } from '@/components';
+import i18next from '@/i18next';
 
 export const Trader = () => {
   const { loading, setLoading, traders, setTraders } = React.useContext(StoreContext);
@@ -33,7 +34,7 @@ export const Trader = () => {
     <Grid container spacing={3}>
       <Grid item xs={12} md={6}>
         <Typography variant="subtitle1" mb={1}>
-          Gegenstände {traders.items.length > 0 && `(${traders.items.length})`}
+          {i18next.t('trader_items_heading')} {traders.items.length > 0 && `(${traders.items.length})`}
         </Typography>
 
         {loading ? (
@@ -41,12 +42,12 @@ export const Trader = () => {
         ) : traders.items.length > 0 ? (
           <TraderWrapper category="items" shops={traders.items} sort />
         ) : (
-          <NoItems message="Keine Anbieter gefunden" />
+          <NoItems message={i18next.t('trader_no_providers')} />
         )}
       </Grid>
       <Grid item xs={12} md={6}>
         <Typography variant="subtitle1" mb={1}>
-          Fahrzeuge {traders.vehicles.length > 0 && `(${traders.vehicles.length})`}
+          {i18next.t('trader_vehicles_heading')} {traders.vehicles.length > 0 && `(${traders.vehicles.length})`}
         </Typography>
 
         {loading ? (
@@ -54,7 +55,7 @@ export const Trader = () => {
         ) : traders.vehicles.length > 0 ? (
           <TraderWrapper category="vehicles" shops={traders.vehicles} sort />
         ) : (
-          <NoItems message="Keine Anbieter gefunden" />
+          <NoItems message={i18next.t('trader_no_providers')} />
         )}
       </Grid>
     </Grid>

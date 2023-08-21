@@ -18,6 +18,7 @@ import {
   SearchInput,
 } from '@/components';
 import { MarketItemList } from '@/components/MarketItem.component';
+import i18next from '@/i18next';
 
 export const Market = () => {
   const FALLBACK_SERVER_ID = 1;
@@ -145,9 +146,9 @@ export const Market = () => {
                   backgroundImage: 'inherit',
                 }}
               >
-                <Typography variant="subtitle1">Marktpreise</Typography>
+                <Typography variant="subtitle1">{i18next.t('market_prices')}</Typography>
                 <Box sx={{ ml: 2 }}>
-                  <SearchInput placeholder="Suchen" onChange={handler.onSearch} />
+                  <SearchInput placeholder={i18next.t('market_search')} onChange={handler.onSearch} />
                 </Box>
               </Box>
 
@@ -163,7 +164,13 @@ export const Market = () => {
                   }))}
                 />
               ) : (
-                <NoItems message={keyword.length > 0 ? `Keine Treffer für '${keyword}'` : 'Keine Items gefunden'} />
+                <NoItems
+                  message={
+                    keyword.length > 0
+                      ? i18next.t('market_no_matches', { keyword: keyword })
+                      : i18next.t('market_no_items')
+                  }
+                />
               )}
             </Paper>
           )}
@@ -194,7 +201,9 @@ export const Market = () => {
                     </Badge>
                     <Box sx={{ ml: 2 }}>
                       <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>{shop.company.name}</Typography>
-                      <Typography variant="body2">Inhaber/in {shop.company.owner}</Typography>
+                      <Typography variant="body2">
+                        {i18next.t('market_offer_owner')} {shop.company.owner}
+                      </Typography>
                     </Box>
                   </Box>
                 </AccordionSummary>
@@ -206,19 +215,19 @@ export const Market = () => {
                         icon: MarketItem.getImageUrl(item.className),
                         name: item.name,
                         price1: item.price,
-                        price2: item.amount + ' Stück',
+                        price2: i18next.t('market_offer_item_count', { amount: item.amount }),
                         withDivider: index !== 0,
                       }))}
                     />
                   ) : (
-                    <NoItems message="Keine Angebote gefunden" />
+                    <NoItems message={i18next.t('market_offer_no_offers')} />
                   )}
                 </AccordionDetails>
               </Accordion>
             );
           })
         ) : (
-          <NoItems message="Keine Firmen gefunden" />
+          <NoItems message={i18next.t('market_offer_no_companies')} />
         )}
       </Grid>
     </Grid>

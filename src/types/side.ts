@@ -1,3 +1,5 @@
+import i18next from '@/i18next';
+
 export type Sides =
   | 'CIV'
   | 'ADAC'
@@ -23,15 +25,15 @@ export class Side {
     switch (this.side.toUpperCase()) {
       case 'MEDIC':
       case 'GUER':
-        return 'Mediziner';
+        return i18next.t('side_medic');
       case 'WEST':
-        return 'Polizei';
+        return i18next.t('side_police');
       case 'ADAC':
       case 'EAST':
-        return 'RAC';
+        return i18next.t('side_adac');
       case 'CIV':
       default:
-        return 'Zivilisten';
+        return i18next.t('side_civ');
     }
   }
 }

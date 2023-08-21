@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { PanthorService } from '@/services';
 import { StoreContext } from '@/context';
 import { AccordionSummary, NoItems, Progress } from '@/components';
+import i18next from '@/i18next';
 
 export const Changelogs = () => {
   const id = React.useId();
@@ -66,12 +67,12 @@ export const Changelogs = () => {
                   id={`panel${changelog.id}a-header`}
                 >
                   <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>
-                    Changelog {changelog.version} - {format(changelog.releaseAt, 'dd.MM.yy')}
+                    {i18next.t('changelogs_changelog')} {changelog.version} - {format(changelog.releaseAt, 'dd.MM.yy')}
                   </Typography>
                   {changelog.size ? <Chip label={changelog.size} size="small" sx={{ ml: { xs: 0, md: 1 } }} /> : null}
                   <Chip
                     icon={changelog.hasModChange() ? <CheckIcon /> : <CloseIcon />}
-                    label="Mod änderungen"
+                    label={i18next.t('changelogs_mod_changes')}
                     size="small"
                     sx={{ ml: 1 }}
                   />
@@ -79,7 +80,7 @@ export const Changelogs = () => {
                 <AccordionDetails>
                   {changelog.changeMission.length > 0 && (
                     <React.Fragment>
-                      <Typography variant="subtitle1">Mission</Typography>
+                      <Typography variant="subtitle1">{i18next.t('changelogs_mission_heading')}</Typography>
                       <ul>
                         {changelog.changeMission.map((change) => (
                           <li>{change}</li>
@@ -90,7 +91,7 @@ export const Changelogs = () => {
 
                   {changelog.changeMod.length > 0 && (
                     <React.Fragment>
-                      <Typography variant="subtitle1">Mod</Typography>
+                      <Typography variant="subtitle1">{i18next.t('changelogs_mod_heading')}</Typography>
                       <ul>
                         {changelog.changeMod.map((change) => (
                           <li>{change}</li>
@@ -101,7 +102,7 @@ export const Changelogs = () => {
 
                   {changelog.changeMap.length > 0 && (
                     <React.Fragment>
-                      <Typography variant="subtitle1">Karte</Typography>
+                      <Typography variant="subtitle1">{i18next.t('changelogs_map_heading')}</Typography>
                       <ul>
                         {changelog.changeMap.map((change) => (
                           <li>{change}</li>
@@ -113,7 +114,7 @@ export const Changelogs = () => {
               </Accordion>
             ))
           ) : (
-            <NoItems message="Keine Changelogs vorhanden" />
+            <NoItems message={i18next.t('changelogs_no_changelogs')} />
           )}
         </Grid>
       </Grid>

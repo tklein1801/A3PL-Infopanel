@@ -5,6 +5,7 @@ import { PanthorService } from '@/services';
 import { SnackbarContext, StoreContext } from '@/context';
 import { Image, LabelValue } from '@/components';
 import PCK from '../../package.json';
+import i18next from '@/i18next';
 
 export const Settings = () => {
   const { showSnackbar } = React.useContext(SnackbarContext);
@@ -16,9 +17,7 @@ export const Settings = () => {
     onKeyDelete: () => {
       localStorage.removeItem('infopanel.apikey');
       setApiKey(null);
-      showSnackbar({
-        message: 'API-Key gelöscht',
-      });
+      showSnackbar({ message: i18next.t('settings_key_deleted') });
     },
     onKeySave: () => {
       const value = apiKeyInputRef.current?.value;
@@ -29,21 +28,21 @@ export const Settings = () => {
             localStorage.setItem('infopanel.apikey', value);
             setApiKey(value);
             showSnackbar({
-              message: 'API-Key gespeichert',
-              action: <Button onClick={handler.onKeyDelete}>Löschen</Button>,
+              message: i18next.t('settings_key_saved'),
+              action: <Button onClick={handler.onKeyDelete}>{i18next.t('settings_key_delete_btn')}</Button>,
             });
           } else {
             showSnackbar({
-              message: 'API-Key ungültig',
-              action: <Button onClick={handler.onKeySave}>Wiederholen</Button>,
+              message: i18next.t('settings_key_invalid'),
+              action: <Button onClick={handler.onKeySave}>{i18next.t('settings_key_retry')}</Button>,
             });
           }
         })
         .catch((error) => {
           console.error(error);
           showSnackbar({
-            message: 'API-Key konnte nicht validiert werden',
-            action: <Button onClick={handler.onKeySave}>Wiederholen</Button>,
+            message: i18next.t('settings_key_validation_failed'),
+            action: <Button onClick={handler.onKeySave}>{i18next.t('settings_key_retry')}</Button>,
           });
         });
     },
@@ -69,7 +68,7 @@ export const Settings = () => {
 
       <Grid item xs={12} md={4}>
         <Paper sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
-          <Typography variant="h6">Einstellungen</Typography>
+          <Typography variant="h6">{i18next.t('settings_heading')}</Typography>
 
           {/* API-Key */}
           <React.Fragment>
@@ -88,10 +87,10 @@ export const Settings = () => {
               }}
             >
               <Button onClick={handler.onKeyDelete} size="small">
-                Löschen
+                {i18next.t('settings_key_delete_btn')}
               </Button>
               <Button onClick={handler.onKeySave} variant="contained" size="small" sx={{ ml: 1 }}>
-                Speichern
+                {i18next.t('settings_key_save_btn')}
               </Button>
             </Box>
           </React.Fragment>
