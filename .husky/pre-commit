@@ -5,6 +5,7 @@ files=$(git diff --name-only --diff-filter=ACM --cached src/)
 if [ -n "$files" ]; then
   npx prettier --write $files
   git add $files
+  npm run test
 fi
 
 exit 0
