@@ -12,7 +12,7 @@ export const Garage = () => {
   const { loading, setLoading, apiKey, vehicles, setVehicles } = React.useContext(StoreContext);
   const [open, setOpen] = React.useState(-1);
 
-  const handleChange = (accordion: typeof open) => (event: React.SyntheticEvent, isClosed: boolean) => {
+  const handleChange = (accordion: typeof open) => (_event: React.SyntheticEvent, isClosed: boolean) => {
     setOpen(isClosed ? accordion : -1);
   };
 

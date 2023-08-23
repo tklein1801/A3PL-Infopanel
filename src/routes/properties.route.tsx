@@ -12,7 +12,7 @@ export const Properties = () => {
   const { loading, profile } = React.useContext(StoreContext);
   const [open, setOpen] = React.useState<number | null>(null);
 
-  const handleChange = (accordion: typeof open) => (event: React.SyntheticEvent, isClosed: boolean) => {
+  const handleChange = (accordion: typeof open) => (_event: React.SyntheticEvent, isClosed: boolean) => {
     setOpen(isClosed ? accordion : null);
   };
 

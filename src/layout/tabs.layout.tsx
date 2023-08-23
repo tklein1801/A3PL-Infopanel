@@ -80,7 +80,7 @@ export const TabWrapper: React.FC<TabWrapperProps> = ({ children }) => {
         >
           <MuiTabs
             value={location.pathname}
-            onChange={(event, value) => navigate(value)}
+            onChange={(_event, value) => navigate(value)}
             variant="scrollable"
             allowScrollButtonsMobile
             scrollButtons

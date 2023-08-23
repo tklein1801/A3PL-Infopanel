@@ -1,7 +1,7 @@
 {
   "name": "a3pl-infopanel",
   "private": true,
-  "version": "4.5.0",
+  "version": "4.6.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -29,7 +29,6 @@
     "@testing-library/jest-dom": "^6.0.1",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
-    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/jest": "^29.5.4",
     "@types/node": "^20.5.1",
     "@types/react": "^18.2.15",

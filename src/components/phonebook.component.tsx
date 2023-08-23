@@ -119,7 +119,7 @@ export interface PhonebookWrapperProps {
 export const PhonebookWrapper: React.FC<PhonebookWrapperProps> = ({ phonebooks }) => {
   const [shown, setShown] = React.useState(-1);
 
-  const handleChange = (version: typeof shown) => (event: React.SyntheticEvent, isClosed: boolean) => {
+  const handleChange = (version: typeof shown) => (_event: React.SyntheticEvent, isClosed: boolean) => {
     setShown(isClosed ? version : -1);
   };
 

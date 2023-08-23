@@ -17,6 +17,7 @@ export const NonAuthLayout: React.FC<React.PropsWithChildren> = ({ children }) =
           <Grid item xs={12} md={12}>
             <TabWrapper>
               <Outlet />
+              {children}
             </TabWrapper>
           </Grid>
         </Grid>

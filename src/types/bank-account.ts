@@ -10,7 +10,9 @@ export type BankAccountResponse = BankAccountDTOResponse & {
 export class BankAccount extends BankAccountDTO {
   id: number;
   disabled: boolean;
+  // @ts-ignore
   private created_at: Date;
+  // @ts-ignore
   private updated_at: Date;
 
   constructor(data: BankAccountResponse, owner?: string) {

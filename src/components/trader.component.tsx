@@ -111,7 +111,7 @@ export const TraderWrapper: React.FC<TraderWrapperProps> = ({ category, shops, s
   const { cachedTraderOffers, setCachedTraderOffers } = React.useContext(StoreContext);
   const [shown, setShown] = React.useState<ShopType['type']>('');
 
-  const handleChange = (event: React.SyntheticEvent, isClosed: boolean, object: ShopType['type']) => {
+  const handleChange = (_event: React.SyntheticEvent, isClosed: boolean, object: ShopType['type']) => {
     setShown(isClosed ? object : '');
   };
 

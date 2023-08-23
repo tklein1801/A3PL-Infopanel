@@ -23,7 +23,7 @@ export const Changelogs = () => {
     return searchParams.get('changelog');
   }, [location]);
 
-  const handleChange = (version: typeof currentChangelog) => (event: React.SyntheticEvent, isClosed: boolean) => {
+  const handleChange = (version: typeof currentChangelog) => (_event: React.SyntheticEvent, isClosed: boolean) => {
     setCurrentChangelog(isClosed ? version : '');
     if (isClosed) {
       searchParams.set('changelog', version);

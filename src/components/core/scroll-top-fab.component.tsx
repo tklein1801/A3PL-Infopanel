@@ -9,7 +9,7 @@ export const ScrollTopFab: React.FC<ScrollTopFabInterface> = (props) => {
   const [showScrollTopBtn, setShowScrollTopBtn] = React.useState(false);
 
   React.useEffect(() => {
-    document.addEventListener('scroll', (event) => setShowScrollTopBtn(window.scrollY > 100));
+    document.addEventListener('scroll', () => setShowScrollTopBtn(window.scrollY > 100));
     return () => {
       document.removeEventListener('scroll', () => {});
     };

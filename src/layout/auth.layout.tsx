@@ -62,6 +62,7 @@ export const AuthLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
                 ))}
 
               <Outlet />
+              {children}
             </TabWrapper>
           </Grid>
         </Grid>

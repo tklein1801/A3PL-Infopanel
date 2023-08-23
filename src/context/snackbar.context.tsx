@@ -25,7 +25,7 @@ export const SnackbarProvider: React.FC<React.PropsWithChildren> = ({ children }
     setSnackPack((prev) => [...prev, { message: props.message, action: props.action, key: new Date().getTime() }]);
   };
 
-  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (_event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }

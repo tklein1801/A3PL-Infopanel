@@ -67,7 +67,7 @@ export const Market = () => {
   }, [location]);
 
   const handleCompanyShopToggle =
-    (industrialAreaId: typeof currentCompanyShop) => (event: React.SyntheticEvent, isClosed: boolean) => {
+    (industrialAreaId: typeof currentCompanyShop) => (_event: React.SyntheticEvent, isClosed: boolean) => {
       setCurrentCompanyShop(isClosed ? industrialAreaId : '');
       if (isClosed) {
         searchParams.set('company', industrialAreaId);
