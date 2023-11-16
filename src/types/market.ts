@@ -99,7 +99,7 @@ export class MarketItem {
   }
 
   static getImageUrl(itemClassname: string): string {
-    return `https://files.dulliag.de/app/market_${itemClassname}.png`;
+    return `/public/market_icons/${itemClassname}.png`;
   }
 
   getImageUrl() {
