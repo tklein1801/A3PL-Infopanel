@@ -12,3 +12,6 @@ export * from './trader.component';
 export * from './twitch.component';
 export * from './server';
 export * from './maintenance-warning.component';
+export * from './SearchVehicle.component';
+export * from './SelectMarketItem.component';
+export * from './FarmingCalculator.component';

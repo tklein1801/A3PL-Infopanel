@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { Panthor } from '@/constants';
-import type {
+import {
   ApiResponse,
+  BaseVehicle,
   ChangelogResponse,
   ErrorResponse,
   MarketItemResponse,
@@ -45,6 +46,17 @@ export class PanthorService {
       const response = await axios.get(Panthor.apiBaseUrl + '/v1/player/' + apiKey + '/vehicles');
       const json: ApiResponse<VehicleResponse> = await response.data;
       return json.data.map((props) => new Vehicle(props));
+    } catch (message) {
+      console.error(message);
+      return [];
+    }
+  }
+
+  static async getVehicleList(): Promise<BaseVehicle[]> {
+    try {
+      const response = await axios.get(Panthor.apiBaseUrl + '/v1/info/vehicles');
+      const json: ApiResponse<VehicleResponse> = await response.data;
+      return json.data.map((props) => new BaseVehicle(props));
     } catch (message) {
       console.error(message);
       return [];

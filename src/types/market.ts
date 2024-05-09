@@ -106,6 +106,14 @@ export class MarketItem {
     return MarketItem.getImageUrl(this.item);
   }
 
+  getRawWeight(): number {
+    return ItemWeights.get(this.item)?.raw ?? 0;
+  }
+
+  getProcessedWeight(): number {
+    return ItemWeights.get(this.item)?.processed ?? 0;
+  }
+
   async getPriceBacklog(server: number, backlogCount: number) {
     try {
       const response = await fetch(`${Panthor.apiBaseUrl}/v1/market_logs/${server}/${this.item}/${backlogCount}`);
@@ -117,3 +125,64 @@ export class MarketItem {
     }
   }
 }
+
+export const ItemWeights: Map<MarketItem['item'], { raw: number; processed: number }> = new Map([
+  ['aluminum_r', { raw: 4, processed: 3 }],
+  ['apple', { raw: 2, processed: 2 }],
+  ['applepie', { raw: 6, processed: 4 }],
+  ['applewine', { raw: 4, processed: 2 }],
+  ['apple_juice', { raw: 4, processed: 3 }],
+  ['beer', { raw: 6, processed: 3 }],
+  ['biscuit', { raw: 11, processed: 4 }],
+  ['bread', { raw: 4, processed: 2 }],
+  ['cable', { raw: 9, processed: 5 }],
+  ['charcoal_r', { raw: 5, processed: 3 }],
+  ['clayplate', { raw: 10, processed: 5 }],
+  ['clay_r', { raw: 5, processed: 4 }],
+  ['cocaine_r', { raw: 5, processed: 4 }],
+  ['concrete', { raw: 8, processed: 5 }],
+  ['copper_r', { raw: 4, processed: 3 }],
+  ['cotton_r', { raw: 4, processed: 2 }],
+  ['crab', { raw: 4, processed: 2 }],
+  ['crab_rolls', { raw: 8, processed: 3 }],
+  ['detergent', { raw: 10, processed: 3 }],
+  ['door', { raw: 9, processed: 5 }],
+  ['fentanyl_r', { raw: 5, processed: 4 }],
+  ['fishfilet', { raw: 3, processed: 2 }],
+  ['fishsticks', { raw: 7, processed: 3 }],
+  ['grainbooze', { raw: 0, processed: 0 }], // TODO:
+  ['grape_juice', { raw: 4, processed: 3 }],
+  ['heroin_r', { raw: 5, processed: 4 }],
+  ['honey_r', { raw: 3, processed: 2 }],
+  ['iron_r', { raw: 4, processed: 3 }],
+  ['jewellery', { raw: 5, processed: 3 }],
+  ['lsd', { raw: 15, processed: 5 }],
+  ['meat_r', { raw: 4, processed: 3 }],
+  ['moonshiner', { raw: 8, processed: 2 }],
+  ['oil_r', { raw: 5, processed: 4 }],
+  ['pearl', { raw: 5, processed: 2 }],
+  ['plastic', { raw: 5, processed: 3 }],
+  ['potato', { raw: 2, processed: 2 }],
+  ['potatobread', { raw: 6, processed: 4 }],
+  ['precious_metal_r', { raw: 5, processed: 4 }],
+  ['purple_haze_r', { raw: 3, processed: 2 }],
+  ['rock_r', { raw: 4, processed: 4 }],
+  ['roll', { raw: 0, processed: 0 }], // TODO:
+  ['rubber', { raw: 5, processed: 4 }],
+  ['rye_r', { raw: 0, processed: 0 }], //TODO:
+  ['sand_r', { raw: 4, processed: 3 }],
+  ['shell_r', { raw: 5, processed: 5 }],
+  ['steel', { raw: 9, processed: 5 }],
+  ['sugar_r', { raw: 3, processed: 2 }],
+  ['thermal_insulation', { raw: 8, processed: 5 }],
+  ['tissue', { raw: 0, processed: 0 }], // TODO:
+  ['titanium_r', { raw: 5, processed: 4 }],
+  ['vodka', { raw: 4, processed: 3 }],
+  ['wheat_r', { raw: 4, processed: 3 }],
+  ['white_russian_r', { raw: 3, processed: 2 }],
+  ['white_widow_r', { raw: 3, processed: 2 }],
+  ['window', { raw: 9, processed: 5 }],
+  ['wine_r', { raw: 4, processed: 2 }],
+  ['wine_u', { raw: 4, processed: 2 }],
+  ['wood_r', { raw: 5, processed: 5 }],
+]);

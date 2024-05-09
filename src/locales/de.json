@@ -125,5 +125,21 @@
   "settings_key_invalid": "API-Key ungültig",
   "settings_key_validation_failed": "API-Key konnte nicht validiert werden",
   "settings_key_deleted": "API-Key gelöscht",
-  "settings_key_retry": "Wiederholen"
+  "settings_key_retry": "Wiederholen",
+  "market_farming_title": "Farmrechner",
+  "market_farming_label_server": "Server",
+  "market_farming_label_inventory": "Inventarplatz",
+  "market_farming_label_kg": "Kg.",
+  "market_farming_label_pcs": "Stk.",
+  "market_farming_label_total": "Summe",
+  "market_farming_label_item_count": "Items (Anzahl)",
+  "market_farming_label_item_weight_raw": "Items (Rohgewicht)",
+  "market_farming_label_total_weight": "Gesamtkapazität",
+  "market_farming_label_vehicle_weight": "Fahrzeugkapazität",
+  "search_vehicle_loading_text": "Fahrzeuge werden geladen...",
+  "search_vehicle_label": "Fahrzeuge",
+  "select_market_item_loading_text": "Items werden geladen...",
+  "select_market_item_label": "Item",
+  "select_market_item_label_raw": "Roh",
+  "select_market_item_label_processed": "Verarbeitet"
 }

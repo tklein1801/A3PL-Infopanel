@@ -4,12 +4,61 @@ import i18next from '@/i18next';
 
 export type VehicleType = 'Car' | 'Ship' | 'Air';
 
-export type VehicleResponse = {
+export type BaseVehicleResponse = {
   id: number;
+  classname: string;
+  name: string;
+  price: number;
+  level: number;
+  v_space: number;
+  shoptype: string;
+  shopname: string;
+  type: VehicleType;
+};
+export class BaseVehicle {
+  id: number;
+  classname: string;
+  name: string;
+  price: number;
+  level: number;
+  v_space: number;
+  shoptype: string;
+  shopname: string;
+  type: VehicleType;
+
+  constructor(data: BaseVehicleResponse) {
+    this.id = data.id;
+    this.classname = data.classname;
+    this.name = data.name;
+    this.price = data.price;
+    this.level = data.level;
+    this.v_space = data.v_space;
+    this.shoptype = data.shoptype;
+    this.shopname = data.shopname;
+    this.type = data.type;
+  }
+
+  getVehicleTypeLabel(): string {
+    switch (this.type) {
+      case 'Air':
+        return i18next.t('vehicle_type_air');
+      case 'Ship':
+        return i18next.t('vehicle_type_sea');
+      case 'Car':
+        return i18next.t('vehicle_type_land');
+    }
+  }
+
+  getImage(): string {
+    return `https://static.panthor.de/arma/previews/${
+      this.classname.includes('_ct_') ? this.classname.split('_ct_')[0] : this.classname
+    }.jpg`;
+  }
+}
+
+export type VehicleResponse = BaseVehicle & {
   pid: string;
   side: Sides;
-  classname: string;
-  type: VehicleType;
   plate: string;
   active: number;
   impound: number;
@@ -57,12 +106,9 @@ export type VehicleResponse = {
   }[];
 };
 
-export class Vehicle {
-  id: number;
+export class Vehicle extends BaseVehicle {
   pid: string;
   side: Side;
-  classname: string;
-  type: VehicleType;
   plate: string;
   active: boolean;
   impound: boolean;
@@ -116,11 +162,10 @@ export class Vehicle {
   export_vehicles: VehicleResponse['export_vehicles'];
 
   constructor(data: VehicleResponse) {
-    this.id = data.id;
+    super(data);
+
     this.pid = data.pid;
     this.side = new Side(data.side);
-    this.classname = data.classname;
-    this.type = data.type;
     this.plate = data.plate;
     this.active = data.active === 1;
     this.impound = data.impound === 1;
@@ -153,21 +198,4 @@ export class Vehicle {
   //   const b: [[any[], any[]], [string[], number[]], any[], any[]] = a;
   //   console.log(b[1]);
   // }
-
-  getVehicleTypeLabel(): string {
-    switch (this.type) {
-      case 'Air':
-        return i18next.t('vehicle_type_air');
-      case 'Ship':
-        return i18next.t('vehicle_type_sea');
-      case 'Car':
-        return i18next.t('vehicle_type_land');
-    }
-  }
-
-  getImage(): string {
-    return `https://static.panthor.de/arma/previews/${
-      this.classname.includes('_ct_') ? this.classname.split('_ct_')[0] : this.classname
-    }.jpg`;
-  }
 }

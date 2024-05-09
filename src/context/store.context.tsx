@@ -2,6 +2,7 @@ import { DATA_REFRESH_INTERVAL } from '@/constants';
 import React from 'react';
 import { PanthorService } from '@/services';
 import {
+  BaseVehicle,
   Changelog,
   MarketItem,
   Profile,
@@ -39,6 +40,8 @@ export interface IStoreContext {
   setCachedTraderOffers: React.Dispatch<React.SetStateAction<IStoreContext['cachedTraderOffers']>>;
   companyShops: CompanyShop[];
   setCompanyShops: React.Dispatch<React.SetStateAction<IStoreContext['companyShops']>>;
+  vehicleList: BaseVehicle[];
+  setVehicleList: React.Dispatch<React.SetStateAction<IStoreContext['vehicleList']>>;
 }
 
 export const StoreContext = React.createContext({} as IStoreContext);
@@ -71,6 +74,7 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
     items: {},
     vehicles: {},
   });
+  const [vehicleList, setVehicleList] = React.useState<IStoreContext['vehicleList']>([]);
 
   const authentificated = React.useMemo(() => {
     return apiKey !== null && apiKey.length > 1;
@@ -133,6 +137,8 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
           setCachedTraderOffers,
           companyShops,
           setCompanyShops,
+          vehicleList,
+          setVehicleList,
         }),
         [
           loading,
@@ -147,6 +153,7 @@ export const StoreProvider: React.FC<React.PropsWithChildren> = ({ children }) =
           traders,
           cachedTraderOffers,
           companyShops,
+          vehicleList,
         ]
       )}
     >

@@ -10,6 +10,7 @@ import { StoreContext } from '@/context';
 import {
   AccordionSummary,
   CopBonus as CopBonusComponent,
+  FarmingCalculator,
   Icon,
   MarketItemRefreshCountdown,
   MarketItemRefreshCountdownProps,
@@ -177,58 +178,64 @@ export const Market = () => {
         </Grid>
       </Grid>
 
-      <Grid item xs={12} md={6}>
-        {loading ? (
-          <Progress />
-        ) : companyShops.length > 0 ? (
-          companyShops.map((shop) => {
-            const uniqueAccordionId = shop.industrialAreaId.toString();
-            const expanded = currentCompanyShop === uniqueAccordionId;
-            return (
-              <Accordion
-                key={`${id}-company-shop-${uniqueAccordionId}`}
-                expanded={expanded}
-                onChange={handleCompanyShopToggle(uniqueAccordionId)}
-              >
-                <AccordionSummary
+      <Grid container item xs={12} md={6} sx={{ height: 'min-content' }} rowSpacing={2}>
+        <Grid item xs={12} sx={{ height: 'min-content' }}>
+          <FarmingCalculator />
+        </Grid>
+
+        <Grid item xs={12} sx={{ height: 'min-content' }}>
+          {loading ? (
+            <Progress />
+          ) : companyShops.length > 0 ? (
+            companyShops.map((shop) => {
+              const uniqueAccordionId = shop.industrialAreaId.toString();
+              const expanded = currentCompanyShop === uniqueAccordionId;
+              return (
+                <Accordion
+                  key={`${id}-company-shop-${uniqueAccordionId}`}
                   expanded={expanded}
-                  expandIcon={<ExpandMoreIcon />}
-                  id={`panel${uniqueAccordionId}a-header`}
+                  onChange={handleCompanyShopToggle(uniqueAccordionId)}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Badge color="primary" badgeContent={shop.offers.length}>
-                      <Icon icon={<StorefrontIcon />} />
-                    </Badge>
-                    <Box sx={{ ml: 2 }}>
-                      <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>{shop.company.name}</Typography>
-                      <Typography variant="body2">
-                        {i18next.t('market_offer_owner')} {shop.company.owner}
-                      </Typography>
+                  <AccordionSummary
+                    expanded={expanded}
+                    expandIcon={<ExpandMoreIcon />}
+                    id={`panel${uniqueAccordionId}a-header`}
+                  >
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Badge color="primary" badgeContent={shop.offers.length}>
+                        <Icon icon={<StorefrontIcon />} />
+                      </Badge>
+                      <Box sx={{ ml: 2 }}>
+                        <Typography sx={{ width: { xs: '100%', md: 'unset' } }}>{shop.company.name}</Typography>
+                        <Typography variant="body2">
+                          {i18next.t('market_offer_owner')} {shop.company.owner}
+                        </Typography>
+                      </Box>
                     </Box>
-                  </Box>
-                </AccordionSummary>
-                <AccordionDetails sx={{ p: shop.offers.length > 0 ? 0 : 2 }}>
-                  {shop.offers.length > 0 ? (
-                    <MarketItemList
-                      items={shop.offers.map((item, index) => ({
-                        className: item.className,
-                        icon: MarketItem.getImageUrl(item.className),
-                        name: item.name,
-                        price1: item.price,
-                        price2: i18next.t('market_offer_item_count', { amount: item.amount }),
-                        withDivider: index !== 0,
-                      }))}
-                    />
-                  ) : (
-                    <NoItems message={i18next.t('market_offer_no_offers')} />
-                  )}
-                </AccordionDetails>
-              </Accordion>
-            );
-          })
-        ) : (
-          <NoItems message={i18next.t('market_offer_no_companies')} />
-        )}
+                  </AccordionSummary>
+                  <AccordionDetails sx={{ p: shop.offers.length > 0 ? 0 : 2 }}>
+                    {shop.offers.length > 0 ? (
+                      <MarketItemList
+                        items={shop.offers.map((item, index) => ({
+                          className: item.className,
+                          icon: MarketItem.getImageUrl(item.className),
+                          name: item.name,
+                          price1: item.price,
+                          price2: i18next.t('market_offer_item_count', { amount: item.amount }),
+                          withDivider: index !== 0,
+                        }))}
+                      />
+                    ) : (
+                      <NoItems message={i18next.t('market_offer_no_offers')} />
+                    )}
+                  </AccordionDetails>
+                </Accordion>
+              );
+            })
+          ) : (
+            <NoItems message={i18next.t('market_offer_no_companies')} />
+          )}
+        </Grid>
       </Grid>
     </Grid>
   );
