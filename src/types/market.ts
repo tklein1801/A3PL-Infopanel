@@ -99,7 +99,7 @@ export class MarketItem {
   }
 
   static getImageUrl(itemClassname: string): string {
-    return `/public/market_icons/${itemClassname}.png`;
+    return `/market_icons/${itemClassname}.png`;
   }
 
   getImageUrl() {
